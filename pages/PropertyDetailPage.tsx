@@ -80,7 +80,7 @@ const PropertyDetailPage: React.FC = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
                     {/* Image Gallery */}
                     <div className="lg:col-span-3">
-                        <div className="relative h-96 w-full rounded-lg shadow-lg overflow-hidden group">
+                        <div className="relative h-[55vh] md:h-[60vh] lg:h-[500px] w-full rounded-lg shadow-lg overflow-hidden group">
                             <div style={{ backgroundImage: `url(${images[currentIndex]})` }} className="w-full h-full bg-center bg-cover duration-500"></div>
                             {/* Left Arrow */}
                             <div className="absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
@@ -92,7 +92,7 @@ const PropertyDetailPage: React.FC = () => {
                             </div>
                         </div>
                         {images.length > 1 && (
-                            <div className="flex justify-center py-4 space-x-2">
+                            <div className="flex flex-wrap justify-center py-4 gap-2">
                                 {images.map((image, index) => (
                                     <div key={index} onClick={() => goToSlide(index)} className="cursor-pointer">
                                         <img 
@@ -107,14 +107,14 @@ const PropertyDetailPage: React.FC = () => {
                     </div>
 
                     {/* Property Details */}
-                    <div className="lg:col-span-2 bg-white p-8 rounded-lg shadow-lg">
+                    <div className="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg shadow-lg">
                         <span className="inline-block bg-brand-gold/20 text-brand-gold text-sm font-semibold px-3 py-1 rounded-full mb-4">{property.type}</span>
-                        <h1 className="text-3xl font-bold font-serif text-brand-blue mb-2">{property.title}</h1>
+                        <h1 className="text-2xl md:text-3xl font-bold font-serif text-brand-blue mb-2">{property.title}</h1>
                         <div className="flex items-center text-gray-600 mb-6">
                             <MapPinIcon className="h-5 w-5 mr-2 text-gray-400" />
                             <span>{property.address}, {property.commune}</span>
                         </div>
-                        <p className="text-4xl font-bold text-brand-dark mb-6">{formattedPrice} {property.type !== 'À Vendre' && '/ mois'}</p>
+                        <p className="text-3xl md:text-4xl font-bold text-brand-dark mb-6">{formattedPrice} {property.type !== 'À Vendre' && '/ mois'}</p>
 
                         <div className="grid grid-cols-3 gap-4 text-center my-6 py-4 border-y border-gray-200">
                             {property.bedrooms > 0 && <div>

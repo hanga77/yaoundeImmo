@@ -6,7 +6,7 @@ const LegalPage: React.FC = () => {
     <div className="bg-white py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto prose lg:prose-lg text-gray-700">
-          <h1 className="text-4xl font-bold font-serif text-brand-blue">Mentions Légales & Politique de Confidentialité</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-blue">Mentions Légales & Politique de Confidentialité</h1>
           
           <h2 className="mt-12 text-2xl font-bold font-serif text-brand-blue">1. Éditeur du Site</h2>
           <p>

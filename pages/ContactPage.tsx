@@ -8,17 +8,17 @@ const ContactPage: React.FC = () => {
       {/* Page Header */}
       <div className="bg-brand-blue py-20 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold font-serif">Contactez-nous</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif">Contactez-nous</h1>
           <p className="mt-2 text-lg text-gray-300">Nous sommes à votre écoute pour toute question ou projet.</p>
         </div>
       </div>
 
-      <div className="py-20">
+      <div className="py-12 md:py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-lg shadow-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-6 md:p-12 rounded-lg shadow-xl">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-brand-blue font-serif mb-6">Envoyez-nous un message</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue font-serif mb-6">Envoyez-nous un message</h2>
               <form>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -51,8 +51,8 @@ const ContactPage: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="bg-brand-blue p-8 rounded-lg text-white">
-              <h2 className="text-3xl font-bold font-serif mb-6">Nos Coordonnées</h2>
+            <div className="bg-brand-blue p-6 md:p-8 rounded-lg text-white">
+              <h2 className="text-2xl md:text-3xl font-bold font-serif mb-6">Nos Coordonnées</h2>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPinIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />

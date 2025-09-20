@@ -1,15 +1,18 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SERVICES } from '../constants';
+import { useData } from '../DataContext';
+import { Icon } from '../components/IconMap';
 
 const ServicesPage: React.FC = () => {
+  const { services } = useData();
+  
   return (
     <div>
       {/* Page Header */}
       <div className="bg-brand-blue py-20 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold font-serif">Nos Services Clé en Main</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif">Notre Boutique de Services</h1>
           <p className="mt-2 text-lg text-gray-300">Un accompagnement complet pour tous vos projets de construction et de rénovation.</p>
         </div>
       </div>
@@ -19,13 +22,11 @@ const ServicesPage: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-1 gap-8">
-              {SERVICES.map((service) => {
-                const Icon = service.icon;
-                return (
+              {services.map((service) => (
                   <div key={service.id} className="bg-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row items-center transition-shadow duration-300 hover:shadow-2xl">
                     <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
                       <div className="flex items-center justify-center h-24 w-24 rounded-full bg-brand-gold text-white">
-                        <Icon className="h-12 w-12" />
+                        <Icon name={service.icon} className="h-12 w-12" />
                       </div>
                     </div>
                     <div className="flex-grow text-center md:text-left">
@@ -39,8 +40,8 @@ const ServicesPage: React.FC = () => {
                       </Link>
                     </div>
                   </div>
-                );
-              })}
+                )
+              )}
             </div>
           </div>
         </div>

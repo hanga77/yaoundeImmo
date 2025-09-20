@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Property, PropertyType } from '../../types';
+import { XCircleIcon, PhotoIcon } from '@heroicons/react/24/solid';
 
 interface PropertyFormProps {
   onSubmit: (property: any) => void;
   initialData?: Property | null;
 }
+
+const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+    });
+};
+
 
 const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) => {
   const navigate = useNavigate();
@@ -19,16 +30,13 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) =>
     bathrooms: 0,
     area: 0,
     imageUrl: '',
+    imageUrls: [] as string[],
     description: '',
     isFeatured: false,
   });
 
   useEffect(() => {
     if (initialData) {
-      // Fix: The `initialData` object of type `Property` is not assignable to the `formData` state
-      // because `isFeatured` is optional in `Property` but required in the state, and `Property`
-      // has an `id` which the state does not.
-      // We create an object that matches the state's shape.
       setFormData({
         title: initialData.title,
         type: initialData.type,
@@ -39,6 +47,7 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) =>
         bathrooms: initialData.bathrooms,
         area: initialData.area,
         imageUrl: initialData.imageUrl,
+        imageUrls: initialData.imageUrls || [],
         description: initialData.description,
         isFeatured: initialData.isFeatured ?? false,
       });
@@ -54,6 +63,29 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) =>
     } else {
         setFormData(prev => ({ ...prev, [name]: type === 'number' ? parseFloat(value) || 0 : value }));
     }
+  };
+  
+  const handleMainImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files && e.target.files[0]) {
+          const base64 = await fileToBase64(e.target.files[0]);
+          setFormData(prev => ({ ...prev, imageUrl: base64 }));
+      }
+  };
+  
+  const handleGalleryImagesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) {
+          const files = Array.from(e.target.files);
+          const base64Promises = files.map(file => fileToBase64(file));
+          const base64Images = await Promise.all(base64Promises);
+          setFormData(prev => ({...prev, imageUrls: [...prev.imageUrls, ...base64Images]}));
+      }
+  };
+  
+  const handleRemoveGalleryImage = (index: number) => {
+      setFormData(prev => ({
+          ...prev,
+          imageUrls: prev.imageUrls.filter((_, i) => i !== index)
+      }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -110,9 +142,49 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) =>
         </div>
       </div>
       
+      {/* Main Image Upload */}
       <div>
-        <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">URL de l'image</label>
-        <input type="text" name="imageUrl" id="imageUrl" value={formData.imageUrl} onChange={handleChange} required placeholder="https://picsum.photos/seed/..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+        <label className="block text-sm font-medium text-gray-700">Image principale</label>
+        <div className="mt-2 flex items-center gap-x-3">
+          {formData.imageUrl ? 
+            <img src={formData.imageUrl} alt="Aperçu" className="h-24 w-24 object-cover rounded-md" /> : 
+            <PhotoIcon className="h-24 w-24 text-gray-300" aria-hidden="true" />
+          }
+          <label htmlFor="main-image-upload" className="cursor-pointer rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+            <span>Changer</span>
+            <input id="main-image-upload" name="main-image-upload" type="file" className="sr-only" accept="image/*" onChange={handleMainImageChange} />
+          </label>
+        </div>
+      </div>
+
+      {/* Gallery Images Upload */}
+      <div>
+        <label className="block text-sm font-medium text-gray-700">Images de la galerie</label>
+        <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+            <div className="text-center">
+                <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
+                <div className="mt-4 flex text-sm leading-6 text-gray-600">
+                <label htmlFor="gallery-upload" className="relative cursor-pointer rounded-md bg-white font-semibold text-brand-gold focus-within:outline-none focus-within:ring-2 focus-within:ring-brand-gold focus-within:ring-offset-2 hover:text-yellow-600">
+                    <span>Téléversez des fichiers</span>
+                    <input id="gallery-upload" name="gallery-upload" type="file" multiple className="sr-only" accept="image/*" onChange={handleGalleryImagesChange} />
+                </label>
+                <p className="pl-1">ou glissez-déposez</p>
+                </div>
+                <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF jusqu'à 10MB</p>
+            </div>
+        </div>
+        {formData.imageUrls.length > 0 && (
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {formData.imageUrls.map((url, index) => (
+                    <div key={index} className="relative group">
+                        <img src={url} alt={`Galerie ${index + 1}`} className="h-24 w-full object-cover rounded-md" />
+                        <button type="button" onClick={() => handleRemoveGalleryImage(index)} className="absolute top-0 right-0 p-0.5 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                            <XCircleIcon className="h-5 w-5" />
+                        </button>
+                    </div>
+                ))}
+            </div>
+        )}
       </div>
 
       <div>

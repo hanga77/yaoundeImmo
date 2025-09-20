@@ -15,9 +15,9 @@ const AdminPropertiesPage: React.FC = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-wrap gap-4 justify-between items-center mb-8">
         <div>
-            <h1 className="text-3xl font-bold text-brand-dark font-serif">Gestion des Biens Immobiliers</h1>
+            <h1 className="text-2xl md:text-3xl font-bold text-brand-dark font-serif">Gestion des Biens</h1>
             <p className="text-gray-600 mt-1">Ajoutez, modifiez ou supprimez des biens.</p>
         </div>
         <Link to="/admin/properties/new" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 flex items-center">
@@ -47,7 +47,7 @@ const AdminPropertiesPage: React.FC = () => {
                       <img src={property.imageUrl} alt={property.title} className="w-16 h-12 object-cover rounded-md" />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-gray-900">{property.title}</div>
+                      <div className="text-sm font-medium text-gray-900 truncate max-w-xs">{property.title}</div>
                       <div className="text-sm text-gray-500">{property.address}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -59,10 +59,10 @@ const AdminPropertiesPage: React.FC = () => {
                        {new Intl.NumberFormat('fr-CM').format(property.price)} XAF
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                      <Link to={`/admin/properties/edit/${property.id}`} className="text-indigo-600 hover:text-indigo-900 p-2 rounded-full hover:bg-indigo-100">
+                      <Link to={`/admin/properties/edit/${property.id}`} className="text-indigo-600 hover:text-indigo-900 p-2 rounded-full hover:bg-indigo-100 inline-block">
                         <PencilIcon className="h-5 w-5" />
                       </Link>
-                      <button onClick={() => handleDelete(property.id)} className="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-100">
+                      <button onClick={() => handleDelete(property.id)} className="text-red-600 hover:text-red-900 p-2 rounded-full hover:bg-red-100 inline-block">
                          <TrashIcon className="h-5 w-5" />
                       </button>
                     </td>

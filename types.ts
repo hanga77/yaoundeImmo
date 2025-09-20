@@ -36,7 +36,7 @@ export interface Service {
   title: string;
   description: string;
   longDescription: string;
-  icon: React.ElementType;
+  icon: string; // Changed from React.ElementType to string
 }
 
 export interface BlogPost {
@@ -46,4 +46,32 @@ export interface BlogPost {
   date: string;
   imageUrl: string;
   author: string;
+  content: string;
+}
+
+export interface User {
+    id: string;
+    email: string;
+    name: string;
+}
+
+export interface SEOData {
+    title: string;
+    description: string;
+    keywords: string;
+    ogImage: string;
+}
+
+export interface FooterData {
+  address: string;
+  phone: string;
+  email: string;
+  facebookUrl: string;
+  twitterUrl: string;
+  instagramUrl: string;
+}
+
+export interface AboutData {
+  history: string;
+  mission: string;
 }

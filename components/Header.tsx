@@ -1,22 +1,70 @@
 
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import { PropertyType } from '../types';
 
-const NavLinks = ({ className }: { className?: string }) => {
+const NavLinks = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const currentType = searchParams.get('type');
+
   const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300";
   const activeLinkClass = "bg-brand-gold text-white";
   const inactiveLinkClass = "text-white hover:bg-brand-blue/60";
   
+  const isTypeActive = (type: PropertyType) => {
+    return location.pathname === '/biens' && currentType === type;
+  }
+  
+  const isServiceActive = () => {
+    return location.pathname.startsWith('/services');
+  }
+
   return (
     <>
-      <NavLink to="/" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>Accueil</NavLink>
-      <NavLink to="/a-vendre" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>À Vendre</NavLink>
-      <NavLink to="/a-louer" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>À Louer</NavLink>
-      <NavLink to="/meuble" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>Meublés</NavLink>
-      <NavLink to="/services" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>Services</NavLink>
-      <NavLink to="/a-propos" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>À Propos</NavLink>
-      <NavLink to="/blog" className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}>Blog</NavLink>
+      <NavLink 
+        to="/" 
+        className={({ isActive }) => `${linkClass} ${isActive && location.pathname === '/' ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Accueil
+      </NavLink>
+      <NavLink 
+        to={`/biens?type=${PropertyType.SALE}`}
+        className={`${linkClass} ${isTypeActive(PropertyType.SALE) ? activeLinkClass : inactiveLinkClass}`}
+      >
+        À Vendre
+      </NavLink>
+      <NavLink 
+        to={`/biens?type=${PropertyType.RENT}`} 
+        className={`${linkClass} ${isTypeActive(PropertyType.RENT) ? activeLinkClass : inactiveLinkClass}`}
+      >
+        À Louer
+      </NavLink>
+      <NavLink 
+        to={`/biens?type=${PropertyType.FURNISHED}`} 
+        className={`${linkClass} ${isTypeActive(PropertyType.FURNISHED) ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Meublés
+      </NavLink>
+      <NavLink 
+        to="/services" 
+        className={`${linkClass} ${isServiceActive() ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Boutique
+      </NavLink>
+      <NavLink 
+        to="/a-propos" 
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
+        À Propos
+      </NavLink>
+      <NavLink 
+        to="/blog" 
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Blog
+      </NavLink>
     </>
   );
 };

@@ -23,7 +23,7 @@ const PropertyFormPage: React.FC = () => {
   return (
     <div>
         <div className="mb-8">
-            <h1 className="text-3xl font-bold text-brand-dark font-serif">
+            <h1 className="text-2xl md:text-3xl font-bold text-brand-dark font-serif">
                 {isEditing ? 'Modifier le bien' : 'Ajouter un nouveau bien'}
             </h1>
             <p className="text-gray-600 mt-1">
