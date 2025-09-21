@@ -44,6 +44,7 @@ const initialFooterData: FooterData = {
     address: "123 Avenue de l'Indépendance, Yaoundé, Cameroun",
     phone: "+237 6XX XX XX XX",
     email: "contact@immoyaounde.com",
+    openingHours: "Lundi - Vendredi : 8h30 - 18h00\nSamedi : 9h00 - 13h00",
     facebookUrl: "#",
     twitterUrl: "#",
     instagramUrl: "#"

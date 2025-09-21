@@ -66,6 +66,7 @@ export interface FooterData {
   address: string;
   phone: string;
   email: string;
+  openingHours: string;
   facebookUrl: string;
   twitterUrl: string;
   instagramUrl: string;

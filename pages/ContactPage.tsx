@@ -1,8 +1,10 @@
-
 import React from 'react';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid';
+import { useData } from '../DataContext';
 
 const ContactPage: React.FC = () => {
+  const { footerData } = useData();
+
   return (
     <div className="bg-brand-light">
       {/* Page Header */}
@@ -58,28 +60,29 @@ const ContactPage: React.FC = () => {
                   <MapPinIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Adresse</h3>
-                    <p className="text-gray-300">123 Avenue de l'Indépendance, Yaoundé, Cameroun</p>
+                    <p className="text-gray-300">{footerData.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <PhoneIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Téléphone</h3>
-                    <p className="text-gray-300">+237 6XX XX XX XX</p>
+                    <p className="text-gray-300">{footerData.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <EnvelopeIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
                     <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-300">contact@immoyaounde.com</p>
+                    <p className="text-gray-300">{footerData.email}</p>
                   </div>
                 </div>
               </div>
               <div className="mt-8 border-t border-blue-800 pt-6">
                 <h3 className="font-semibold mb-2">Horaires d'ouverture</h3>
-                <p className="text-gray-300">Lundi - Vendredi : 8h30 - 18h00</p>
-                <p className="text-gray-300">Samedi : 9h00 - 13h00</p>
+                {footerData.openingHours.split('\n').map((line, index) => (
+                  <p key={index} className="text-gray-300">{line}</p>
+                ))}
               </div>
               <div className="mt-8 h-64 rounded-lg overflow-hidden">
                 <img src="https://picsum.photos/seed/map2/800/400" alt="Carte de localisation" className="w-full h-full object-cover" />

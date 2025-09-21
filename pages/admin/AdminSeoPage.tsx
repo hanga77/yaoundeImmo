@@ -52,6 +52,23 @@ const AdminSeoPage: React.FC = () => {
                     <label htmlFor="ogImage" className="block text-sm font-medium text-gray-700">URL de l'image de partage</label>
                     <input type="text" name="ogImage" id="ogImage" value={formData.ogImage} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                     <p className="mt-1 text-xs text-gray-500">Image affichée lors du partage sur les réseaux sociaux (ex: Facebook). Format recommandé: 1200x630px.</p>
+                    {formData.ogImage && (
+                        <div className="mt-4">
+                            <p className="block text-sm font-medium text-gray-700 mb-2">Aperçu de l'image :</p>
+                            <img 
+                                src={formData.ogImage} 
+                                alt="Aperçu de l'image de partage" 
+                                className="rounded-lg shadow-md max-w-sm w-full h-auto object-contain bg-gray-100"
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevent looping
+                                    currentTarget.hidden = true;
+                                }}
+                                onLoad={({ currentTarget }) => {
+                                    currentTarget.hidden = false;
+                                }}
+                            />
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex justify-end items-center">

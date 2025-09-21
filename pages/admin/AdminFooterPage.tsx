@@ -7,7 +7,7 @@ const AdminFooterPage: React.FC = () => {
     const [formData, setFormData] = useState<FooterData>(footerData);
     const [isSaved, setIsSaved] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
@@ -41,6 +41,11 @@ const AdminFooterPage: React.FC = () => {
                 <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="openingHours" className="block text-sm font-medium text-gray-700">Horaires d'ouverture</label>
+                    <textarea name="openingHours" id="openingHours" value={formData.openingHours} onChange={handleChange} rows={3} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                    <p className="mt-1 text-xs text-gray-500">Mettez chaque horaire sur une nouvelle ligne.</p>
                 </div>
                 <div className="border-t pt-6">
                     <h3 className="text-lg font-medium text-gray-900">Réseaux Sociaux</h3>
