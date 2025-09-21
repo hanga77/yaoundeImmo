@@ -232,49 +232,51 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-// Fix: Added BLOG_POSTS constant to provide initial data for the blog feature.
+// FIX: Added blog post data to support the new blog feature.
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: 'blog1',
-    title: '5 Astuces pour Vendre Votre Maison Rapidement à Yaoundé',
-    excerpt: 'Le marché immobilier de Yaoundé est dynamique. Découvrez nos conseils d\'experts pour vous démarquer et vendre votre bien au meilleur prix et dans les meilleurs délais.',
-    imageUrl: 'https://picsum.photos/seed/blog1/800/600',
+    id: 'b1',
+    title: '5 Conseils pour Vendre Votre Maison Rapidement à Yaoundé',
+    excerpt: 'Le marché immobilier de Yaoundé est dynamique. Découvrez nos astuces pour vous démarquer et conclure une vente rapidement et au meilleur prix.',
+    imageUrl: 'https://picsum.photos/seed/b1/800/600',
     author: 'Marie Claire Ngono',
     date: '15 Juillet 2024',
     content: `
-      <h3>Introduction</h3>
-      <p>Vendre une propriété à Yaoundé peut être un processus compétitif. Pour vous aider à naviguer sur ce marché, voici cinq astuces éprouvées par notre équipe d'experts.</p>
-      <h3>1. Le Home Staging : Préparez votre bien</h3>
-      <p>La première impression est cruciale. Le home staging consiste à dépersonnaliser et à valoriser les espaces pour que les acheteurs potentiels puissent s'y projeter. Rangez, nettoyez en profondeur et effectuez les petites réparations nécessaires.</p>
-      <h3>2. Une Estimation de Prix Juste</h3>
-      <p>Un prix trop élevé peut décourager les visites, tandis qu'un prix trop bas vous fera perdre de l'argent. Faites appel à un professionnel pour une estimation précise basée sur le marché actuel du quartier.</p>
-      <h3>3. Des Photos de Qualité Professionnelle</h3>
-      <p>La plupart des recherches commencent en ligne. Des photos lumineuses, claires et qui mettent en valeur les atouts de votre maison sont indispensables pour attirer l'attention.</p>
-      <h3>4. La Flexibilité pour les Visites</h3>
-      <p>Soyez aussi disponible que possible pour les visites. Plus il y a de visites, plus vous avez de chances de recevoir une offre rapidement.</p>
-      <h3>5. Mettez en avant les Atouts du Quartier</h3>
-      <p>Ne vendez pas seulement une maison, vendez un style de vie. Mettez en avant la proximité des écoles, des commerces, des transports et la sécurité du quartier.</p>
-    `
+      <p>Vendre un bien immobilier à Yaoundé peut être un processus rapide et efficace si vous suivez quelques règles d'or. Voici nos 5 meilleurs conseils pour optimiser votre vente :</p>
+      <h3>1. Fixez le juste prix</h3>
+      <p>Une estimation précise est la clé. Un prix trop élevé découragera les visiteurs, tandis qu'un prix trop bas vous fera perdre de l'argent. Faites appel à nos experts pour une évaluation professionnelle basée sur les dernières transactions du quartier.</p>
+      <h3>2. Soignez la présentation (Home Staging)</h3>
+      <p>La première impression est cruciale. Désencombrez, nettoyez et dépersonnalisez votre intérieur. De petites réparations peuvent faire une grande différence. Un bien lumineux et aéré se vendra toujours mieux.</p>
+      <h3>3. Misez sur des photos de qualité professionnelle</h3>
+      <p>À l'ère du digital, 90% des acheteurs commencent leur recherche en ligne. Des photos de haute qualité qui mettent en valeur les atouts de votre maison sont indispensables pour capter leur attention et susciter l'envie de visiter.</p>
+      <h3>4. Soyez flexible pour les visites</h3>
+      <p>Essayez de vous rendre disponible pour les visites, y compris le soir et le week-end. Plus il y a de visiteurs, plus vous avez de chances de recevoir une offre intéressante rapidement.</p>
+      <h3>5. Faites confiance à un professionnel</h3>
+      <p>Un agent immobilier expérimenté connaît le marché, dispose d'un réseau d'acheteurs potentiels et maîtrise les aspects légaux de la transaction. C'est un gain de temps, de sérénité et souvent d'argent.</p>
+      <p>En suivant ces conseils, vous mettrez toutes les chances de votre côté pour une vente réussie. Contactez ImmoYaoundé pour un accompagnement sur-mesure !</p>
+    `,
   },
   {
-    id: 'blog2',
-    title: 'Investir dans l\'immobilier locatif à Yaoundé : Les quartiers porteurs',
-    excerpt: 'Vous souhaitez investir dans la pierre ? Yaoundé offre de belles opportunités. Nous analysons pour vous les quartiers les plus rentables pour un investissement locatif réussi.',
-    imageUrl: 'https://picsum.photos/seed/blog2/800/600',
+    id: 'b2',
+    title: 'Investissement Locatif : Quels Quartiers Choisir à Yaoundé ?',
+    excerpt: 'Vous souhaitez investir dans l\'immobilier locatif à Yaoundé ? Nous analysons pour vous les quartiers les plus rentables et prometteurs de la capitale.',
+    imageUrl: 'https://picsum.photos/seed/b2/800/600',
     author: 'Jean-Pierre Bekolo',
     date: '02 Juillet 2024',
     content: `
-      <p>L'investissement locatif est une excellente manière de se constituer un patrimoine. À Yaoundé, certains quartiers se distinguent par leur forte demande et leur rentabilité.</p>
+      <p>Yaoundé offre d'excellentes opportunités pour l'investissement locatif, mais tous les quartiers ne se valent pas. Le choix de l'emplacement est déterminant pour la rentabilité et la valorisation de votre bien. Voici une sélection de quartiers à considérer :</p>
       <h3>Bastos : La valeur sûre</h3>
-      <p>Quartier des ambassades et des expatriés, Bastos garantit une forte demande locative pour des biens de haut standing. La vacance y est faible et les loyers élevés.</p>
+      <p>Quartier des ambassades et des expatriés, Bastos garantit une forte demande locative pour des biens de haut standing. La vacance locative y est faible et les loyers élevés, assurant une bonne rentabilité.</p>
       <h3>Ngoa-Ekellé : Le potentiel étudiant</h3>
-      <p>Avec la proximité du principal campus universitaire, ce quartier est idéal pour investir dans des studios ou de petits appartements. La demande étudiante est constante.</p>
-      <h3>Odza : Le développement futur</h3>
-      <p>Situé près de l'aéroport, Odza est en pleine expansion. Investir maintenant dans cette zone permet de parier sur une plus-value intéressante à moyen et long terme.</p>
-    `
-  }
+      <p>Avec son campus universitaire, Ngoa-Ekellé est idéal pour investir dans de petites surfaces (studios, appartements d'une chambre). La demande étudiante est constante et garantit un remplissage quasi-permanent.</p>
+      <h3>Santa Barbara : Le résidentiel moderne</h3>
+      <p>Ce quartier plus récent attire les familles et les jeunes cadres avec ses résidences modernes et sécurisées. C'est un excellent choix pour des appartements de 2 ou 3 chambres, offrant un bon compromis entre prix d'achat et potentiel locatif.</p>
+      <h3>Odza & Nkoabang : Le pari sur l'avenir</h3>
+      <p>Ces zones en pleine expansion offrent des prix au mètre carré plus abordables. Investir dans un terrain ou une maison neuve ici peut s'avérer très rentable à moyen et long terme, avec le développement des infrastructures.</p>
+      <p>Chaque projet d'investissement est unique. Nos conseillers sont à votre disposition pour analyser avec vous la meilleure stratégie en fonction de votre budget et de vos objectifs.</p>
+    `,
+  },
 ];
-
 
 export const ABOUT_DATA: AboutData = {
   history: "Fondée avec la vision de transformer l'expérience immobilière à Yaoundé, ImmoYaoundé est devenue un acteur incontournable du marché. Notre agence est bâtie sur des valeurs de transparence, d'intégrité et de service client irréprochable.",

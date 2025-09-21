@@ -60,7 +60,6 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [agents, setAgents] = useState<Agent[]>(AGENTS);
   const [services, setServices] = useState<Service[]>(SERVICES);
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
-  // Fix: Add state for blog posts.
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(BLOG_POSTS);
   const [user, setUser] = useState<User | null>(null);
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
@@ -138,24 +137,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAgents(prev => prev.filter(a => a.id !== agentId));
   };
 
-  const updateSeoData = (data: SEOData) => {
-      setSeoData(data);
-  }
-
-  const updateFooterData = (data: FooterData) => {
-      setFooterData(data);
-  }
-
-  const updateAboutData = (data: AboutData) => {
-    setAboutData(data);
-  }
-
-  // Fix: Add CRUD functions for blog posts.
+  // FIX: Added blog post management functions.
   const addBlogPost = (post: Omit<BlogPost, 'id' | 'date'>) => {
     const newPost: BlogPost = {
-        ...post,
-        id: `blog${Date.now()}`,
-        date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
+      ...post,
+      id: `b${Date.now()}`,
+      date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
     };
     setBlogPosts(prev => [newPost, ...prev]);
   };
@@ -167,6 +154,18 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const deleteBlogPost = (postId: string) => {
     setBlogPosts(prev => prev.filter(p => p.id !== postId));
   };
+
+  const updateSeoData = (data: SEOData) => {
+      setSeoData(data);
+  }
+
+  const updateFooterData = (data: FooterData) => {
+      setFooterData(data);
+  }
+
+  const updateAboutData = (data: AboutData) => {
+    setAboutData(data);
+  }
 
   const value = {
     properties,

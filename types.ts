@@ -50,21 +50,21 @@ export interface Product {
   isFeatured?: boolean;
 }
 
+// FIX: Added BlogPost interface to handle blog functionality.
+export interface BlogPost {
+    id: string;
+    title: string;
+    excerpt: string;
+    imageUrl: string;
+    author: string;
+    content: string; // HTML content
+    date: string; // e.g., "15 Juillet 2024"
+}
+
 export interface User {
     id: string;
     email: string;
     name: string;
-}
-
-// Fix: Added BlogPost interface to support the blog feature.
-export interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  imageUrl: string;
-  author: string;
-  date: string;
-  content: string; // Can contain HTML
 }
 
 export interface SEOData {

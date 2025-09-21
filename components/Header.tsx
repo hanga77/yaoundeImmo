@@ -58,13 +58,6 @@ const NavLinks = () => {
       >
         Boutique
       </NavLink>
-      {/* Fix: Added Blog link to navigation. */}
-      <NavLink 
-        to="/blog" 
-        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
-      >
-        Blog
-      </NavLink>
       <NavLink 
         to="/a-propos" 
         className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}

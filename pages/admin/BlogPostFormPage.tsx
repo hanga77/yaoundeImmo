@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import BlogPostForm from '../../components/admin/BlogPostForm';
@@ -12,11 +11,12 @@ const BlogPostFormPage: React.FC = () => {
   const isEditing = Boolean(postId);
   const postToEdit = isEditing ? blogPosts.find(p => p.id === postId) : null;
 
-  const handleSubmit = (formData: Omit<BlogPost, 'id' | 'date'> | BlogPost) => {
-    if (isEditing && postId) {
-      updateBlogPost({ ...(formData as BlogPost), id: postId });
+  // FIX: Correctly handle blog post updates to preserve existing data like the date.
+  const handleSubmit = (formData: Omit<BlogPost, 'id' | 'date'>) => {
+    if (isEditing && postToEdit) {
+      updateBlogPost({ ...postToEdit, ...formData });
     } else {
-      addBlogPost(formData as Omit<BlogPost, 'id' | 'date'>);
+      addBlogPost(formData);
     }
   };
 

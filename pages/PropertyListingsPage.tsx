@@ -1,4 +1,5 @@
 
+
 import React, { useMemo, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
@@ -159,7 +160,7 @@ const PropertyListingsPage: React.FC = () => {
   const formLabelClass = "block text-sm font-medium text-gray-700 mb-1";
 
   const FilterBar = () => (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10 pb-16">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:-mt-16 relative z-10 pb-16">
       <form onSubmit={handleSearch} className="bg-white p-6 rounded-lg shadow-lg w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 items-end">
           <div className="md:col-span-2 xl:col-span-1">
@@ -201,7 +202,7 @@ const PropertyListingsPage: React.FC = () => {
   return (
     <div className="bg-brand-light">
       {/* Page Header */}
-      <div className="bg-brand-dark pt-20 pb-32 text-white text-center">
+      <div className="bg-brand-dark pt-20 pb-8 md:pb-32 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl font-bold font-serif">{generateTitle()}</h1>
           <p className="mt-2 text-lg text-gray-300">{generateSubtitle()}</p>

@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -13,7 +14,7 @@ const BedIcon = () => (
 
 const BathIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-brand-gold" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M3.25 3A2.25 2.25 0 001 5.25v9.5A2.25 2.25 0 003.25 17h13.5A2.25 2.25 0 0019 14.75v-9.5A2.25 2.25 0 0016.75 3H3.25zM2.5 5.25a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v9.5a.75.75 0 01-.75.75H3.25a.75.75 0 01-.75-.75v-9.5zM12.5 8a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM11 9.5a.5.5 0 00-1 0V11h-1V9.5a.5.5 0 00-1 0V11H7V9.5a.5.5 0 00-1 0v1.98c0 .28.22.52.5.52H11.5a.5.5 0 00.5-.52V9.5z" clipRule="evenodd" />
+    <path fillRule="evenodd" d="M3.25 3A2.25 2.25 0 001 5.25v9.5A2.25 2.25 0 003.25 17h13.5A2.25 2.25 0 0019 14.75v-9.5A2.25 2.25 0 0016.75 3H3.25zM2.5 5.25a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v9.5a.75.75 0 01-.75-.75H3.25a.75.75 0 01-.75-.75v-9.5zM12.5 8a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM11 9.5a.5.5 0 00-1 0V11h-1V9.5a.5.5 0 00-1 0V11H7V9.5a.5.5 0 00-1 0v1.98c0 .28.22.52.5.52H11.5a.5.5 0 00.5-.52V9.5z" clipRule="evenodd" />
   </svg>
 );
 
@@ -83,11 +84,11 @@ const PropertyDetailPage: React.FC = () => {
                         <div className="relative h-[55vh] md:h-[60vh] lg:h-[500px] w-full rounded-lg shadow-lg overflow-hidden group">
                             <div style={{ backgroundImage: `url(${images[currentIndex]})` }} className="w-full h-full bg-center bg-cover duration-500"></div>
                             {/* Left Arrow */}
-                            <div className="absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer md:opacity-0 group-hover:opacity-100 transition-opacity">
                                 <ChevronLeftIcon onClick={prevSlide} className="w-8 h-8" />
                             </div>
                             {/* Right Arrow */}
-                            <div className="absolute top-1/2 -translate-y-1/2 right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div className="absolute top-1/2 -translate-y-1/2 right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer md:opacity-0 group-hover:opacity-100 transition-opacity">
                                 <ChevronRightIcon onClick={nextSlide} className="w-8 h-8" />
                             </div>
                         </div>

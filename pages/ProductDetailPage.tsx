@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -66,10 +68,10 @@ const ProductDetailPage: React.FC = () => {
                         <div className="relative h-[55vh] md:h-[60vh] lg:h-[500px] w-full rounded-lg shadow-lg overflow-hidden group">
                             <div style={{ backgroundImage: `url(${images[currentIndex]})` }} className="w-full h-full bg-center bg-cover duration-500"></div>
                             {images.length > 1 && <>
-                                <div className="absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute top-1/2 -translate-y-1/2 left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer md:opacity-0 group-hover:opacity-100 transition-opacity">
                                     <ChevronLeftIcon onClick={prevSlide} className="w-8 h-8" />
                                 </div>
-                                <div className="absolute top-1/2 -translate-y-1/2 right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div className="absolute top-1/2 -translate-y-1/2 right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer md:opacity-0 group-hover:opacity-100 transition-opacity">
                                     <ChevronRightIcon onClick={nextSlide} className="w-8 h-8" />
                                 </div>
                             </>}

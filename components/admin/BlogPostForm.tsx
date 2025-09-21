@@ -1,11 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BlogPost } from '../../types';
 import { PhotoIcon } from '@heroicons/react/24/solid';
 
+// FIX: Corrected prop types for type safety.
 interface BlogPostFormProps {
-  onSubmit: (post: any) => void;
+  onSubmit: (post: Omit<BlogPost, 'id' | 'date'>) => void;
   initialData?: BlogPost | null;
 }
 

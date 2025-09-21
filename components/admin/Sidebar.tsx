@@ -62,14 +62,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     <ShoppingBagIcon className="h-5 w-5 mr-3" />
                     Gérer la Boutique
                 </NavLink>
-                {/* Fix: Add link to blog management page. */}
-                <NavLink
-                    to="/admin/blog"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <PencilSquareIcon className="h-5 w-5 mr-3" />
-                    Gérer le Blog
-                </NavLink>
                  <NavLink
                     to="/admin/about"
                     className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}

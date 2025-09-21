@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
           <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-down">Le Bien de vos Rêves à Yaoundé</h1>
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">Avec notre expertise, trouvez, vendez ou louez en toute confiance.</p>
         </div>
-         <div className="relative z-10 w-full container mx-auto px-4 mt-8 -mb-28">
+         <div className="relative z-10 w-full container mx-auto px-4 mt-8 md:-mb-28">
            <form onSubmit={handleSearch} className="bg-white p-4 rounded-lg shadow-2xl max-w-5xl mx-auto animate-fade-in-up text-left" style={{animationDelay: '0.3s'}}>
              <div className="flex border-b mb-4">
                  {Object.values(PropertyType).map(type => (
@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Services Section */}
-      <section className="pt-40 pb-20 bg-brand-light">
+      <section className="pt-16 md:pt-40 pb-20 bg-brand-light">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Nos Services</h2>

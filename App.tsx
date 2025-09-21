@@ -29,7 +29,7 @@ import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
 import ProductFormPage from './pages/admin/ProductFormPage';
-// Fix: Import blog page components to add them to the router.
+// FIX: Import blog page components to set up routing.
 import BlogPage from './pages/BlogPage';
 import BlogPostDetailPage from './pages/BlogPostDetailPage';
 import AdminBlogPage from './pages/admin/AdminBlogPage';
@@ -72,7 +72,7 @@ function App() {
                   <Route path="products" element={<AdminProductsPage />} />
                   <Route path="products/new" element={<ProductFormPage />} />
                   <Route path="products/edit/:productId" element={<ProductFormPage />} />
-                  {/* Fix: Add admin routes for blog management. */}
+                  {/* FIX: Add admin routes for blog management. */}
                   <Route path="blog" element={<AdminBlogPage />} />
                   <Route path="blog/new" element={<BlogPostFormPage />} />
                   <Route path="blog/edit/:postId" element={<BlogPostFormPage />} />
@@ -106,7 +106,7 @@ const MainSite = () => (
         <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
         <Route path="/boutique" element={<ShopPage />} />
         <Route path="/produit/:productId" element={<ProductDetailPage />} />
-        {/* Fix: Add public routes for the blog. */}
+        {/* FIX: Add public routes for viewing the blog. */}
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:postId" element={<BlogPostDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
