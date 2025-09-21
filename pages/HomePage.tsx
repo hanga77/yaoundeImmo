@@ -1,7 +1,9 @@
 
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
+import ProductCard from '../components/ProductCard';
 import { MagnifyingGlassIcon, HomeModernIcon, BuildingStorefrontIcon, BuildingOfficeIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
 import { PropertyType } from '../types';
@@ -17,8 +19,9 @@ const ServiceHighlight: React.FC<{ icon: React.ReactNode; title: string; descrip
 );
 
 const HomePage: React.FC = () => {
-  const { properties } = useData();
+  const { properties, products } = useData();
   const featuredProperties = properties.filter(p => p.isFeatured).slice(0, 4);
+  const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
 
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -154,9 +157,29 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+      
+      {/* Featured Products Section */}
+      <section className="py-20 bg-brand-light">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Produits à la Une</h2>
+            <p className="mt-4 text-lg text-gray-600">Notre sélection d'articles pour parfaire votre intérieur.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {featuredProducts.map(product => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+          <div className="text-center mt-12">
+              <Link to="/boutique" className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300">
+                Visiter la boutique
+              </Link>
+          </div>
+        </div>
+      </section>
 
         {/* CTA Section */}
-      <section className="bg-brand-blue text-white">
+      <section className="bg-brand-dark text-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
               <div className="text-center">
                   <h2 className="text-3xl md:text-4xl font-bold font-serif">Vous êtes propriétaire ?</h2>

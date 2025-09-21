@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../../DataContext';
@@ -18,7 +19,7 @@ const AdminServicesPage: React.FC = () => {
       <div className="flex flex-wrap gap-4 justify-between items-center mb-8">
         <div>
             <h1 className="text-2xl md:text-3xl font-bold text-brand-dark font-serif">Gestion des Services</h1>
-            <p className="text-gray-600 mt-1">Ajoutez, modifiez ou supprimez des services de la boutique.</p>
+            <p className="text-gray-600 mt-1">Ajoutez, modifiez ou supprimez des services.</p>
         </div>
         <Link to="/admin/services/new" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-md transition-colors duration-300 flex items-center">
           <PlusIcon className="h-5 w-5 mr-2" />

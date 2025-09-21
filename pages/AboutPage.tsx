@@ -60,11 +60,10 @@ const AboutPage: React.FC = () => {
       {/* Map Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-brand-blue font-serif mb-4">Nos Zones d'Intervention</h2>
-          <p className="text-gray-700 mb-8 max-w-3xl mx-auto">Nous opérons sur l'ensemble du territoire de Yaoundé, vous offrant une couverture complète des 7 communes de la capitale.</p>
+          <h2 className="text-3xl font-bold text-brand-blue font-serif mb-4">{aboutData.interventionTitle}</h2>
+          <p className="text-gray-700 mb-8 max-w-3xl mx-auto">{aboutData.interventionText}</p>
           <div className="bg-gray-200 rounded-lg shadow-lg overflow-hidden h-96 flex items-center justify-center">
-             {/* Replace with a real map component or an image of a map */}
-             <img src="https://picsum.photos/seed/map/1200/400" alt="Carte de Yaoundé" className="w-full h-full object-cover"/>
+             <img src={aboutData.interventionImageUrl} alt="Carte de Yaoundé" className="w-full h-full object-cover"/>
           </div>
         </div>
       </section>

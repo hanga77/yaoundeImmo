@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
@@ -51,19 +50,26 @@ const NavLinks = () => {
         to="/services" 
         className={`${linkClass} ${isServiceActive() ? activeLinkClass : inactiveLinkClass}`}
       >
+        Services
+      </NavLink>
+       <NavLink 
+        to="/boutique" 
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
         Boutique
+      </NavLink>
+      {/* Fix: Added Blog link to navigation. */}
+      <NavLink 
+        to="/blog" 
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Blog
       </NavLink>
       <NavLink 
         to="/a-propos" 
         className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
       >
         À Propos
-      </NavLink>
-      <NavLink 
-        to="/blog" 
-        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
-      >
-        Blog
       </NavLink>
     </>
   );

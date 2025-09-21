@@ -13,7 +13,7 @@ const BedIcon = () => (
 
 const BathIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M3.25 3A2.25 2.25 0 001 5.25v9.5A2.25 2.25 0 003.25 17h13.5A2.25 2.25 0 0019 14.75v-9.5A2.25 2.25 0 0016.75 3H3.25zM2.5 5.25a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v9.5a.75.75 0 01-.75.75H3.25a.75.75 0 01-.75-.75v-9.5zM12.5 8a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM11 9.5a.5.5 0 00-1 0V11h-1V9.5a.5.5 0 00-1 0V11H7V9.5a.5.5 0 00-1 0v1.98c0 .28.22.52.5.52H11.5a.5.5 0 00.5-.52V9.5z" clipRule="evenodd" />
+    <path fillRule="evenodd" d="M3.25 3A2.25 2.25 0 001 5.25v9.5A2.25 2.25 0 003.25 17h13.5A2.25 2.25 0 0019 14.75v-9.5A2.25 2.25 0 0016.75 3H3.25zM2.5 5.25a.75.75 0 01.75-.75h13.5a.75.75 0 01.75.75v9.5a.75.75 0 01-.75-.75H3.25a.75.75 0 01-.75-.75v-9.5zM12.5 8a.5.5 0 01.5.5v1a.5.5 0 01-1 0v-1a.5.5 0 01.5-.5zM11 9.5a.5.5 0 00-1 0V11h-1V9.5a.5.5 0 00-1 0V11H7V9.5a.5.5 0 00-1 0v1.98c0 .28.22.52.5.52H11.5a.5.5 0 00.5-.52V9.5z" clipRule="evenodd" />
   </svg>
 );
 
@@ -47,7 +47,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
             <p className="text-sm">{property.address}, {property.commune}</p>
           </div>
           
-          <div className="mt-4 pt-4 border-t border-gray-200 flex justify-between text-sm text-gray-700 flex-grow-0">
+          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center space-x-4 text-sm text-gray-700 flex-grow-0">
             {property.bedrooms > 0 && 
               <div className="flex items-center">
                 <BedIcon/>

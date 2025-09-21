@@ -1,5 +1,4 @@
-
-import { Property, Agent, Service, BlogPost, PropertyType, AboutData } from './types';
+import { Property, Agent, Service, Product, PropertyType, AboutData, BlogPost } from './types';
 
 export const PROPERTIES: Property[] = [
   {
@@ -182,68 +181,105 @@ export const SERVICES: Service[] = [
     }
 ];
 
+export const PRODUCTS: Product[] = [
+  {
+    id: 'prod1',
+    name: 'Vase en Céramique Abstrait',
+    price: 25000,
+    category: 'Décoration',
+    imageUrl: 'https://picsum.photos/seed/prod1/600/600',
+    imageUrls: [
+      'https://picsum.photos/seed/prod1-1/1200/800',
+      'https://picsum.photos/seed/prod1-2/1200/800',
+    ],
+    description: 'Un vase en céramique au design moderne et abstrait, parfait pour ajouter une touche artistique à votre salon ou votre bureau. Fait à la main par des artisans locaux.',
+    isFeatured: true,
+  },
+  {
+    id: 'prod2',
+    name: 'Lampe de Table Industrielle',
+    price: 45000,
+    category: 'Luminaires',
+    imageUrl: 'https://picsum.photos/seed/prod2/600/600',
+    description: 'Cette lampe de table combine le bois brut et le métal noir pour un style industriel chic. Idéale pour un bureau ou une table de chevet, elle diffuse une lumière chaude et agréable.',
+    isFeatured: true,
+  },
+  {
+    id: 'prod3',
+    name: 'Coussin en Velours Côtelé',
+    price: 15000,
+    category: 'Textiles',
+    imageUrl: 'https://picsum.photos/seed/prod3/600/600',
+    description: 'Ajoutez confort et texture à votre canapé avec ce coussin en velours côtelé ultra-doux. Disponible en plusieurs couleurs pour s\'adapter à votre décor.',
+    isFeatured: true,
+  },
+  {
+    id: 'prod4',
+    name: 'Table d\'Appoint en Marbre',
+    price: 85000,
+    category: 'Mobilier',
+    imageUrl: 'https://picsum.photos/seed/prod4/600/600',
+    description: 'Une table d\'appoint élégante avec un plateau en marbre véritable et une structure en métal doré. Parfaite pour poser un verre, un livre ou une plante.',
+    isFeatured: true,
+  },
+  {
+    id: 'prod5',
+    name: 'Miroir Mural Oeil de Sorcière',
+    price: 35000,
+    category: 'Décoration',
+    imageUrl: 'https://picsum.photos/seed/prod5/600/600',
+    description: 'Un miroir mural décoratif en rotin tressé qui agrandit l\'espace et ajoute une touche bohème à votre entrée ou votre chambre.',
+  },
+];
+
+// Fix: Added BLOG_POSTS constant to provide initial data for the blog feature.
 export const BLOG_POSTS: BlogPost[] = [
   {
-    id: 'b1',
-    title: 'Le marché immobilier de Yaoundé en 2025 : Tendances et perspectives',
-    excerpt: 'Découvrez les quartiers qui montent et les opportunités d\'investissement à ne pas manquer dans la capitale camerounaise.',
-    date: '22 septembre 2025',
-    imageUrl: 'https://picsum.photos/seed/b1/800/600',
+    id: 'blog1',
+    title: '5 Astuces pour Vendre Votre Maison Rapidement à Yaoundé',
+    excerpt: 'Le marché immobilier de Yaoundé est dynamique. Découvrez nos conseils d\'experts pour vous démarquer et vendre votre bien au meilleur prix et dans les meilleurs délais.',
+    imageUrl: 'https://picsum.photos/seed/blog1/800/600',
     author: 'Marie Claire Ngono',
+    date: '15 Juillet 2024',
     content: `
-      <p>Le marché immobilier de Yaoundé connaît une dynamique fascinante en 2025. Avec une croissance démographique soutenue et un développement infrastructurel constant, la capitale camerounaise offre des opportunités uniques pour les investisseurs et les futurs propriétaires. Cet article explore les tendances clés et les perspectives pour l'année à venir.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">Les Quartiers en Pleine Expansion</h3>
-      <p>Si des quartiers comme Bastos et le Golf restent des valeurs sûres pour le haut de gamme, de nouvelles zones émergent avec un potentiel de plus-value considérable. Nkoabang, avec ses vastes terrains et son plan d'urbanisation, attire de plus en plus d'investisseurs cherchant à construire. De même, la zone d'Odza, grâce à sa proximité avec l'aéroport et ses nouvelles voies d'accès, voit sa valeur grimper.</p>
-      <ul class="list-disc list-inside my-4">
-        <li><strong>Bastos :</strong> Stabilité et prestige.</li>
-        <li><strong>Nkoabang :</strong> Fort potentiel de croissance pour le neuf.</li>
-        <li><strong>Odza :</strong> Connectivité et développement.</li>
-      </ul>
-      <h3 class="text-xl font-bold mt-6 mb-3">Tendances du Marché</h3>
-      <p>La demande pour les appartements modernes et sécurisés en location est en forte hausse, notamment de la part des jeunes professionnels et des expatriés. Les duplex et les villas avec des espaces extérieurs (jardins, piscines) restent très recherchés par les familles pour l'achat. L'investissement locatif dans des studios meublés à proximité des universités, comme à Ngoa-Ekellé, offre également un excellent rendement.</p>
+      <h3>Introduction</h3>
+      <p>Vendre une propriété à Yaoundé peut être un processus compétitif. Pour vous aider à naviguer sur ce marché, voici cinq astuces éprouvées par notre équipe d'experts.</p>
+      <h3>1. Le Home Staging : Préparez votre bien</h3>
+      <p>La première impression est cruciale. Le home staging consiste à dépersonnaliser et à valoriser les espaces pour que les acheteurs potentiels puissent s'y projeter. Rangez, nettoyez en profondeur et effectuez les petites réparations nécessaires.</p>
+      <h3>2. Une Estimation de Prix Juste</h3>
+      <p>Un prix trop élevé peut décourager les visites, tandis qu'un prix trop bas vous fera perdre de l'argent. Faites appel à un professionnel pour une estimation précise basée sur le marché actuel du quartier.</p>
+      <h3>3. Des Photos de Qualité Professionnelle</h3>
+      <p>La plupart des recherches commencent en ligne. Des photos lumineuses, claires et qui mettent en valeur les atouts de votre maison sont indispensables pour attirer l'attention.</p>
+      <h3>4. La Flexibilité pour les Visites</h3>
+      <p>Soyez aussi disponible que possible pour les visites. Plus il y a de visites, plus vous avez de chances de recevoir une offre rapidement.</p>
+      <h3>5. Mettez en avant les Atouts du Quartier</h3>
+      <p>Ne vendez pas seulement une maison, vendez un style de vie. Mettez en avant la proximité des écoles, des commerces, des transports et la sécurité du quartier.</p>
     `
   },
   {
-    id: 'b2',
-    title: '5 conseils pour bien préparer la vente de votre bien immobilier',
-    excerpt: 'De la valorisation de votre bien (home staging) à la fixation du juste prix, nos experts vous livrent leurs secrets.',
-    date: '15 septembre 2025',
-    imageUrl: 'https://picsum.photos/seed/b2/800/600',
+    id: 'blog2',
+    title: 'Investir dans l\'immobilier locatif à Yaoundé : Les quartiers porteurs',
+    excerpt: 'Vous souhaitez investir dans la pierre ? Yaoundé offre de belles opportunités. Nous analysons pour vous les quartiers les plus rentables pour un investissement locatif réussi.',
+    imageUrl: 'https://picsum.photos/seed/blog2/800/600',
     author: 'Jean-Pierre Bekolo',
+    date: '02 Juillet 2024',
     content: `
-      <p>Vendre un bien immobilier ne s'improvise pas. Une bonne préparation peut significativement accélérer la vente et optimiser votre gain. Voici 5 conseils essentiels de nos experts.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">1. Dépersonnalisez et désencombrez</h3>
-      <p>Le futur acheteur doit pouvoir s'imaginer vivre chez vous. Retirez les photos de famille, les objets trop personnels et désencombrez les pièces pour qu'elles paraissent plus grandes et plus lumineuses.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">2. Faites les petites réparations</h3>
-      <p>Une ampoule grillée, un robinet qui goutte, une poignée de porte cassée... Ces petits détails peuvent donner une mauvaise impression. Assurez-vous que tout est fonctionnel.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">3. Valorisez votre bien (Home Staging)</h3>
-      <p>Nettoyez de fond en comble, aérez les pièces avant les visites, et ajoutez quelques touches de décoration neutres (plantes, coussins) pour créer une atmosphère accueillante.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">4. Rassemblez les documents nécessaires</h3>
-      <p>Titre foncier, plans, factures de travaux, diagnostics techniques... Avoir un dossier complet rassure les acheteurs et accélère les démarches administratives.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">5. Fixez le bon prix</h3>
-      <p>Un prix trop élevé décourage les visites, un prix trop bas vous fait perdre de l'argent. Faites appel à un professionnel pour une estimation juste et basée sur le marché actuel de votre quartier.</p>
-    `
-  },
-  {
-    id: 'b3',
-    title: 'Investissement locatif à Yaoundé : quel quartier choisir ?',
-    excerpt: 'Analyse comparative des rendements locatifs et du potentiel de plus-value dans les 7 communes de Yaoundé.',
-    date: '5 septembre 2025',
-    imageUrl: 'https://picsum.photos/seed/b3/800/600',
-    author: 'Aïcha Diallo',
-    content: `
-      <p>Yaoundé offre un terrain fertile pour l'investissement locatif, mais le choix du quartier est déterminant pour la rentabilité de votre projet. Voici une analyse pour vous guider.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">Pour un rendement élevé et rapide : Ngoa-Ekellé</h3>
-      <p>Avec la présence du campus universitaire principal, la demande pour les studios et petits appartements est constante. La vacance locative est faible et les loyers sont stables. C'est un investissement idéal pour un premier projet avec un budget modéré.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">Pour la sécurité et la clientèle d'expatriés : Bastos & Golf</h3>
-      <p>Ces quartiers résidentiels abritent de nombreuses ambassades et organisations internationales. Les loyers y sont les plus élevés de la ville, attirant une clientèle d'expatriés et de hauts fonctionnaires. La demande est forte pour des appartements meublés de haut standing et des villas sécurisées. L'investissement initial est plus important, mais la rentabilité est excellente.</p>
-      <h3 class="text-xl font-bold mt-6 mb-3">Pour le potentiel de plus-value : Nkoabang & Odza</h3>
-      <p>Ces zones sont en plein développement. Acheter un terrain ou un bien à rénover aujourd'hui pourrait se révéler très rentable à moyen et long terme. Les infrastructures s'y développent rapidement, ce qui va mécaniquement augmenter la valeur des biens dans les années à venir.</p>
+      <p>L'investissement locatif est une excellente manière de se constituer un patrimoine. À Yaoundé, certains quartiers se distinguent par leur forte demande et leur rentabilité.</p>
+      <h3>Bastos : La valeur sûre</h3>
+      <p>Quartier des ambassades et des expatriés, Bastos garantit une forte demande locative pour des biens de haut standing. La vacance y est faible et les loyers élevés.</p>
+      <h3>Ngoa-Ekellé : Le potentiel étudiant</h3>
+      <p>Avec la proximité du principal campus universitaire, ce quartier est idéal pour investir dans des studios ou de petits appartements. La demande étudiante est constante.</p>
+      <h3>Odza : Le développement futur</h3>
+      <p>Situé près de l'aéroport, Odza est en pleine expansion. Investir maintenant dans cette zone permet de parier sur une plus-value intéressante à moyen et long terme.</p>
     `
   }
 ];
 
+
 export const ABOUT_DATA: AboutData = {
   history: "Fondée avec la vision de transformer l'expérience immobilière à Yaoundé, ImmoYaoundé est devenue un acteur incontournable du marché. Notre agence est bâtie sur des valeurs de transparence, d'intégrité et de service client irréprochable.",
-  mission: "Nous couvrons l'ensemble des 7 communes de Yaoundé, avec une connaissance approfondie de chaque quartier, de ses atouts et de son potentiel. Notre mission est de vous offrir un accompagnement sur-mesure, que vous soyez vendeur, acheteur, locataire ou investisseur."
+  mission: "Nous couvrons l'ensemble des 7 communes de Yaoundé, avec une connaissance approfondie de chaque quartier, de ses atouts et de son potentiel. Notre mission est de vous offrir un accompagnement sur-mesure, que vous soyez vendeur, acheteur, locataire ou investisseur.",
+  interventionTitle: "Nos Zones d'Intervention",
+  interventionText: "Nous opérons sur l'ensemble du territoire de Yaoundé, vous offrant une couverture complète des 7 communes de la capitale.",
+  interventionImageUrl: "https://picsum.photos/seed/map/1200/400"
 };

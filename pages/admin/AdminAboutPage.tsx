@@ -2,17 +2,33 @@
 import React, { useState } from 'react';
 import { useData } from '../../DataContext';
 import { AboutData, Agent } from '../../types';
-import { PencilIcon, TrashIcon, PlusIcon } from '@heroicons/react/24/solid';
+import { PencilIcon, TrashIcon, PlusIcon, PhotoIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
+
+const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = error => reject(error);
+    });
+};
 
 const AdminAboutPage: React.FC = () => {
     const { aboutData, updateAboutData, agents, deleteAgent } = useData();
     const [formData, setFormData] = useState<AboutData>(aboutData);
     const [isSaved, setIsSaved] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            const base64 = await fileToBase64(e.target.files[0]);
+            setFormData(prev => ({ ...prev, interventionImageUrl: base64 }));
+        }
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -50,7 +66,34 @@ const AdminAboutPage: React.FC = () => {
                     <label htmlFor="mission" className="block text-sm font-medium text-gray-700">Notre Mission</label>
                     <textarea name="mission" id="mission" rows={4} value={formData.mission} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
                 </div>
-                 <div className="flex justify-end items-center">
+
+                {/* Intervention Zone Section */}
+                <h2 className="text-xl font-bold text-brand-blue font-serif border-b pb-2 pt-6">Zone d'Intervention</h2>
+                 <div>
+                    <label htmlFor="interventionTitle" className="block text-sm font-medium text-gray-700">Titre de la section</label>
+                    <input type="text" name="interventionTitle" id="interventionTitle" value={formData.interventionTitle} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="interventionText" className="block text-sm font-medium text-gray-700">Texte de la section</label>
+                    <textarea name="interventionText" id="interventionText" rows={3} value={formData.interventionText} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-gray-700">Image de la carte</label>
+                    <div className="mt-2 flex items-center gap-x-3">
+                        {formData.interventionImageUrl ? 
+                        <img src={formData.interventionImageUrl} alt="Aperçu carte" className="h-32 w-full object-cover rounded-md" /> : 
+                        <div className="h-32 w-full bg-gray-100 rounded-md flex items-center justify-center">
+                            <PhotoIcon className="h-16 w-16 text-gray-300" aria-hidden="true" />
+                        </div>
+                        }
+                    </div>
+                    <label htmlFor="image-upload" className="mt-2 cursor-pointer inline-block rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                        <span>{formData.interventionImageUrl ? 'Changer l\'image' : 'Choisir une image'}</span>
+                        <input id="image-upload" name="image-upload" type="file" className="sr-only" accept="image/*" onChange={handleImageChange} />
+                    </label>
+                </div>
+
+                 <div className="flex justify-end items-center pt-6 border-t">
                     {isSaved && <span className="text-green-600 mr-4 text-sm font-medium">Modifications enregistrées !</span>}
                     <button type="submit" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-md transition-colors">
                         Enregistrer le contenu

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import ServiceForm from '../../components/admin/ServiceForm';
@@ -26,7 +27,7 @@ const ServiceFormPage: React.FC = () => {
                 {isEditing ? 'Modifier le service' : 'Ajouter un nouveau service'}
             </h1>
             <p className="text-gray-600 mt-1">
-                {isEditing ? 'Mettez à jour les informations ci-dessous.' : 'Remplissez le formulaire pour ajouter un service à la boutique.'}
+                {isEditing ? 'Mettez à jour les informations ci-dessous.' : 'Remplissez le formulaire pour ajouter un service.'}
             </p>
         </div>
         <ServiceForm onSubmit={handleSubmit} initialData={serviceToEdit} />

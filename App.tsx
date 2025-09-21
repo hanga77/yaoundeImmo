@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -8,7 +6,6 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import ContactPage from './pages/ContactPage';
-import BlogPage from './pages/BlogPage';
 import LegalPage from './pages/LegalPage';
 import PropertyListingsPage from './pages/PropertyListingsPage';
 import ServiceDetailPage from './pages/ServiceDetailPage';
@@ -26,10 +23,16 @@ import SeoManager from './components/SeoManager';
 import AdminFooterPage from './pages/admin/AdminFooterPage';
 import AdminServicesPage from './pages/admin/AdminServicesPage';
 import ServiceFormPage from './pages/admin/ServiceFormPage';
-import BlogPostDetailPage from './pages/BlogPostDetailPage';
 import AdminAboutPage from './pages/admin/AdminAboutPage';
-import AdminBlogPage from './pages/admin/AdminBlogPage';
 import AgentFormPage from './pages/admin/AgentFormPage';
+import ShopPage from './pages/ShopPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import AdminProductsPage from './pages/admin/AdminProductsPage';
+import ProductFormPage from './pages/admin/ProductFormPage';
+// Fix: Import blog page components to add them to the router.
+import BlogPage from './pages/BlogPage';
+import BlogPostDetailPage from './pages/BlogPostDetailPage';
+import AdminBlogPage from './pages/admin/AdminBlogPage';
 import BlogPostFormPage from './pages/admin/BlogPostFormPage';
 
 const ScrollToTop = () => {
@@ -66,12 +69,16 @@ function App() {
                   <Route path="services" element={<AdminServicesPage />} />
                   <Route path="services/new" element={<ServiceFormPage />} />
                   <Route path="services/edit/:serviceId" element={<ServiceFormPage />} />
-                  <Route path="about" element={<AdminAboutPage />} />
-                  <Route path="agents/new" element={<AgentFormPage />} />
-                  <Route path="agents/edit/:agentId" element={<AgentFormPage />} />
+                  <Route path="products" element={<AdminProductsPage />} />
+                  <Route path="products/new" element={<ProductFormPage />} />
+                  <Route path="products/edit/:productId" element={<ProductFormPage />} />
+                  {/* Fix: Add admin routes for blog management. */}
                   <Route path="blog" element={<AdminBlogPage />} />
                   <Route path="blog/new" element={<BlogPostFormPage />} />
                   <Route path="blog/edit/:postId" element={<BlogPostFormPage />} />
+                  <Route path="about" element={<AdminAboutPage />} />
+                  <Route path="agents/new" element={<AgentFormPage />} />
+                  <Route path="agents/edit/:agentId" element={<AgentFormPage />} />
                   <Route path="seo" element={<AdminSeoPage />} />
                   <Route path="footer" element={<AdminFooterPage />} />
                 </Route>
@@ -97,6 +104,9 @@ const MainSite = () => (
         <Route path="/biens" element={<PropertyListingsPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
+        <Route path="/boutique" element={<ShopPage />} />
+        <Route path="/produit/:productId" element={<ProductDetailPage />} />
+        {/* Fix: Add public routes for the blog. */}
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:postId" element={<BlogPostDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />

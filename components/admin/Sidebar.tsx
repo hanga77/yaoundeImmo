@@ -1,8 +1,6 @@
-
-
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, NewspaperIcon } from '@heroicons/react/24/solid';
+import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { useData } from '../../DataContext';
 
 interface SidebarProps {
@@ -58,18 +56,26 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     Gérer les Services
                 </NavLink>
                  <NavLink
+                    to="/admin/products"
+                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                >
+                    <ShoppingBagIcon className="h-5 w-5 mr-3" />
+                    Gérer la Boutique
+                </NavLink>
+                {/* Fix: Add link to blog management page. */}
+                <NavLink
+                    to="/admin/blog"
+                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                >
+                    <PencilSquareIcon className="h-5 w-5 mr-3" />
+                    Gérer le Blog
+                </NavLink>
+                 <NavLink
                     to="/admin/about"
                     className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
                 >
                     <IdentificationIcon className="h-5 w-5 mr-3" />
                     Gérer la page 'À Propos'
-                </NavLink>
-                 <NavLink
-                    to="/admin/blog"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <NewspaperIcon className="h-5 w-5 mr-3" />
-                    Gérer le Blog
                 </NavLink>
                 <span className="block pt-2 text-xs text-gray-500 uppercase">Configuration</span>
                  <NavLink

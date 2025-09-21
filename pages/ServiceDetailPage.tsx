@@ -16,7 +16,7 @@ const ServiceDetailPage: React.FC = () => {
         <h1 className="text-3xl font-bold">Service non trouvé</h1>
         <p className="mt-4">Le service que vous recherchez n'existe pas.</p>
         <Link to="/services" className="mt-8 inline-block bg-brand-gold text-white font-bold py-2 px-4 rounded hover:bg-yellow-600">
-          Retour à la boutique
+          Retour aux services
         </Link>
       </div>
     );
@@ -52,7 +52,7 @@ const ServiceDetailPage: React.FC = () => {
                  <div className="mt-16 text-center">
                     <Link to="/services" className="text-brand-blue hover:text-brand-blue/80 font-semibold flex items-center justify-center">
                        <ArrowLeftIcon className="h-5 w-5 mr-2" />
-                        Retour à la boutique
+                        Retour aux services
                     </Link>
                 </div>
             </div>

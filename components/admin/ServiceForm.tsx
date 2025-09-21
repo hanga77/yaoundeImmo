@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Service } from '../../types';
@@ -57,7 +58,7 @@ const ServiceForm: React.FC<ServiceFormProps> = ({ onSubmit, initialData }) => {
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description courte</label>
         <textarea name="description" id="description" rows={2} value={formData.description} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
-        <p className="mt-1 text-xs text-gray-500">S'affiche sur la carte du service dans la boutique.</p>
+        <p className="mt-1 text-xs text-gray-500">S'affiche sur la carte du service sur la page des services.</p>
       </div>
 
       <div>

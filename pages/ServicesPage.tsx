@@ -12,7 +12,7 @@ const ServicesPage: React.FC = () => {
       {/* Page Header */}
       <div className="bg-brand-blue py-20 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-bold font-serif">Notre Boutique de Services</h1>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif">Nos Services</h1>
           <p className="mt-2 text-lg text-gray-300">Un accompagnement complet pour tous vos projets de construction et de rénovation.</p>
         </div>
       </div>

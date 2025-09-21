@@ -39,20 +39,32 @@ export interface Service {
   icon: string; // Changed from React.ElementType to string
 }
 
-export interface BlogPost {
+export interface Product {
   id: string;
-  title: string;
-  excerpt: string;
-  date: string;
+  name: string;
+  price: number;
+  category: string;
   imageUrl: string;
-  author: string;
-  content: string;
+  imageUrls?: string[];
+  description: string;
+  isFeatured?: boolean;
 }
 
 export interface User {
     id: string;
     email: string;
     name: string;
+}
+
+// Fix: Added BlogPost interface to support the blog feature.
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  imageUrl: string;
+  author: string;
+  date: string;
+  content: string; // Can contain HTML
 }
 
 export interface SEOData {
@@ -75,4 +87,7 @@ export interface FooterData {
 export interface AboutData {
   history: string;
   mission: string;
+  interventionTitle: string;
+  interventionText: string;
+  interventionImageUrl: string;
 }

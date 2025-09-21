@@ -1,7 +1,8 @@
 
+
 import React from 'react';
 import { useData } from '../../DataContext';
-import { BuildingOffice2Icon, UserGroupIcon, NewspaperIcon } from '@heroicons/react/24/solid';
+import { BuildingOffice2Icon, UserGroupIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 
 const StatCard: React.FC<{ icon: React.ReactNode, title: string, value: number, link: string }> = ({ icon, title, value, link }) => (
@@ -17,7 +18,7 @@ const StatCard: React.FC<{ icon: React.ReactNode, title: string, value: number, 
 )
 
 const AdminDashboard: React.FC = () => {
-  const { properties, agents, blogPosts } = useData();
+  const { properties, agents, products } = useData();
 
   return (
     <div>
@@ -35,13 +36,13 @@ const AdminDashboard: React.FC = () => {
             icon={<UserGroupIcon className="h-8 w-8"/>}
             title="Agents"
             value={agents.length}
-            link="#"
+            link="/admin/about"
         />
         <StatCard 
-            icon={<NewspaperIcon className="h-8 w-8"/>}
-            title="Articles de Blog"
-            value={blogPosts.length}
-            link="#"
+            icon={<ShoppingBagIcon className="h-8 w-8"/>}
+            title="Produits en Boutique"
+            value={products.length}
+            link="/admin/products"
         />
       </div>
     </div>

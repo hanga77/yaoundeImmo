@@ -1,9 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
 
 const ContactPage: React.FC = () => {
   const { footerData } = useData();
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Nettoie le numéro de téléphone pour l'URL WhatsApp
+    const phoneNumber = footerData.phone.replace(/[^0-9]/g, '');
+    
+    // Construit le message
+    const message = `
+      Nouveau message depuis le site ImmoYaoundé:
+      ------------------------------------
+      Prénom: ${formData.firstName}
+      Nom: ${formData.lastName}
+      Email: ${formData.email}
+      Sujet: ${formData.subject}
+      ------------------------------------
+      Message:
+      ${formData.message}
+    `.trim();
+    
+    // Encode le message pour l'URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Crée l'URL WhatsApp
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    
+    // Ouvre WhatsApp dans un nouvel onglet
+    window.open(whatsappUrl, '_blank');
+  };
+
 
   return (
     <div className="bg-brand-light">
@@ -21,32 +63,32 @@ const ContactPage: React.FC = () => {
             {/* Contact Form */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-brand-blue font-serif mb-6">Envoyez-nous un message</h2>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">Prénom</label>
-                    <input type="text" name="firstName" id="firstName" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    <input type="text" name="firstName" id="firstName" value={formData.firstName} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Nom</label>
-                    <input type="text" name="lastName" id="lastName" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    <input type="text" name="lastName" id="lastName" value={formData.lastName} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                   </div>
                 </div>
                 <div className="mt-6">
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                  <input type="email" name="email" id="email" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                  <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
                 <div className="mt-6">
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700">Sujet</label>
-                  <input type="text" name="subject" id="subject" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                  <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
                 <div className="mt-6">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                  <textarea name="message" id="message" rows={5} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                  <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
                 </div>
                 <div className="mt-6">
                   <button type="submit" className="w-full bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-300">
-                    Envoyer
+                    Envoyer sur WhatsApp
                   </button>
                 </div>
               </form>
