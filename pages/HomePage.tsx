@@ -1,10 +1,9 @@
 
-
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import ProductCard from '../components/ProductCard';
-import { MagnifyingGlassIcon, HomeModernIcon, BuildingStorefrontIcon, BuildingOfficeIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
+import { HomeModernIcon, BuildingStorefrontIcon, BuildingOfficeIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
 import { PropertyType } from '../types';
 
@@ -23,87 +22,24 @@ const HomePage: React.FC = () => {
   const featuredProperties = properties.filter(p => p.isFeatured).slice(0, 4);
   const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
 
-  const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState<PropertyType>(PropertyType.SALE);
-  const [bedrooms, setBedrooms] = useState('');
-  const [bathrooms, setBathrooms] = useState('');
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    const params = new URLSearchParams();
-    if (searchQuery) params.append('q', searchQuery);
-    params.append('type', activeTab);
-    if (bedrooms) params.append('chambres', bedrooms);
-    if (bathrooms) params.append('sdb', bathrooms);
-    if (minPrice) params.append('prix_min', minPrice);
-    if (maxPrice) params.append('prix_max', maxPrice);
-    navigate(`/biens?${params.toString()}`);
-  };
-
-  const formInputClass = "w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-gold text-gray-800 bg-white";
-  const formLabelClass = "block text-sm font-medium text-gray-700 mb-1";
-
-
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center h-[80vh] min-h-[500px] text-white flex flex-col justify-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero/1920/1080')"}}>
+      <section className="relative bg-cover bg-center h-[70vh] min-h-[450px] text-white flex flex-col justify-center items-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero/1920/1080')"}}>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 text-center px-4 container mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-down">Le Bien de vos Rêves à Yaoundé</h1>
           <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">Avec notre expertise, trouvez, vendez ou louez en toute confiance.</p>
-        </div>
-         <div className="relative z-10 w-full container mx-auto px-4 mt-8 md:-mb-28">
-           <form onSubmit={handleSearch} className="bg-white p-4 rounded-lg shadow-2xl max-w-5xl mx-auto animate-fade-in-up text-left" style={{animationDelay: '0.3s'}}>
-             <div className="flex border-b mb-4">
-                 {Object.values(PropertyType).map(type => (
-                     <button
-                         key={type}
-                         type="button"
-                         onClick={() => setActiveTab(type)}
-                         className={`py-3 px-6 text-sm md:text-base font-semibold transition-colors duration-300 ${activeTab === type ? 'border-b-2 border-brand-gold text-brand-blue' : 'text-gray-500 hover:text-brand-blue'}`}
-                     >
-                         {type}
-                     </button>
-                 ))}
-             </div>
-             <div className="p-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
-                  <div className="lg:col-span-2">
-                    <label htmlFor="searchQuery" className={formLabelClass}>Localisation</label>
-                    <input id="searchQuery" type="text" placeholder="Quartier, adresse..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className={formInputClass} />
-                  </div>
-                  <div>
-                     <label htmlFor="bedrooms" className={formLabelClass}>Chambres</label>
-                     <select id="bedrooms" value={bedrooms} onChange={e => setBedrooms(e.target.value)} className={formInputClass}>
-                         <option value="">Toutes</option>
-                         <option value="1">1+</option>
-                         <option value="2">2+</option>
-                         <option value="3">3+</option>
-                         <option value="4">4+</option>
-                     </select>
-                  </div>
-                   <div>
-                    <label htmlFor="maxPrice" className={formLabelClass}>Prix Max (XAF)</label>
-                    <input id="maxPrice" type="number" placeholder="Budget max" value={maxPrice} onChange={e => setMaxPrice(e.target.value)} className={formInputClass} />
-                  </div>
-                  <div className="mt-4 md:mt-0">
-                    <button type="submit" className="w-full bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-300 flex items-center justify-center text-base">
-                      <MagnifyingGlassIcon className="h-5 w-5 mr-2" />
-                      Rechercher
-                    </button>
-                  </div>
-                </div>
-             </div>
-          </form>
+          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+            <Link to="/biens" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 text-lg">
+                Découvrir nos biens
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="pt-16 md:pt-40 pb-20 bg-brand-light">
+      <section className="py-20 bg-brand-light">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
                   <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Nos Services</h2>

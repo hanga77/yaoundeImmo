@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -29,11 +31,6 @@ import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
 import ProductFormPage from './pages/admin/ProductFormPage';
-// FIX: Import blog page components to set up routing.
-import BlogPage from './pages/BlogPage';
-import BlogPostDetailPage from './pages/BlogPostDetailPage';
-import AdminBlogPage from './pages/admin/AdminBlogPage';
-import BlogPostFormPage from './pages/admin/BlogPostFormPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -72,10 +69,6 @@ function App() {
                   <Route path="products" element={<AdminProductsPage />} />
                   <Route path="products/new" element={<ProductFormPage />} />
                   <Route path="products/edit/:productId" element={<ProductFormPage />} />
-                  {/* FIX: Add admin routes for blog management. */}
-                  <Route path="blog" element={<AdminBlogPage />} />
-                  <Route path="blog/new" element={<BlogPostFormPage />} />
-                  <Route path="blog/edit/:postId" element={<BlogPostFormPage />} />
                   <Route path="about" element={<AdminAboutPage />} />
                   <Route path="agents/new" element={<AgentFormPage />} />
                   <Route path="agents/edit/:agentId" element={<AgentFormPage />} />
@@ -106,9 +99,6 @@ const MainSite = () => (
         <Route path="/services/:serviceId" element={<ServiceDetailPage />} />
         <Route path="/boutique" element={<ShopPage />} />
         <Route path="/produit/:productId" element={<ProductDetailPage />} />
-        {/* FIX: Add public routes for viewing the blog. */}
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:postId" element={<BlogPostDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/mentions-legales" element={<LegalPage />} />
       </Routes>

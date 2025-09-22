@@ -1,5 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
+// FIX: Add BlogPost to imports.
 import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, BlogPost } from './types';
+// FIX: Add BLOG_POSTS to imports.
 import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, BLOG_POSTS } from './constants';
 import { USERS } from './users';
 
@@ -8,6 +10,7 @@ interface DataContextType {
   agents: Agent[];
   services: Service[];
   products: Product[];
+  // FIX: Add blogPosts to DataContextType.
   blogPosts: BlogPost[];
   user: User | null;
   seoData: SEOData;
@@ -27,12 +30,13 @@ interface DataContextType {
   addAgent: (agent: Omit<Agent, 'id'>) => void;
   updateAgent: (agent: Agent) => void;
   deleteAgent: (agentId: string) => void;
-  updateSeoData: (data: SEOData) => void;
-  updateFooterData: (data: FooterData) => void;
-  updateAboutData: (data: AboutData) => void;
+  // FIX: Add blog post methods to DataContextType.
   addBlogPost: (post: Omit<BlogPost, 'id' | 'date'>) => void;
   updateBlogPost: (post: BlogPost) => void;
   deleteBlogPost: (postId: string) => void;
+  updateSeoData: (data: SEOData) => void;
+  updateFooterData: (data: FooterData) => void;
+  updateAboutData: (data: AboutData) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -60,6 +64,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [agents, setAgents] = useState<Agent[]>(AGENTS);
   const [services, setServices] = useState<Service[]>(SERVICES);
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
+  // FIX: Add blogPosts state.
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>(BLOG_POSTS);
   const [user, setUser] = useState<User | null>(null);
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
@@ -137,12 +142,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAgents(prev => prev.filter(a => a.id !== agentId));
   };
 
-  // FIX: Added blog post management functions.
+  // FIX: Implement blog post management functions.
   const addBlogPost = (post: Omit<BlogPost, 'id' | 'date'>) => {
     const newPost: BlogPost = {
-      ...post,
-      id: `b${Date.now()}`,
-      date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }),
+        ...post,
+        id: `blog${Date.now()}`,
+        date: new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
     };
     setBlogPosts(prev => [newPost, ...prev]);
   };
@@ -191,12 +196,12 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addAgent,
     updateAgent,
     deleteAgent,
-    updateSeoData,
-    updateFooterData,
-    updateAboutData,
     addBlogPost,
     updateBlogPost,
     deleteBlogPost,
+    updateSeoData,
+    updateFooterData,
+    updateAboutData,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
