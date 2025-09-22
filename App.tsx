@@ -31,6 +31,8 @@ import ShopPage from './pages/ShopPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import AdminProductsPage from './pages/admin/AdminProductsPage';
 import ProductFormPage from './pages/admin/ProductFormPage';
+import AdminCarouselPage from './pages/admin/AdminCarouselPage';
+import CarouselFormPage from './pages/admin/CarouselFormPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -72,6 +74,9 @@ function App() {
                   <Route path="about" element={<AdminAboutPage />} />
                   <Route path="agents/new" element={<AgentFormPage />} />
                   <Route path="agents/edit/:agentId" element={<AgentFormPage />} />
+                  <Route path="carousel" element={<AdminCarouselPage />} />
+                  <Route path="carousel/new" element={<CarouselFormPage />} />
+                  <Route path="carousel/edit/:slideId" element={<CarouselFormPage />} />
                   <Route path="seo" element={<AdminSeoPage />} />
                   <Route path="footer" element={<AdminFooterPage />} />
                 </Route>

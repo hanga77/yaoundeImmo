@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
+import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon, PhotoIcon } from '@heroicons/react/24/solid';
 import { useData } from '../../DataContext';
 
 interface SidebarProps {
@@ -70,6 +70,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     Gérer la page 'À Propos'
                 </NavLink>
                 <span className="block pt-2 text-xs text-gray-500 uppercase">Configuration</span>
+                <NavLink
+                    to="/admin/carousel"
+                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                >
+                    <PhotoIcon className="h-5 w-5 mr-3" />
+                    Gérer le Carrousel
+                </NavLink>
                  <NavLink
                     to="/admin/seo"
                     className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}

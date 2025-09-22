@@ -1,8 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-// FIX: Add BlogPost to imports.
-import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, BlogPost } from './types';
-// FIX: Add BLOG_POSTS to imports.
-import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, BLOG_POSTS } from './constants';
+import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide } from './types';
+import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, CAROUSEL_SLIDES } from './constants';
 import { USERS } from './users';
 
 interface DataContextType {
@@ -10,8 +8,7 @@ interface DataContextType {
   agents: Agent[];
   services: Service[];
   products: Product[];
-  // FIX: Add blogPosts to DataContextType.
-  blogPosts: BlogPost[];
+  carouselSlides: CarouselSlide[];
   user: User | null;
   seoData: SEOData;
   footerData: FooterData;
@@ -30,10 +27,9 @@ interface DataContextType {
   addAgent: (agent: Omit<Agent, 'id'>) => void;
   updateAgent: (agent: Agent) => void;
   deleteAgent: (agentId: string) => void;
-  // FIX: Add blog post methods to DataContextType.
-  addBlogPost: (post: Omit<BlogPost, 'id' | 'date'>) => void;
-  updateBlogPost: (post: BlogPost) => void;
-  deleteBlogPost: (postId: string) => void;
+  addCarouselSlide: (slide: Omit<CarouselSlide, 'id'>) => void;
+  updateCarouselSlide: (slide: CarouselSlide) => void;
+  deleteCarouselSlide: (slideId: string) => void;
   updateSeoData: (data: SEOData) => void;
   updateFooterData: (data: FooterData) => void;
   updateAboutData: (data: AboutData) => void;
@@ -64,8 +60,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [agents, setAgents] = useState<Agent[]>(AGENTS);
   const [services, setServices] = useState<Service[]>(SERVICES);
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
-  // FIX: Add blogPosts state.
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>(BLOG_POSTS);
+  const [carouselSlides, setCarouselSlides] = useState<CarouselSlide[]>(CAROUSEL_SLIDES);
   const [user, setUser] = useState<User | null>(null);
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
   const [footerData, setFooterData] = useState<FooterData>(initialFooterData);
@@ -142,22 +137,16 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAgents(prev => prev.filter(a => a.id !== agentId));
   };
 
-  // FIX: Implement blog post management functions.
-  const addBlogPost = (post: Omit<BlogPost, 'id' | 'date'>) => {
-    const newPost: BlogPost = {
-        ...post,
-        id: `blog${Date.now()}`,
-        date: new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date()),
-    };
-    setBlogPosts(prev => [newPost, ...prev]);
+  const addCarouselSlide = (slide: Omit<CarouselSlide, 'id'>) => {
+    setCarouselSlides(prev => [...prev, { ...slide, id: `slide${Date.now()}` }]);
   };
 
-  const updateBlogPost = (updatedPost: BlogPost) => {
-    setBlogPosts(prev => prev.map(p => p.id === updatedPost.id ? updatedPost : p));
+  const updateCarouselSlide = (updatedSlide: CarouselSlide) => {
+    setCarouselSlides(prev => prev.map(s => s.id === updatedSlide.id ? updatedSlide : s));
   };
 
-  const deleteBlogPost = (postId: string) => {
-    setBlogPosts(prev => prev.filter(p => p.id !== postId));
+  const deleteCarouselSlide = (slideId: string) => {
+    setCarouselSlides(prev => prev.filter(s => s.id !== slideId));
   };
 
   const updateSeoData = (data: SEOData) => {
@@ -177,7 +166,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     agents,
     services,
     products,
-    blogPosts,
+    carouselSlides,
     user,
     seoData,
     footerData,
@@ -196,9 +185,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addAgent,
     updateAgent,
     deleteAgent,
-    addBlogPost,
-    updateBlogPost,
-    deleteBlogPost,
+    addCarouselSlide,
+    updateCarouselSlide,
+    deleteCarouselSlide,
     updateSeoData,
     updateFooterData,
     updateAboutData,

@@ -50,15 +50,11 @@ export interface Product {
   isFeatured?: boolean;
 }
 
-// FIX: Add BlogPost interface to resolve type errors.
-export interface BlogPost {
+export interface CarouselSlide {
   id: string;
-  title: string;
-  excerpt: string;
   imageUrl: string;
-  author: string;
-  date: string;
-  content: string; // HTML content for the full post
+  title: string;
+  subtitle: string;
 }
 
 export interface User {

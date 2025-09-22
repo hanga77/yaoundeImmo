@@ -1,9 +1,10 @@
 
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
 import ProductCard from '../components/ProductCard';
-import { HomeModernIcon, BuildingStorefrontIcon, BuildingOfficeIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/solid';
+import { HomeModernIcon, BuildingStorefrontIcon, BuildingOfficeIcon, WrenchScrewdriverIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
 import { PropertyType } from '../types';
 
@@ -18,24 +19,91 @@ const ServiceHighlight: React.FC<{ icon: React.ReactNode; title: string; descrip
 );
 
 const HomePage: React.FC = () => {
-  const { properties, products } = useData();
+  const { properties, products, carouselSlides } = useData();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   const featuredProperties = properties.filter(p => p.isFeatured).slice(0, 4);
   const featuredProducts = products.filter(p => p.isFeatured).slice(0, 4);
+
+  useEffect(() => {
+    if (carouselSlides.length > 1) {
+      const timer = setTimeout(() => {
+        const isLastSlide = currentIndex === carouselSlides.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+      }, 5000); // Change slide every 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, carouselSlides.length]);
+  
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? carouselSlides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === carouselSlides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+  
+  const goToSlide = (slideIndex: number) => {
+    setCurrentIndex(slideIndex);
+  };
+
+  const currentSlide = carouselSlides[currentIndex];
 
   return (
     <div>
       {/* Hero Section */}
-      <section className="relative bg-cover bg-center h-[70vh] min-h-[450px] text-white flex flex-col justify-center items-center" style={{backgroundImage: "url('https://picsum.photos/seed/hero/1920/1080')"}}>
+      <section className="relative h-[70vh] min-h-[450px] w-full text-white overflow-hidden">
+        {carouselSlides.map((slide, index) => (
+             <div
+                key={slide.id}
+                className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
+                style={{
+                  backgroundImage: `url(${slide.imageUrl})`,
+                  opacity: index === currentIndex ? 1 : 0
+                }}
+            />
+        ))}
+       
         <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10 text-center px-4 container mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-down">Le Bien de vos Rêves à Yaoundé</h1>
-          <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">Avec notre expertise, trouvez, vendez ou louez en toute confiance.</p>
-          <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-            <Link to="/biens" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 text-lg">
-                Découvrir nos biens
-            </Link>
-          </div>
+        
+        <div className="relative h-full z-10 text-center px-4 container mx-auto flex flex-col justify-center items-center">
+            {currentSlide && (
+              <>
+                <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-down">{currentSlide.title}</h1>
+                <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">{currentSlide.subtitle}</p>
+              </>
+            )}
+             <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                <Link to="/biens" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 text-lg">
+                    Découvrir nos biens
+                </Link>
+            </div>
         </div>
+
+        {carouselSlides.length > 1 && (
+          <>
+            <button onClick={prevSlide} className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 p-2 bg-black/30 rounded-full hover:bg-black/50 transition-colors">
+              <ChevronLeftIcon className="h-8 w-8 text-white"/>
+            </button>
+            <button onClick={nextSlide} className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 p-2 bg-black/30 rounded-full hover:bg-black/50 transition-colors">
+              <ChevronRightIcon className="h-8 w-8 text-white"/>
+            </button>
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-colors ${currentIndex === index ? 'bg-white' : 'bg-white/50'}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </section>
 
       {/* Services Section */}

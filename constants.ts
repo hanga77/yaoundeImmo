@@ -1,5 +1,25 @@
-// FIX: Import BlogPost type.
-import { Property, Agent, Service, Product, PropertyType, AboutData, BlogPost } from './types';
+import { Property, Agent, Service, Product, PropertyType, AboutData, CarouselSlide } from './types';
+
+export const CAROUSEL_SLIDES: CarouselSlide[] = [
+  {
+    id: 'slide1',
+    imageUrl: 'https://picsum.photos/seed/hero1/1920/1080',
+    title: 'Le Bien de vos Rêves à Yaoundé',
+    subtitle: 'Avec notre expertise, trouvez, vendez ou louez en toute confiance.',
+  },
+  {
+    id: 'slide2',
+    imageUrl: 'https://picsum.photos/seed/hero2/1920/1080',
+    title: 'Des Propriétés d\'Exception',
+    subtitle: 'Explorez notre catalogue exclusif de villas, appartements et terrains.',
+  },
+  {
+    id: 'slide3',
+    imageUrl: 'https://picsum.photos/seed/hero3/1920/1080',
+    title: 'Votre Projet, Notre Priorité',
+    subtitle: 'Un accompagnement personnalisé à chaque étape de votre transaction.',
+  }
+];
 
 export const PROPERTIES: Property[] = [
   {
@@ -231,49 +251,6 @@ export const PRODUCTS: Product[] = [
     imageUrl: 'https://picsum.photos/seed/prod5/600/600',
     description: 'Un miroir mural décoratif en rotin tressé qui agrandit l\'espace et ajoute une touche bohème à votre entrée ou votre chambre.',
   },
-];
-
-// FIX: Add mock data for blog posts.
-export const BLOG_POSTS: BlogPost[] = [
-    {
-        id: 'blog1',
-        title: '5 Astuces pour Vendre Votre Maison Rapidement à Yaoundé',
-        excerpt: 'Découvrez nos conseils d\'experts pour accélérer la vente de votre bien immobilier dans le marché dynamique de Yaoundé. De la mise en scène à la fixation du bon prix, nous couvrons tout.',
-        imageUrl: 'https://picsum.photos/seed/blog1/800/600',
-        author: 'Marie Claire Ngono',
-        date: '15 Juillet 2024',
-        content: `
-            <h3>1. La Première Impression Compte</h3>
-            <p>Assurez-vous que votre maison est impeccable. Un nettoyage en profondeur, un désencombrement et quelques petites réparations peuvent faire une énorme différence. Pensez à l'attrait extérieur : une pelouse tondue et une porte d'entrée fraîchement peinte sont accueillantes.</p>
-            <h3>2. Fixez le Juste Prix</h3>
-            <p>Un prix trop élevé peut décourager les acheteurs potentiels dès le départ. Faites des recherches sur les biens comparables dans votre quartier ou, mieux encore, faites appel à l'un de nos agents pour une estimation professionnelle. Un prix compétitif générera plus d'intérêt et potentiellement plusieurs offres.</p>
-            <h3>3. La Mise en Scène (Home Staging)</h3>
-            <p>Le home staging aide les acheteurs à s'imaginer vivre dans l'espace. Optez pour une décoration neutre et dépersonnalisez les pièces. Le but est de créer une ambiance chaleureuse et accueillante sans imposer votre style personnel.</p>
-            <h3>4. Des Photos de Qualité Professionnelle</h3>
-            <p>La plupart des acheteurs commencent leur recherche en ligne. Des photos de haute qualité sont donc essentielles pour capter leur attention. Engagez un photographe immobilier ou assurez-vous que votre agent le fait. Des photos lumineuses et bien cadrées mettront en valeur les meilleurs atouts de votre maison.</p>
-            <h3>5. Soyez Flexible pour les Visites</h3>
-            <p>Il est crucial de rendre votre maison aussi accessible que possible pour les visites. Plus il est facile pour les acheteurs de voir votre bien, plus vous aurez de chances de recevoir une offre rapidement. Essayez de répondre positivement à toutes les demandes de visite, même à court préavis.</p>
-        `
-    },
-    {
-        id: 'blog2',
-        title: 'Investir dans l\'Immobilier Locatif à Yaoundé : Les Quartiers à Suivre',
-        excerpt: 'Yaoundé est en pleine expansion. Quels sont les quartiers les plus prometteurs pour un investissement locatif rentable ? Notre analyse pour vous guider.',
-        imageUrl: 'https://picsum.photos/seed/blog2/800/600',
-        author: 'Jean-Pierre Bekolo',
-        date: '02 Juillet 2024',
-        content: `
-            <p>Investir dans l'immobilier locatif à Yaoundé peut être une excellente source de revenus passifs, à condition de choisir le bon emplacement. Voici quelques quartiers qui présentent un fort potentiel de croissance et une forte demande locative.</p>
-            <h3>Bastos : La Valeur Sûre</h3>
-            <p>Quartier des ambassades et des expatriés, Bastos reste une valeur sûre. La demande pour des logements de haut standing y est constante. Bien que les prix d'achat soient élevés, les loyers le sont également, garantissant une bonne rentabilité.</p>
-            <h3>Ngoa-Ekellé : Le Quartier Étudiant</h3>
-            <p>Avec la proximité de l'Université de Yaoundé I, Ngoa-Ekellé est un choix stratégique pour investir dans des studios ou de petits appartements. La demande locative étudiante est permanente, assurant un faible taux de vacance.</p>
-            <h3>Odza : Le Futur de Yaoundé</h3>
-            <p>Situé près de l'aéroport international de Nsimalen et en plein développement, Odza attire de plus en plus de familles et de jeunes professionnels. Les prix y sont encore abordables et le potentiel d'appréciation du capital est significatif à moyen et long terme.</p>
-            <h3>Santa Barbara : Le Calme Résidentiel</h3>
-            <p>Ce quartier résidentiel sécurisé est très prisé par les familles aisées et les cadres. Investir dans un duplex ou une villa à Santa Barbara peut offrir d'excellents rendements locatifs, en particulier pour les locations meublées.</p>
-        `
-    }
 ];
 
 export const ABOUT_DATA: AboutData = {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useData } from '../../DataContext';
-import { BuildingOffice2Icon, UserGroupIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
+import { BuildingOffice2Icon, UserGroupIcon, ShoppingBagIcon, PhotoIcon } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 
 const StatCard: React.FC<{ icon: React.ReactNode, title: string, value: number, link: string }> = ({ icon, title, value, link }) => (
@@ -18,14 +18,14 @@ const StatCard: React.FC<{ icon: React.ReactNode, title: string, value: number, 
 )
 
 const AdminDashboard: React.FC = () => {
-  const { properties, agents, products } = useData();
+  const { properties, agents, products, carouselSlides } = useData();
 
   return (
     <div>
       <h1 className="text-2xl md:text-3xl font-bold text-brand-dark font-serif mb-2">Tableau de Bord</h1>
       <p className="text-gray-600 mb-8">Bienvenue dans l'espace d'administration de ImmoYaoundé.</p>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard 
             icon={<BuildingOffice2Icon className="h-8 w-8"/>}
             title="Biens Immobiliers"
@@ -43,6 +43,12 @@ const AdminDashboard: React.FC = () => {
             title="Produits en Boutique"
             value={products.length}
             link="/admin/products"
+        />
+         <StatCard 
+            icon={<PhotoIcon className="h-8 w-8"/>}
+            title="Diapos Carrousel"
+            value={carouselSlides.length}
+            link="/admin/carousel"
         />
       </div>
     </div>
