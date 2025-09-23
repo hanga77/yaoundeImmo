@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useData } from '../DataContext';
-import { ArrowRightIcon } from '@heroicons/react/24/solid';
+import { ArrowRightIcon, ArrowUturnLeftIcon } from '@heroicons/react/24/solid';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -39,6 +39,7 @@ const LoginPage: React.FC = () => {
               type="email"
               autoComplete="email"
               required
+              placeholder="admin@immoyaounde.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-gold focus:border-brand-gold sm:text-sm"
@@ -52,6 +53,7 @@ const LoginPage: React.FC = () => {
               type="password"
               autoComplete="current-password"
               required
+              placeholder="password123"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-gold focus:border-brand-gold sm:text-sm"
@@ -70,6 +72,12 @@ const LoginPage: React.FC = () => {
             </button>
           </div>
         </form>
+        <div className="text-center mt-6 border-t pt-4">
+            <Link to="/" className="inline-flex items-center gap-2 text-sm text-brand-blue hover:text-brand-gold transition-colors duration-300 font-medium">
+                <ArrowUturnLeftIcon className="h-4 w-4" />
+                Retour à l'accueil
+            </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { useData } from '../../DataContext';
 import { BuildingOffice2Icon, UserGroupIcon, ShoppingBagIcon, PhotoIcon } from '@heroicons/react/24/solid';
@@ -18,7 +19,7 @@ const StatCard: React.FC<{ icon: React.ReactNode, title: string, value: number, 
 )
 
 const AdminDashboard: React.FC = () => {
-  const { properties, agents, products, carouselSlides } = useData();
+  const { properties, agents, products, carouselSlides, users } = useData();
 
   return (
     <div>
@@ -34,9 +35,9 @@ const AdminDashboard: React.FC = () => {
         />
         <StatCard 
             icon={<UserGroupIcon className="h-8 w-8"/>}
-            title="Agents"
-            value={agents.length}
-            link="/admin/about"
+            title="Utilisateurs"
+            value={users.length}
+            link="/admin/users"
         />
         <StatCard 
             icon={<ShoppingBagIcon className="h-8 w-8"/>}

@@ -3,7 +3,11 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { PropertyType } from '../types';
 
-const NavLinks = () => {
+interface NavLinksProps {
+  onLinkClick?: () => void;
+}
+
+const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const currentType = searchParams.get('type');
@@ -24,42 +28,49 @@ const NavLinks = () => {
     <>
       <NavLink 
         to="/" 
+        onClick={onLinkClick}
         className={({ isActive }) => `${linkClass} ${isActive && location.pathname === '/' ? activeLinkClass : inactiveLinkClass}`}
       >
         Accueil
       </NavLink>
       <NavLink 
         to={`/biens?type=${PropertyType.SALE}`}
+        onClick={onLinkClick}
         className={`${linkClass} ${isTypeActive(PropertyType.SALE) ? activeLinkClass : inactiveLinkClass}`}
       >
         À Vendre
       </NavLink>
       <NavLink 
         to={`/biens?type=${PropertyType.RENT}`} 
+        onClick={onLinkClick}
         className={`${linkClass} ${isTypeActive(PropertyType.RENT) ? activeLinkClass : inactiveLinkClass}`}
       >
         À Louer
       </NavLink>
       <NavLink 
         to={`/biens?type=${PropertyType.FURNISHED}`} 
+        onClick={onLinkClick}
         className={`${linkClass} ${isTypeActive(PropertyType.FURNISHED) ? activeLinkClass : inactiveLinkClass}`}
       >
         Meublés
       </NavLink>
       <NavLink 
         to="/services" 
+        onClick={onLinkClick}
         className={`${linkClass} ${isServiceActive() ? activeLinkClass : inactiveLinkClass}`}
       >
         Services
       </NavLink>
        <NavLink 
         to="/boutique" 
+        onClick={onLinkClick}
         className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
       >
         Boutique
       </NavLink>
       <NavLink 
         to="/a-propos" 
+        onClick={onLinkClick}
         className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
       >
         À Propos
@@ -71,13 +82,14 @@ const NavLinks = () => {
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const closeMenu = () => setIsOpen(false);
 
     return (
         <header className="bg-brand-blue shadow-lg sticky top-0 z-50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex-shrink-0">
-                        <Link to="/" className="text-white text-2xl font-bold font-serif">
+                        <Link to="/" onClick={closeMenu} className="text-white text-2xl font-bold font-serif">
                             Immo<span className="text-brand-gold">Yaoundé</span>
                         </Link>
                     </div>
@@ -113,8 +125,11 @@ const Header: React.FC = () => {
             {isOpen && (
                 <div className="md:hidden" id="mobile-menu">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
-                        <NavLinks />
-                         <Link to="/contact" className="mt-4 text-center py-2 px-4 bg-brand-gold text-white rounded-md text-sm font-medium hover:bg-yellow-600 transition-colors duration-300">
+                        <NavLinks onLinkClick={closeMenu} />
+                         <Link 
+                            to="/contact" 
+                            onClick={closeMenu}
+                            className="mt-4 text-center py-2 px-4 bg-brand-gold text-white rounded-md text-sm font-medium hover:bg-yellow-600 transition-colors duration-300">
                             Contactez-nous
                         </Link>
                     </div>

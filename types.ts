@@ -7,6 +7,11 @@ export enum PropertyType {
   FURNISHED = 'Meublé',
 }
 
+export enum UserRole {
+  ADMIN = 'Admin',
+  EDITOR = 'Éditeur',
+}
+
 export interface Property {
   id: string;
   title: string;
@@ -61,6 +66,7 @@ export interface User {
     id: string;
     email: string;
     name: string;
+    role: UserRole;
 }
 
 export interface SEOData {
@@ -76,8 +82,13 @@ export interface FooterData {
   email: string;
   openingHours: string;
   facebookUrl: string;
-  twitterUrl: string;
+  xUrl: string;
   instagramUrl: string;
+  youtubeUrl: string;
+  linkedinUrl: string;
+  tiktokUrl: string;
+  legalNoticeUrl: string;
+  privacyPolicyUrl: string;
 }
 
 export interface AboutData {

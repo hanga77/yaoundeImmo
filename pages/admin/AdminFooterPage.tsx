@@ -55,13 +55,38 @@ const AdminFooterPage: React.FC = () => {
                     <input type="text" name="facebookUrl" id="facebookUrl" value={formData.facebookUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
                 <div>
-                    <label htmlFor="twitterUrl" className="block text-sm font-medium text-gray-700">Lien Twitter</label>
-                    <input type="text" name="twitterUrl" id="twitterUrl" value={formData.twitterUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    <label htmlFor="xUrl" className="block text-sm font-medium text-gray-700">Lien X (Twitter)</label>
+                    <input type="text" name="xUrl" id="xUrl" value={formData.xUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
                 <div>
                     <label htmlFor="instagramUrl" className="block text-sm font-medium text-gray-700">Lien Instagram</label>
                     <input type="text" name="instagramUrl" id="instagramUrl" value={formData.instagramUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
+                 <div>
+                    <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700">Lien Youtube</label>
+                    <input type="text" name="youtubeUrl" id="youtubeUrl" value={formData.youtubeUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="linkedinUrl" className="block text-sm font-medium text-gray-700">Lien LinkedIn</label>
+                    <input type="text" name="linkedinUrl" id="linkedinUrl" value={formData.linkedinUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="tiktokUrl" className="block text-sm font-medium text-gray-700">Lien TikTok</label>
+                    <input type="text" name="tiktokUrl" id="tiktokUrl" value={formData.tiktokUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
+                <div className="border-t pt-6">
+                    <h3 className="text-lg font-medium text-gray-900">Liens Légaux</h3>
+                </div>
+                 <div>
+                    <label htmlFor="legalNoticeUrl" className="block text-sm font-medium text-gray-700">URL Mentions Légales</label>
+                    <input type="text" name="legalNoticeUrl" id="legalNoticeUrl" value={formData.legalNoticeUrl || ''} onChange={handleChange} placeholder="/mentions-legales" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="privacyPolicyUrl" className="block text-sm font-medium text-gray-700">URL Politique de Confidentialité</label>
+                    <input type="text" name="privacyPolicyUrl" id="privacyPolicyUrl" value={formData.privacyPolicyUrl || ''} onChange={handleChange} placeholder="/mentions-legales" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
                 <div className="flex justify-end items-center">
                     {isSaved && <span className="text-green-600 mr-4 text-sm font-medium">Modifications enregistrées !</span>}
                     <button type="submit" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-md transition-colors">

@@ -106,6 +106,21 @@ const HomePage: React.FC = () => {
         )}
       </section>
 
+      {/* CTA Section */}
+      <section className="bg-white">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+              <div className="text-center">
+                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-dark">Vous êtes propriétaire ?</h2>
+                  <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.</p>
+                  <div className="mt-8">
+                      <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-md transition-colors duration-300 text-lg">
+                        Estimez votre bien
+                      </Link>
+                  </div>
+              </div>
+          </div>
+      </section>
+
       {/* Services Section */}
       <section className="py-20 bg-brand-light">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -180,21 +195,6 @@ const HomePage: React.FC = () => {
               </Link>
           </div>
         </div>
-      </section>
-
-        {/* CTA Section */}
-      <section className="bg-brand-dark text-white">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-              <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-bold font-serif">Vous êtes propriétaire ?</h2>
-                  <p className="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.</p>
-                  <div className="mt-8">
-                      <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-md transition-colors duration-300 text-lg">
-                        Estimez votre bien
-                      </Link>
-                  </div>
-              </div>
-          </div>
       </section>
 
     </div>

@@ -1,14 +1,15 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon, PhotoIcon } from '@heroicons/react/24/solid';
+import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon, PhotoIcon, UserGroupIcon } from '@heroicons/react/24/solid';
 import { useData } from '../../DataContext';
+import { UserRole } from '../../types';
 
 interface SidebarProps {
   isOpen: boolean;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
-    const { logout } = useData();
+    const { user, logout } = useData();
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -18,6 +19,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
 
     const linkClass = "flex items-center px-4 py-3 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-200 rounded-md";
     const activeLinkClass = "bg-brand-gold text-white";
+
+    const isAdmin = user && user.role === UserRole.ADMIN;
 
     return (
         <div className={`
@@ -41,6 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     <HomeIcon className="h-5 w-5 mr-3" />
                     Tableau de Bord
                 </NavLink>
+                <span className="block pt-2 text-xs text-gray-500 uppercase">Contenu</span>
                 <NavLink
                     to="/admin/properties"
                     className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
@@ -69,28 +73,40 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     <IdentificationIcon className="h-5 w-5 mr-3" />
                     Gérer la page 'À Propos'
                 </NavLink>
-                <span className="block pt-2 text-xs text-gray-500 uppercase">Configuration</span>
-                <NavLink
-                    to="/admin/carousel"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <PhotoIcon className="h-5 w-5 mr-3" />
-                    Gérer le Carrousel
-                </NavLink>
-                 <NavLink
-                    to="/admin/seo"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <Cog6ToothIcon className="h-5 w-5 mr-3" />
-                    Référencement
-                </NavLink>
-                <NavLink
-                    to="/admin/footer"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <PencilSquareIcon className="h-5 w-5 mr-3" />
-                    Gérer le Pied de Page
-                </NavLink>
+                
+                {isAdmin && (
+                  <>
+                    <span className="block pt-2 text-xs text-gray-500 uppercase">Administration</span>
+                    <NavLink
+                        to="/admin/users"
+                        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                    >
+                        <UserGroupIcon className="h-5 w-5 mr-3" />
+                        Gérer les Utilisateurs
+                    </NavLink>
+                    <NavLink
+                        to="/admin/carousel"
+                        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                    >
+                        <PhotoIcon className="h-5 w-5 mr-3" />
+                        Gérer le Carrousel
+                    </NavLink>
+                    <NavLink
+                        to="/admin/seo"
+                        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                    >
+                        <Cog6ToothIcon className="h-5 w-5 mr-3" />
+                        Référencement
+                    </NavLink>
+                    <NavLink
+                        to="/admin/footer"
+                        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                    >
+                        <PencilSquareIcon className="h-5 w-5 mr-3" />
+                        Gérer le Pied de Page
+                    </NavLink>
+                  </>
+                )}
             </nav>
             <div className="p-4 border-t border-gray-700 space-y-2">
                 <Link to="/" className={linkClass}>

@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -33,6 +34,8 @@ import AdminProductsPage from './pages/admin/AdminProductsPage';
 import ProductFormPage from './pages/admin/ProductFormPage';
 import AdminCarouselPage from './pages/admin/AdminCarouselPage';
 import CarouselFormPage from './pages/admin/CarouselFormPage';
+import AdminUsersPage from './pages/admin/AdminUsersPage';
+import UserFormPage from './pages/admin/UserFormPage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -77,6 +80,9 @@ function App() {
                   <Route path="carousel" element={<AdminCarouselPage />} />
                   <Route path="carousel/new" element={<CarouselFormPage />} />
                   <Route path="carousel/edit/:slideId" element={<CarouselFormPage />} />
+                  <Route path="users" element={<AdminUsersPage />} />
+                  <Route path="users/new" element={<UserFormPage />} />
+                  <Route path="users/edit/:userId" element={<UserFormPage />} />
                   <Route path="seo" element={<AdminSeoPage />} />
                   <Route path="footer" element={<AdminFooterPage />} />
                 </Route>

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide } from './types';
+import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole } from './types';
 import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, CAROUSEL_SLIDES } from './constants';
 import { USERS } from './users';
 
@@ -9,6 +9,7 @@ interface DataContextType {
   services: Service[];
   products: Product[];
   carouselSlides: CarouselSlide[];
+  users: User[];
   user: User | null;
   seoData: SEOData;
   footerData: FooterData;
@@ -30,6 +31,9 @@ interface DataContextType {
   addCarouselSlide: (slide: Omit<CarouselSlide, 'id'>) => void;
   updateCarouselSlide: (slide: CarouselSlide) => void;
   deleteCarouselSlide: (slideId: string) => void;
+  addUser: (user: Omit<User, 'id'>) => void;
+  updateUser: (user: User) => void;
+  deleteUser: (userId: string) => void;
   updateSeoData: (data: SEOData) => void;
   updateFooterData: (data: FooterData) => void;
   updateAboutData: (data: AboutData) => void;
@@ -50,8 +54,13 @@ const initialFooterData: FooterData = {
     email: "contact@immoyaounde.com",
     openingHours: "Lundi - Vendredi : 8h30 - 18h00\nSamedi : 9h00 - 13h00",
     facebookUrl: "#",
-    twitterUrl: "#",
-    instagramUrl: "#"
+    xUrl: "#",
+    instagramUrl: "#",
+    youtubeUrl: "#",
+    linkedinUrl: "#",
+    tiktokUrl: "#",
+    legalNoticeUrl: "/mentions-legales",
+    privacyPolicyUrl: "/mentions-legales"
 };
 
 
@@ -61,6 +70,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [services, setServices] = useState<Service[]>(SERVICES);
   const [products, setProducts] = useState<Product[]>(PRODUCTS);
   const [carouselSlides, setCarouselSlides] = useState<CarouselSlide[]>(CAROUSEL_SLIDES);
+  const [users, setUsers] = useState<User[]>(USERS.map(({ password, ...user }) => user));
   const [user, setUser] = useState<User | null>(null);
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
   const [footerData, setFooterData] = useState<FooterData>(initialFooterData);
@@ -76,7 +86,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = (email: string, pass: string): boolean => {
       const foundUser = USERS.find(u => u.email === email && u.password === pass);
       if (foundUser) {
-          const userData: User = { id: foundUser.id, email: foundUser.email, name: foundUser.name };
+          const userData: User = { id: foundUser.id, email: foundUser.email, name: foundUser.name, role: foundUser.role };
           setUser(userData);
           sessionStorage.setItem('immoUser', JSON.stringify(userData));
           return true;
@@ -149,6 +159,25 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setCarouselSlides(prev => prev.filter(s => s.id !== slideId));
   };
 
+  const addUser = (user: Omit<User, 'id' | 'role'> & { role: UserRole }) => {
+    // In a real app, you'd also handle the password securely
+    const newUser: User = { ...user, id: `u${Date.now()}` };
+    setUsers(prev => [...prev, newUser]);
+  };
+
+  const updateUser = (updatedUser: User) => {
+    setUsers(prev => prev.map(u => u.id === updatedUser.id ? updatedUser : u));
+    // Also update the current user if they are editing themselves
+    if(user && user.id === updatedUser.id) {
+        setUser(updatedUser);
+        sessionStorage.setItem('immoUser', JSON.stringify(updatedUser));
+    }
+  };
+
+  const deleteUser = (userId: string) => {
+    setUsers(prev => prev.filter(u => u.id !== userId));
+  };
+
   const updateSeoData = (data: SEOData) => {
       setSeoData(data);
   }
@@ -167,6 +196,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     services,
     products,
     carouselSlides,
+    users,
     user,
     seoData,
     footerData,
@@ -188,6 +218,9 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addCarouselSlide,
     updateCarouselSlide,
     deleteCarouselSlide,
+    addUser,
+    updateUser,
+    deleteUser,
     updateSeoData,
     updateFooterData,
     updateAboutData,
