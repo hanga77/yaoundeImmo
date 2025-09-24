@@ -30,6 +30,11 @@ const AdminFooterPage: React.FC = () => {
                 </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+                <h3 className="text-lg font-medium text-gray-900 border-b pb-2">Informations Générales</h3>
+                <div>
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description de l'agence</label>
+                    <textarea name="description" id="description" value={formData.description} onChange={handleChange} rows={3} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                </div>
                 <div>
                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">Adresse</label>
                     <input type="text" name="address" id="address" value={formData.address} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
@@ -42,11 +47,17 @@ const AdminFooterPage: React.FC = () => {
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                     <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
-                <div>
-                    <label htmlFor="openingHours" className="block text-sm font-medium text-gray-700">Horaires d'ouverture</label>
-                    <textarea name="openingHours" id="openingHours" value={formData.openingHours} onChange={handleChange} rows={3} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
-                    <p className="mt-1 text-xs text-gray-500">Mettez chaque horaire sur une nouvelle ligne.</p>
+                
+                {/* Fix: Added opening hours field to be managed in the admin panel. */}
+                <div className="border-t pt-6">
+                    <h3 className="text-lg font-medium text-gray-900">Horaires d'ouverture</h3>
                 </div>
+                <div>
+                    <label htmlFor="openingHours" className="block text-sm font-medium text-gray-700">Horaires</label>
+                    <textarea name="openingHours" id="openingHours" value={formData.openingHours || ''} onChange={handleChange} rows={4} placeholder="Lundi - Vendredi: 9h00 - 18h00..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
+                    <p className="mt-1 text-xs text-gray-500">Utilisez un retour à la ligne pour chaque nouvelle ligne.</p>
+                </div>
+
                 <div className="border-t pt-6">
                     <h3 className="text-lg font-medium text-gray-900">Réseaux Sociaux</h3>
                 </div>
@@ -61,18 +72,6 @@ const AdminFooterPage: React.FC = () => {
                 <div>
                     <label htmlFor="instagramUrl" className="block text-sm font-medium text-gray-700">Lien Instagram</label>
                     <input type="text" name="instagramUrl" id="instagramUrl" value={formData.instagramUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
-                </div>
-                 <div>
-                    <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700">Lien Youtube</label>
-                    <input type="text" name="youtubeUrl" id="youtubeUrl" value={formData.youtubeUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
-                </div>
-                <div>
-                    <label htmlFor="linkedinUrl" className="block text-sm font-medium text-gray-700">Lien LinkedIn</label>
-                    <input type="text" name="linkedinUrl" id="linkedinUrl" value={formData.linkedinUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
-                </div>
-                <div>
-                    <label htmlFor="tiktokUrl" className="block text-sm font-medium text-gray-700">Lien TikTok</label>
-                    <input type="text" name="tiktokUrl" id="tiktokUrl" value={formData.tiktokUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
 
                 <div className="border-t pt-6">

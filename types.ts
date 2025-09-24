@@ -77,18 +77,17 @@ export interface SEOData {
 }
 
 export interface FooterData {
+  description: string;
   address: string;
   phone: string;
   email: string;
-  openingHours: string;
   facebookUrl: string;
   xUrl: string;
   instagramUrl: string;
-  youtubeUrl: string;
-  linkedinUrl: string;
-  tiktokUrl: string;
   legalNoticeUrl: string;
   privacyPolicyUrl: string;
+  // Fix: Added openingHours to support contact page feature.
+  openingHours: string;
 }
 
 export interface AboutData {

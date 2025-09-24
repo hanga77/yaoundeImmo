@@ -49,18 +49,17 @@ const initialSeoData: SEOData = {
 };
 
 const initialFooterData: FooterData = {
+    description: "Votre partenaire de confiance pour tous vos projets immobiliers à Yaoundé. Vente, location, gestion et services sur-mesure.",
     address: "123 Avenue de l'Indépendance, Yaoundé, Cameroun",
     phone: "+237 6XX XX XX XX",
     email: "contact@immoyaounde.com",
-    openingHours: "Lundi - Vendredi : 8h30 - 18h00\nSamedi : 9h00 - 13h00",
     facebookUrl: "#",
     xUrl: "#",
     instagramUrl: "#",
-    youtubeUrl: "#",
-    linkedinUrl: "#",
-    tiktokUrl: "#",
     legalNoticeUrl: "/mentions-legales",
-    privacyPolicyUrl: "/mentions-legales"
+    privacyPolicyUrl: "/mentions-legales",
+    // Fix: Added openingHours to support contact page feature.
+    openingHours: "Lundi - Vendredi: 9h00 - 18h00\nSamedi: 9h00 - 13h00\nDimanche: Fermé"
 };
 
 
