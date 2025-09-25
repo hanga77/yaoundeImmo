@@ -97,3 +97,16 @@ export interface AboutData {
   interventionText: string;
   interventionImageUrl: string;
 }
+
+export interface HomePageData {
+  ctaBannerPrefix: string;
+  ctaBannerSuffix: string;
+  ownerCtaTitle: string;
+  ownerCtaText: string;
+  servicesTitle: string;
+  servicesSubtitle: string;
+  featuredPropertiesTitle: string;
+  featuredPropertiesSubtitle: string;
+  featuredProductsTitle: string;
+  featuredProductsSubtitle: string;
+}

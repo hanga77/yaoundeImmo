@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole } from './types';
-import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, CAROUSEL_SLIDES } from './constants';
+import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole, HomePageData } from './types';
+import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, CAROUSEL_SLIDES, HOME_PAGE_DATA } from './constants';
 import { USERS } from './users';
 
 interface DataContextType {
@@ -14,6 +14,7 @@ interface DataContextType {
   seoData: SEOData;
   footerData: FooterData;
   aboutData: AboutData;
+  homePageData: HomePageData;
   login: (email: string, pass: string) => boolean;
   logout: () => void;
   addProperty: (property: Omit<Property, 'id'>) => void;
@@ -37,6 +38,7 @@ interface DataContextType {
   updateSeoData: (data: SEOData) => void;
   updateFooterData: (data: FooterData) => void;
   updateAboutData: (data: AboutData) => void;
+  updateHomePageData: (data: HomePageData) => void;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -74,6 +76,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
   const [footerData, setFooterData] = useState<FooterData>(initialFooterData);
   const [aboutData, setAboutData] = useState<AboutData>(ABOUT_DATA);
+  const [homePageData, setHomePageData] = useState<HomePageData>(HOME_PAGE_DATA);
 
   useEffect(() => {
       const storedUser = sessionStorage.getItem('immoUser');
@@ -189,6 +192,10 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setAboutData(data);
   }
 
+  const updateHomePageData = (data: HomePageData) => {
+    setHomePageData(data);
+  }
+
   const value = {
     properties,
     agents,
@@ -200,6 +207,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     seoData,
     footerData,
     aboutData,
+    homePageData,
     login,
     logout,
     addProperty,
@@ -223,6 +231,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     updateSeoData,
     updateFooterData,
     updateAboutData,
+    updateHomePageData,
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

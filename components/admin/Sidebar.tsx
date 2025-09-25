@@ -46,6 +46,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                 </NavLink>
                 <span className="block pt-2 text-xs text-gray-500 uppercase">Contenu</span>
                 <NavLink
+                    to="/admin/homepage"
+                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                >
+                    <PencilSquareIcon className="h-5 w-5 mr-3" />
+                    Gérer la Page d'Accueil
+                </NavLink>
+                <NavLink
+                    to="/admin/about"
+                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                >
+                    <IdentificationIcon className="h-5 w-5 mr-3" />
+                    Gérer la page 'À Propos'
+                </NavLink>
+                <NavLink
                     to="/admin/properties"
                     className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
                 >
@@ -65,13 +79,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                 >
                     <ShoppingBagIcon className="h-5 w-5 mr-3" />
                     Gérer la Boutique
-                </NavLink>
-                 <NavLink
-                    to="/admin/about"
-                    className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
-                >
-                    <IdentificationIcon className="h-5 w-5 mr-3" />
-                    Gérer la page 'À Propos'
                 </NavLink>
                 
                 {isAdmin && (

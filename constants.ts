@@ -1,4 +1,4 @@
-import { Property, Agent, Service, Product, PropertyType, AboutData, CarouselSlide } from './types';
+import { Property, Agent, Service, Product, PropertyType, AboutData, CarouselSlide, HomePageData } from './types';
 
 export const CAROUSEL_SLIDES: CarouselSlide[] = [
   {
@@ -259,4 +259,17 @@ export const ABOUT_DATA: AboutData = {
   interventionTitle: "Nos Zones d'Intervention",
   interventionText: "Nous opérons sur l'ensemble du territoire de Yaoundé, vous offrant une couverture complète des 7 communes de la capitale.",
   interventionImageUrl: "https://picsum.photos/seed/map/1200/400"
+};
+
+export const HOME_PAGE_DATA: HomePageData = {
+  ctaBannerPrefix: "ImmoYaoundé :",
+  ctaBannerSuffix: "Bien plus qu'une agence. Découvrez nos services exclusifs et laissez-nous concrétiser votre projet immobilier de A à Z.",
+  ownerCtaTitle: "Vous êtes propriétaire ?",
+  ownerCtaText: "Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.",
+  servicesTitle: "Nos Services",
+  servicesSubtitle: "Un service complet pour répondre à tous vos besoins immobiliers.",
+  featuredPropertiesTitle: "Biens à la Une",
+  featuredPropertiesSubtitle: "Le meilleur de notre catalogue, sélectionné pour vous.",
+  featuredProductsTitle: "Produits à la Une",
+  featuredProductsSubtitle: "Notre sélection d'articles pour parfaire votre intérieur.",
 };

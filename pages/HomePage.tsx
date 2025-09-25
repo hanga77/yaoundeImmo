@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
@@ -18,7 +19,7 @@ const ServiceHighlight: React.FC<{ icon: React.ReactNode; title: string; descrip
 );
 
 const HomePage: React.FC = () => {
-  const { properties, products, carouselSlides } = useData();
+  const { properties, products, carouselSlides, homePageData } = useData();
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const featuredProperties = properties.filter(p => p.isFeatured).slice(0, 4);
@@ -59,7 +60,7 @@ const HomePage: React.FC = () => {
       <section className="bg-brand-blue text-white py-4 shadow-md">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <p className="text-md md:text-lg font-medium">
-                  <span className="font-bold text-brand-gold">ImmoYaoundé :</span> Bien plus qu'une agence. Découvrez nos services exclusifs et laissez-nous concrétiser votre projet immobilier de A à Z.
+                  <span className="font-bold text-brand-gold">{homePageData.ctaBannerPrefix}</span> {homePageData.ctaBannerSuffix}
               </p>
           </div>
       </section>
@@ -86,11 +87,6 @@ const HomePage: React.FC = () => {
                 <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">{currentSlide.subtitle}</p>
               </>
             )}
-             <div className="animate-fade-in-up" style={{animationDelay: '0.3s'}}>
-                <Link to="/biens" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 text-lg">
-                    Découvrir nos biens
-                </Link>
-            </div>
         </div>
 
         {carouselSlides.length > 1 && (
@@ -118,8 +114,8 @@ const HomePage: React.FC = () => {
       <section className="bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
               <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-dark">Vous êtes propriétaire ?</h2>
-                  <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.</p>
+                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-dark">{homePageData.ownerCtaTitle}</h2>
+                  <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">{homePageData.ownerCtaText}</p>
                   <div className="mt-8">
                       <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-md transition-colors duration-300 text-lg">
                         Contactez-nous
@@ -133,8 +129,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-brand-light">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Nos Services</h2>
-                  <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Un service complet pour répondre à tous vos besoins immobiliers.</p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.servicesTitle}</h2>
+                  <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">{homePageData.servicesSubtitle}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                  <ServiceHighlight 
@@ -169,8 +165,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Biens à la Une</h2>
-            <p className="mt-4 text-lg text-gray-600">Le meilleur de notre catalogue, sélectionné pour vous.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.featuredPropertiesTitle}</h2>
+            <p className="mt-4 text-lg text-gray-600">{homePageData.featuredPropertiesSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {featuredProperties.map(property => (
@@ -189,8 +185,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-brand-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">Produits à la Une</h2>
-            <p className="mt-4 text-lg text-gray-600">Notre sélection d'articles pour parfaire votre intérieur.</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.featuredProductsTitle}</h2>
+            <p className="mt-4 text-lg text-gray-600">{homePageData.featuredProductsSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {featuredProducts.map(product => (
