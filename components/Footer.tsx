@@ -39,20 +39,53 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Navigation */}
+          {/* Column 2: Nos Offres */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Navigation</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">Nos Offres</h3>
+            <div className="text-sm space-y-3">
+                <div>
+                    <h4 className="font-semibold text-gray-100">{PropertyType.SALE}</h4>
+                    <ul className="pl-4 mt-1 space-y-1 list-disc list-inside">
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.SALE)}&q=terrain`} className="hover:text-brand-gold transition-colors">Terrain à vendre</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.SALE)}&q=maison`} className="hover:text-brand-gold transition-colors">Maison à vendre</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.SALE)}&q=voiture`} className="hover:text-brand-gold transition-colors">Voiture à vendre</Link></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h4 className="font-semibold text-gray-100">{PropertyType.RENT}</h4>
+                    <ul className="pl-4 mt-1 space-y-1 list-disc list-inside">
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=chambre`} className="hover:text-brand-gold transition-colors">Chambre à louer</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=studio`} className="hover:text-brand-gold transition-colors">Studio à louer</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=appartement`} className="hover:text-brand-gold transition-colors">Appartement à louer</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=commercial`} className="hover:text-brand-gold transition-colors">Espace commercial à louer</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=voiture`} className="hover:text-brand-gold transition-colors">Voiture à louer</Link></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h4 className="font-semibold text-gray-100">{PropertyType.FURNISHED}</h4>
+                    <ul className="pl-4 mt-1 space-y-1 list-disc list-inside">
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.FURNISHED)}&q=chambre`} className="hover:text-brand-gold transition-colors">Chambre</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.FURNISHED)}&q=studio`} className="hover:text-brand-gold transition-colors">Studio</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.FURNISHED)}&q=appartement`} className="hover:text-brand-gold transition-colors">Appartement</Link></li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+          
+          {/* Column 3: Liens Rapides */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">Liens Rapides</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link to={`/biens?type=${PropertyType.SALE}`} className="hover:text-brand-gold transition-colors">À Vendre</Link></li>
-              <li><Link to={`/biens?type=${PropertyType.RENT}`} className="hover:text-brand-gold transition-colors">À Louer</Link></li>
-              <li><Link to={`/biens?type=${PropertyType.FURNISHED}`} className="hover:text-brand-gold transition-colors">Meublés</Link></li>
               <li><Link to="/services" className="hover:text-brand-gold transition-colors">Services</Link></li>
               <li><Link to="/boutique" className="hover:text-brand-gold transition-colors">Boutique</Link></li>
               <li><Link to="/a-propos" className="hover:text-brand-gold transition-colors">Qui sommes-nous?</Link></li>
+              <li><Link to={footerData.legalNoticeUrl || '/mentions-legales'} className="hover:text-brand-gold transition-colors">Mentions Légales</Link></li>
+              <li><Link to={footerData.privacyPolicyUrl || '/mentions-legales'} className="hover:text-brand-gold transition-colors">Politique de Confidentialité</Link></li>
+              <li><Link to="/admin" className="hover:text-brand-gold transition-colors">Administration</Link></li>
             </ul>
           </div>
-          
-          {/* Column 3: Contact */}
+
+          {/* Column 4: Contact */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
             <ul className="space-y-3 text-sm">
@@ -68,16 +101,6 @@ const Footer: React.FC = () => {
                     <EnvelopeIcon className="h-5 w-5 mr-3 mt-0.5 text-brand-gold flex-shrink-0"/>
                     <span>{footerData.email}</span>
                 </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Legal */}
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-4">Légal</h3>
-             <ul className="space-y-2 text-sm">
-              <li><Link to={footerData.legalNoticeUrl || '/mentions-legales'} className="hover:text-brand-gold transition-colors">Mentions Légales</Link></li>
-              <li><Link to={footerData.privacyPolicyUrl || '/mentions-legales'} className="hover:text-brand-gold transition-colors">Politique de Confidentialité</Link></li>
-              <li><Link to="/admin" className="hover:text-brand-gold transition-colors">Administration</Link></li>
             </ul>
           </div>
         </div>

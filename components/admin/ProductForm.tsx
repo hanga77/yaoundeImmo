@@ -56,7 +56,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ onSubmit, initialData }) => {
   
   const handleMainImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files[0]) {
-          const base64 = await fileToBase64(e.target.files[0]);
+          // Fix: Explicitly cast to File to resolve type inference issue.
+          const base64 = await fileToBase64(e.target.files[0] as File);
           setFormData(prev => ({ ...prev, imageUrl: base64 }));
       }
   };
@@ -64,7 +65,8 @@ const ProductForm: React.FC<ProductFormProps> = ({ onSubmit, initialData }) => {
   const handleGalleryImagesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) {
           const files = Array.from(e.target.files);
-          const base64Promises = files.map(file => fileToBase64(file));
+          // Fix: Explicitly type the 'file' parameter to resolve a type inference issue.
+          const base64Promises = files.map((file: File) => fileToBase64(file));
           const base64Images = await Promise.all(base64Promises);
           setFormData(prev => ({...prev, imageUrls: [...prev.imageUrls, ...base64Images]}));
       }

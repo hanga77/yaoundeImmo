@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
@@ -56,6 +55,15 @@ const HomePage: React.FC = () => {
 
   return (
     <div>
+      {/* Call to Action Section */}
+      <section className="bg-brand-blue text-white py-4 shadow-md">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <p className="text-md md:text-lg font-medium">
+                  <span className="font-bold text-brand-gold">ImmoYaoundé :</span> Bien plus qu'une agence. Découvrez nos services exclusifs et laissez-nous concrétiser votre projet immobilier de A à Z.
+              </p>
+          </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[450px] w-full text-white overflow-hidden">
         {carouselSlides.map((slide, index) => (
@@ -114,7 +122,7 @@ const HomePage: React.FC = () => {
                   <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.</p>
                   <div className="mt-8">
                       <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-md transition-colors duration-300 text-lg">
-                        Estimez votre bien
+                        Contactez-nous
                       </Link>
                   </div>
               </div>

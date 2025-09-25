@@ -75,7 +75,8 @@ const PropertyForm: React.FC<PropertyFormProps> = ({ onSubmit, initialData }) =>
   const handleGalleryImagesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files) {
           const files = Array.from(e.target.files);
-          const base64Promises = files.map(file => fileToBase64(file));
+          // Fix: Explicitly type 'file' to resolve type inference issue.
+          const base64Promises = files.map((file: File) => fileToBase64(file));
           const base64Images = await Promise.all(base64Promises);
           setFormData(prev => ({...prev, imageUrls: [...prev.imageUrls, ...base64Images]}));
       }
