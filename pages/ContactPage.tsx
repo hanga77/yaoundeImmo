@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
@@ -50,7 +51,7 @@ const ContactPage: React.FC = () => {
   return (
     <div className="bg-brand-light">
       {/* Page Header */}
-      <div className="bg-brand-blue py-20 text-white text-center">
+      <div className="bg-brand-blue py-12 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl font-bold font-serif">Contactez-nous</h1>
           <p className="mt-2 text-lg text-gray-300">Nous sommes à votre écoute pour toute question ou projet.</p>

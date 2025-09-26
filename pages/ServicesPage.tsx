@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -10,7 +11,7 @@ const ServicesPage: React.FC = () => {
   return (
     <div>
       {/* Page Header */}
-      <div className="bg-brand-blue py-20 text-white text-center">
+      <div className="bg-brand-blue py-12 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl font-bold font-serif">Nos Services</h1>
           <p className="mt-2 text-lg text-gray-300">Un accompagnement complet pour tous vos projets de construction et de rénovation.</p>

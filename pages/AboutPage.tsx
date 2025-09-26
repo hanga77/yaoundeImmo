@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { useData } from '../DataContext';
 import { Agent } from '../types';
@@ -18,7 +19,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <div className="relative bg-brand-dark py-20 text-white text-center" style={{backgroundImage: "url('https://picsum.photos/seed/about/1920/1080')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
+      <div className="relative bg-brand-dark py-12 text-white text-center" style={{backgroundImage: "url('https://picsum.photos/seed/about/1920/1080')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
          <div className="absolute inset-0 bg-black opacity-60"></div>
          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h1 className="text-4xl md:text-5xl font-bold font-serif">Notre Agence</h1>

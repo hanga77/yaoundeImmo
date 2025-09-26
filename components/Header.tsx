@@ -98,11 +98,6 @@ const Header: React.FC = () => {
                             <NavLinks />
                         </div>
                     </div>
-                    <div className="hidden md:block">
-                         <Link to="/contact" className="ml-4 py-2 px-4 bg-brand-gold text-white rounded-md text-sm font-medium hover:bg-yellow-600 transition-colors duration-300">
-                            Contactez-nous
-                        </Link>
-                    </div>
                     <div className="-mr-2 flex md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
@@ -126,12 +121,6 @@ const Header: React.FC = () => {
                 <div className="md:hidden" id="mobile-menu">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                         <NavLinks onLinkClick={closeMenu} />
-                         <Link 
-                            to="/contact" 
-                            onClick={closeMenu}
-                            className="mt-4 text-center py-2 px-4 bg-brand-gold text-white rounded-md text-sm font-medium hover:bg-yellow-600 transition-colors duration-300">
-                            Contactez-nous
-                        </Link>
                     </div>
                 </div>
             )}

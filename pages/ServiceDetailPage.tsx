@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -25,7 +26,7 @@ const ServiceDetailPage: React.FC = () => {
   return (
     <div className="bg-white">
        {/* Page Header */}
-       <div className="bg-brand-dark py-20 text-white text-center">
+       <div className="bg-brand-dark py-12 text-white text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center h-24 w-24 rounded-full bg-brand-gold text-white mx-auto mb-6">
                 <Icon name={service.icon} className="h-12 w-12" />
