@@ -68,13 +68,6 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
       >
         Boutique
       </NavLink>
-      <NavLink 
-        to="/a-propos" 
-        onClick={onLinkClick}
-        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
-      >
-        À Propos
-      </NavLink>
     </>
   );
 };
