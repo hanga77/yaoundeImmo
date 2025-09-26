@@ -49,6 +49,7 @@ const Footer: React.FC = () => {
                         <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=chambre`} className="hover:text-brand-gold transition-colors">Chambre à louer à Yaoundé</Link></li>
                         <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=studio`} className="hover:text-brand-gold transition-colors">Studio à louer à Yaoundé</Link></li>
                         <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=appartement`} className="hover:text-brand-gold transition-colors">Appartement à louer à Yaoundé</Link></li>
+                        <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=bureau`} className="hover:text-brand-gold transition-colors">Bureau à louer à Yaoundé</Link></li>
                         <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=commercial`} className="hover:text-brand-gold transition-colors">Espace commercial à louer à Yaoundé</Link></li>
                         <li><Link to={`/biens?type=${encodeURIComponent(PropertyType.RENT)}&q=voiture`} className="hover:text-brand-gold transition-colors">Voiture à louer à Yaoundé</Link></li>
                     </ul>
