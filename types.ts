@@ -83,10 +83,15 @@ export interface FooterData {
   phone: string;
   email: string;
   facebookUrl: string;
+  facebookIcon?: string;
   xUrl: string;
+  xIcon?: string;
   youtubeUrl: string;
+  youtubeIcon?: string;
   tiktokUrl: string;
+  tiktokIcon?: string;
   pinterestUrl: string;
+  pinterestIcon?: string;
   legalNoticeUrl: string;
   privacyPolicyUrl: string;
   // Fix: Added openingHours to support contact page feature.

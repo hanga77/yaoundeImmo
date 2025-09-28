@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useData } from '../../DataContext';
 import { FooterData } from '../../types';
+import { socialIconNames } from '../../components/IconMap';
 
 const AdminFooterPage: React.FC = () => {
     const { footerData, updateFooterData } = useData();
     const [formData, setFormData] = useState<FooterData>(footerData);
     const [isSaved, setIsSaved] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
@@ -61,25 +62,70 @@ const AdminFooterPage: React.FC = () => {
                 <div className="border-t pt-6">
                     <h3 className="text-lg font-medium text-gray-900">Réseaux Sociaux</h3>
                 </div>
-                <div>
-                    <label htmlFor="facebookUrl" className="block text-sm font-medium text-gray-700">Lien Facebook</label>
-                    <input type="text" name="facebookUrl" id="facebookUrl" value={formData.facebookUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                  <div>
+                      <label htmlFor="facebookUrl" className="block text-sm font-medium text-gray-700">Lien Facebook</label>
+                      <input type="text" name="facebookUrl" id="facebookUrl" value={formData.facebookUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                  </div>
+                   <div>
+                      <label htmlFor="facebookIcon" className="block text-sm font-medium text-gray-700">Icône</label>
+                      <select name="facebookIcon" id="facebookIcon" value={formData.facebookIcon} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold">
+                        {socialIconNames.map(icon => <option key={icon} value={icon}>{icon}</option>)}
+                      </select>
+                  </div>
                 </div>
-                <div>
-                    <label htmlFor="xUrl" className="block text-sm font-medium text-gray-700">Lien X (Twitter)</label>
-                    <input type="text" name="xUrl" id="xUrl" value={formData.xUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                    <div>
+                        <label htmlFor="xUrl" className="block text-sm font-medium text-gray-700">Lien X (Twitter)</label>
+                        <input type="text" name="xUrl" id="xUrl" value={formData.xUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    </div>
+                    <div>
+                        <label htmlFor="xIcon" className="block text-sm font-medium text-gray-700">Icône</label>
+                        <select name="xIcon" id="xIcon" value={formData.xIcon} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold">
+                            {socialIconNames.map(icon => <option key={icon} value={icon}>{icon}</option>)}
+                        </select>
+                    </div>
                 </div>
-                 <div>
-                    <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700">Lien YouTube</label>
-                    <input type="text" name="youtubeUrl" id="youtubeUrl" value={formData.youtubeUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                    <div>
+                        <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700">Lien YouTube</label>
+                        <input type="text" name="youtubeUrl" id="youtubeUrl" value={formData.youtubeUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    </div>
+                     <div>
+                        <label htmlFor="youtubeIcon" className="block text-sm font-medium text-gray-700">Icône</label>
+                        <select name="youtubeIcon" id="youtubeIcon" value={formData.youtubeIcon} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold">
+                            {socialIconNames.map(icon => <option key={icon} value={icon}>{icon}</option>)}
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="tiktokUrl" className="block text-sm font-medium text-gray-700">Lien TikTok</label>
-                    <input type="text" name="tiktokUrl" id="tiktokUrl" value={formData.tiktokUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                    <div>
+                        <label htmlFor="tiktokUrl" className="block text-sm font-medium text-gray-700">Lien TikTok</label>
+                        <input type="text" name="tiktokUrl" id="tiktokUrl" value={formData.tiktokUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    </div>
+                    <div>
+                        <label htmlFor="tiktokIcon" className="block text-sm font-medium text-gray-700">Icône</label>
+                        <select name="tiktokIcon" id="tiktokIcon" value={formData.tiktokIcon} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold">
+                            {socialIconNames.map(icon => <option key={icon} value={icon}>{icon}</option>)}
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="pinterestUrl" className="block text-sm font-medium text-gray-700">Lien Pinterest</label>
-                    <input type="text" name="pinterestUrl" id="pinterestUrl" value={formData.pinterestUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
+                    <div>
+                        <label htmlFor="pinterestUrl" className="block text-sm font-medium text-gray-700">Lien Pinterest</label>
+                        <input type="text" name="pinterestUrl" id="pinterestUrl" value={formData.pinterestUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                    </div>
+                     <div>
+                        <label htmlFor="pinterestIcon" className="block text-sm font-medium text-gray-700">Icône</label>
+                        <select name="pinterestIcon" id="pinterestIcon" value={formData.pinterestIcon} onChange={handleChange} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold">
+                            {socialIconNames.map(icon => <option key={icon} value={icon}>{icon}</option>)}
+                        </select>
+                    </div>
                 </div>
 
 
