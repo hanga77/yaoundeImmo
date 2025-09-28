@@ -84,7 +84,9 @@ export interface FooterData {
   email: string;
   facebookUrl: string;
   xUrl: string;
-  instagramUrl: string;
+  youtubeUrl: string;
+  tiktokUrl: string;
+  pinterestUrl: string;
   legalNoticeUrl: string;
   privacyPolicyUrl: string;
   // Fix: Added openingHours to support contact page feature.

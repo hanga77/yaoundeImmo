@@ -23,6 +23,25 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+// Middleware to check database connection status before handling API requests
+const checkDbConnection = (req, res, next) => {
+    // readyState: 0 = disconnected, 1 = connected
+    if (mongoose.connection.readyState === 1) {
+        return next(); // Connection is good, proceed to the route
+    }
+    
+    // If not connected, the server cannot fulfill the request.
+    console.error('API request blocked: Database is not connected. Current state:', mongoose.connection.readyState);
+    return res.status(503).json({
+        error: "Service Unavailable",
+        message: "The server cannot connect to the database. Please ensure environment variables (e.g., MONGO_URI) are correctly configured in the Vercel project settings."
+    });
+};
+
+// Apply the middleware to all API routes
+app.use('/api', checkDbConnection);
+
+
 // API Routes
 app.use('/api/properties', propertyRoutes);
 app.use('/api/users', userRoutes);

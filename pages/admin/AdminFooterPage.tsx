@@ -69,10 +69,19 @@ const AdminFooterPage: React.FC = () => {
                     <label htmlFor="xUrl" className="block text-sm font-medium text-gray-700">Lien X (Twitter)</label>
                     <input type="text" name="xUrl" id="xUrl" value={formData.xUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
-                <div>
-                    <label htmlFor="instagramUrl" className="block text-sm font-medium text-gray-700">Lien Instagram</label>
-                    <input type="text" name="instagramUrl" id="instagramUrl" value={formData.instagramUrl} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                 <div>
+                    <label htmlFor="youtubeUrl" className="block text-sm font-medium text-gray-700">Lien YouTube</label>
+                    <input type="text" name="youtubeUrl" id="youtubeUrl" value={formData.youtubeUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
                 </div>
+                <div>
+                    <label htmlFor="tiktokUrl" className="block text-sm font-medium text-gray-700">Lien TikTok</label>
+                    <input type="text" name="tiktokUrl" id="tiktokUrl" value={formData.tiktokUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+                <div>
+                    <label htmlFor="pinterestUrl" className="block text-sm font-medium text-gray-700">Lien Pinterest</label>
+                    <input type="text" name="pinterestUrl" id="pinterestUrl" value={formData.pinterestUrl || ''} onChange={handleChange} placeholder="https://..." className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                </div>
+
 
                 <div className="border-t pt-6">
                     <h3 className="text-lg font-medium text-gray-900">Liens Légaux</h3>

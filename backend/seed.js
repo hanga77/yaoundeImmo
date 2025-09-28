@@ -34,7 +34,9 @@ const initialFooterData = {
     email: "contact@immoyaounde.com",
     facebookUrl: "#",
     xUrl: "#",
-    instagramUrl: "#",
+    youtubeUrl: "#",
+    tiktokUrl: "#",
+    pinterestUrl: "#",
     legalNoticeUrl: "/mentions-legales",
     privacyPolicyUrl: "/mentions-legales",
     openingHours: "Lundi - Vendredi: 9h00 - 18h00\nSamedi: 9h00 - 13h00\nDimanche: Fermé"
