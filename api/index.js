@@ -23,23 +23,57 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Middleware to check database connection status before handling API requests
-const checkDbConnection = (req, res, next) => {
-    // readyState: 0 = disconnected, 1 = connected
-    if (mongoose.connection.readyState === 1) {
-        return next(); // Connection is good, proceed to the route
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
+
+// --- Database Connection Logic for Serverless ---
+// We cache the connection promise to avoid reconnecting on every request.
+let cachedDbPromise = null;
+
+const connectToDatabase = async () => {
+    // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+    if (mongoose.connection.readyState >= 1) {
+        return;
     }
-    
-    // If not connected, the server cannot fulfill the request.
-    console.error('API request blocked: Database is not connected. Current state:', mongoose.connection.readyState);
-    return res.status(503).json({
-        error: "Service Unavailable",
-        message: "The server cannot connect to the database. Please ensure environment variables (e.g., MONGO_URI) are correctly configured in the Vercel project settings."
+
+    if (!mongoUri) {
+        throw new Error('FATAL ERROR: MONGO_URI or MONGODB_URI is not defined.');
+    }
+
+    if (cachedDbPromise) {
+        return cachedDbPromise; // A connection attempt is already in progress
+    }
+
+    console.log('Connecting to MongoDB...');
+    cachedDbPromise = mongoose.connect(mongoUri, {
+        bufferCommands: false, // Recommended for serverless
     });
+
+    try {
+        await cachedDbPromise;
+        console.log('Connected to MongoDB');
+    } catch (e) {
+        console.error('MongoDB connection error:', e.message);
+        cachedDbPromise = null; // Reset promise on failure to allow retry
+        throw e; // Re-throw error to be caught by the middleware
+    }
+};
+
+// Middleware to ensure DB connection before handling any API request
+const ensureDbConnection = async (req, res, next) => {
+    try {
+        await connectToDatabase();
+        next();
+    } catch (error) {
+        console.error('Database connection failed for request:', req.path);
+        res.status(503).json({
+            error: "Service Unavailable",
+            message: "The server could not connect to the database. This might be a temporary issue or a configuration problem (e.g., incorrect MONGO_URI or IP whitelist)."
+        });
+    }
 };
 
 // Apply the middleware to all API routes
-app.use('/api', checkDbConnection);
+app.use('/api', ensureDbConnection);
 
 
 // API Routes
@@ -52,17 +86,6 @@ app.use('/api/products', productRoutes);
 app.use('/api/carousel-slides', carouselSlideRoutes);
 app.use('/api/config', siteConfigRoutes);
 
-// Make the connection string check more robust by accepting both MONGO_URI and MONGODB_URI
-const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
-
-// Connect to MongoDB
-if (mongoUri) {
-  mongoose.connect(mongoUri)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error('MongoDB connection error:', error.message));
-} else {
-  console.error('FATAL ERROR: MONGO_URI or MONGODB_URI is not defined.');
-}
 
 // Export the app for Vercel
 export default app;
