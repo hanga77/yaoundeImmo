@@ -9,15 +9,19 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useData();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    const success = login(email, password);
-    if (success) {
+    setIsLoading(true);
+    try {
+      await login(email, password);
       navigate('/admin');
-    } else {
-      setError('Email ou mot de passe incorrect.');
+    } catch (err: any) {
+      setError(err.message || 'Email ou mot de passe incorrect.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -53,7 +57,7 @@ const LoginPage: React.FC = () => {
               type="password"
               autoComplete="current-password"
               required
-              placeholder="password123"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-brand-gold focus:border-brand-gold sm:text-sm"
@@ -65,10 +69,11 @@ const LoginPage: React.FC = () => {
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-gold hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold transition-colors"
+              disabled={isLoading}
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-brand-gold hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold transition-colors disabled:bg-yellow-400 disabled:cursor-not-allowed"
             >
-              Se connecter
-              <ArrowRightIcon className="ml-2 h-5 w-5"/>
+              {isLoading ? 'Connexion en cours...' : 'Se connecter'}
+              {!isLoading && <ArrowRightIcon className="ml-2 h-5 w-5"/>}
             </button>
           </div>
         </form>

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole, HomePageData } from './types';
-import { PROPERTIES, AGENTS, SERVICES, PRODUCTS, ABOUT_DATA, CAROUSEL_SLIDES, HOME_PAGE_DATA } from './constants';
-import { USERS } from './users';
+
+const API_URL = '/api';
 
 interface DataContextType {
   properties: Property[];
@@ -15,223 +15,236 @@ interface DataContextType {
   footerData: FooterData;
   aboutData: AboutData;
   homePageData: HomePageData;
-  login: (email: string, pass: string) => boolean;
+  isLoading: boolean;
+  login: (email: string, pass: string) => Promise<void>;
   logout: () => void;
-  addProperty: (property: Omit<Property, 'id'>) => void;
-  updateProperty: (property: Property) => void;
-  deleteProperty: (propertyId: string) => void;
-  addService: (service: Omit<Service, 'id'>) => void;
-  updateService: (service: Service) => void;
-  deleteService: (serviceId: string) => void;
-  addProduct: (product: Omit<Product, 'id'>) => void;
-  updateProduct: (product: Product) => void;
-  deleteProduct: (productId: string) => void;
-  addAgent: (agent: Omit<Agent, 'id'>) => void;
-  updateAgent: (agent: Agent) => void;
-  deleteAgent: (agentId: string) => void;
-  addCarouselSlide: (slide: Omit<CarouselSlide, 'id'>) => void;
-  updateCarouselSlide: (slide: CarouselSlide) => void;
-  deleteCarouselSlide: (slideId: string) => void;
-  addUser: (user: Omit<User, 'id'>) => void;
-  updateUser: (user: User) => void;
-  deleteUser: (userId: string) => void;
-  updateSeoData: (data: SEOData) => void;
-  updateFooterData: (data: FooterData) => void;
-  updateAboutData: (data: AboutData) => void;
-  updateHomePageData: (data: HomePageData) => void;
+  addProperty: (property: Omit<Property, 'id'>) => Promise<void>;
+  updateProperty: (property: Property) => Promise<void>;
+  deleteProperty: (propertyId: string) => Promise<void>;
+  addService: (service: Omit<Service, 'id'>) => Promise<void>;
+  updateService: (service: Service) => Promise<void>;
+  deleteService: (serviceId: string) => Promise<void>;
+  addProduct: (product: Omit<Product, 'id'>) => Promise<void>;
+  updateProduct: (product: Product) => Promise<void>;
+  deleteProduct: (productId: string) => Promise<void>;
+  addAgent: (agent: Omit<Agent, 'id'>) => Promise<void>;
+  updateAgent: (agent: Agent) => Promise<void>;
+  deleteAgent: (agentId: string) => Promise<void>;
+  addCarouselSlide: (slide: Omit<CarouselSlide, 'id'>) => Promise<void>;
+  updateCarouselSlide: (slide: CarouselSlide) => Promise<void>;
+  deleteCarouselSlide: (slideId: string) => Promise<void>;
+  addUser: (user: Omit<User, 'id'> & { password?: string }) => Promise<void>;
+  updateUser: (user: User & { password?: string }) => Promise<void>;
+  deleteUser: (userId: string) => Promise<void>;
+  updateSeoData: (data: SEOData) => Promise<void>;
+  updateFooterData: (data: FooterData) => Promise<void>;
+  updateAboutData: (data: AboutData) => Promise<void>;
+  updateHomePageData: (data: HomePageData) => Promise<void>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-const initialSeoData: SEOData = {
-    title: 'Immo Yaoundé - Agence Immobilière',
-    description: 'Découvrez les meilleures offres immobilières à Yaoundé. Vente, location et gestion de biens avec notre agence experte.',
-    keywords: 'immobilier, yaoundé, vente, location, agence, cameroun',
-    ogImage: 'https://picsum.photos/seed/og/1200/630'
-};
-
-const initialFooterData: FooterData = {
-    description: "Votre partenaire de confiance pour tous vos projets immobiliers à Yaoundé. Vente, location, gestion et services sur-mesure.",
-    address: "123 Avenue de l'Indépendance, Yaoundé, Cameroun",
-    phone: "+237 6XX XX XX XX",
-    email: "contact@immoyaounde.com",
-    facebookUrl: "#",
-    xUrl: "#",
-    instagramUrl: "#",
-    legalNoticeUrl: "/mentions-legales",
-    privacyPolicyUrl: "/mentions-legales",
-    // Fix: Added openingHours to support contact page feature.
-    openingHours: "Lundi - Vendredi: 9h00 - 18h00\nSamedi: 9h00 - 13h00\nDimanche: Fermé"
-};
+const initialSeoData: SEOData = { title: '', description: '', keywords: '', ogImage: '' };
+const initialFooterData: FooterData = { description: '', address: '', phone: '', email: '', facebookUrl: '', xUrl: '', instagramUrl: '', legalNoticeUrl: '', privacyPolicyUrl: '', openingHours: '' };
+const initialAboutData: AboutData = { history: '', mission: '', interventionTitle: '', interventionText: '', interventionImageUrl: '' };
+const initialHomePageData: HomePageData = { ctaBannerPrefix: '', ctaBannerSuffix: '', ownerCtaTitle: '', ownerCtaText: '', servicesTitle: '', servicesSubtitle: '', featuredPropertiesTitle: '', featuredPropertiesSubtitle: '', featuredProductsTitle: '', featuredProductsSubtitle: '' };
 
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [properties, setProperties] = useState<Property[]>(PROPERTIES);
-  const [agents, setAgents] = useState<Agent[]>(AGENTS);
-  const [services, setServices] = useState<Service[]>(SERVICES);
-  const [products, setProducts] = useState<Product[]>(PRODUCTS);
-  const [carouselSlides, setCarouselSlides] = useState<CarouselSlide[]>(CAROUSEL_SLIDES);
-  const [users, setUsers] = useState<User[]>(USERS.map(({ password, ...user }) => user));
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [agents, setAgents] = useState<Agent[]>([]);
+  const [services, setServices] = useState<Service[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [carouselSlides, setCarouselSlides] = useState<CarouselSlide[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [seoData, setSeoData] = useState<SEOData>(initialSeoData);
   const [footerData, setFooterData] = useState<FooterData>(initialFooterData);
-  const [aboutData, setAboutData] = useState<AboutData>(ABOUT_DATA);
-  const [homePageData, setHomePageData] = useState<HomePageData>(HOME_PAGE_DATA);
+  const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
+  const [homePageData, setHomePageData] = useState<HomePageData>(initialHomePageData);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // Auth check on mount
   useEffect(() => {
       const storedUser = sessionStorage.getItem('immoUser');
       if (storedUser) {
-          setUser(JSON.parse(storedUser));
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
       }
   }, []);
+  
+  // Fetch all site data
+  useEffect(() => {
+    const fetchAllData = async () => {
+      setIsLoading(true);
+      try {
+        const [
+          propertiesRes, servicesRes, productsRes, agentsRes, carouselRes, configRes
+        ] = await Promise.all([
+          fetch(`${API_URL}/properties`),
+          fetch(`${API_URL}/services`),
+          fetch(`${API_URL}/products`),
+          fetch(`${API_URL}/agents`),
+          fetch(`${API_URL}/carousel-slides`),
+          fetch(`${API_URL}/config`),
+        ]);
 
-  const login = (email: string, pass: string): boolean => {
-      const foundUser = USERS.find(u => u.email === email && u.password === pass);
-      if (foundUser) {
-          const userData: User = { id: foundUser.id, email: foundUser.email, name: foundUser.name, role: foundUser.role };
-          setUser(userData);
-          sessionStorage.setItem('immoUser', JSON.stringify(userData));
-          return true;
+        const propertiesData = await propertiesRes.json();
+        const servicesData = await servicesRes.json();
+        const productsData = await productsRes.json();
+        const agentsData = await agentsRes.json();
+        const carouselData = await carouselRes.json();
+        const configData = await configRes.json();
+
+        if (Array.isArray(propertiesData)) setProperties(propertiesData);
+        if (Array.isArray(servicesData)) setServices(servicesData);
+        if (Array.isArray(productsData)) setProducts(productsData);
+        if (Array.isArray(agentsData)) setAgents(agentsData);
+        if (Array.isArray(carouselData)) setCarouselSlides(carouselData);
+        
+        if (configData) {
+            setSeoData(configData.seoData || initialSeoData);
+            setFooterData(configData.footerData || initialFooterData);
+            setAboutData(configData.aboutData || initialAboutData);
+            setHomePageData(configData.homePageData || initialHomePageData);
+        }
+
+      } catch (error) {
+        console.error("Failed to fetch site data:", error);
+      } finally {
+        setIsLoading(false);
       }
-      return false;
+    };
+    fetchAllData();
+  }, []);
+  
+  // Fetch users when an admin is logged in
+  useEffect(() => {
+    const fetchUsers = async () => {
+        if(user && user.role === UserRole.ADMIN && user.token) {
+             try {
+                const response = await fetch(`${API_URL}/users`, {
+                    headers: { 'Authorization': `Bearer ${user.token}` }
+                });
+                if (!response.ok) throw new Error('Failed to fetch users');
+                const data: User[] = await response.json();
+                setUsers(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
+    fetchUsers();
+  }, [user]);
+
+  const apiRequest = async (url: string, method: string, body?: any) => {
+    if (!user?.token) throw new Error("Not authenticated");
+    const headers: HeadersInit = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${user.token}`
+    };
+    const response = await fetch(url, { method, headers, body: JSON.stringify(body) });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || `API request failed: ${method} ${url}`);
+    }
+    return response.json();
+  };
+
+  const login = async (email: string, pass: string) => {
+    const response = await fetch(`${API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password: pass }),
+    });
+    if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Authentication failed');
+    }
+    const userData: User = await response.json();
+    setUser(userData);
+    sessionStorage.setItem('immoUser', JSON.stringify(userData));
   };
 
   const logout = () => {
       setUser(null);
+      setUsers([]);
       sessionStorage.removeItem('immoUser');
   };
 
-  const addProperty = (property: Omit<Property, 'id'>) => {
-    setProperties(prev => [...prev, { ...property, id: `p${Date.now()}` }]);
-  };
-
-  const updateProperty = (updatedProperty: Property) => {
-    setProperties(prev => prev.map(p => p.id === updatedProperty.id ? updatedProperty : p));
-  };
-
-  const deleteProperty = (propertyId: string) => {
-    setProperties(prev => prev.filter(p => p.id !== propertyId));
+  const createItem = async <T extends { id: string }>(endpoint: string, item: Omit<T, 'id'>, setItems: React.Dispatch<React.SetStateAction<T[]>>) => {
+    const newItem = await apiRequest(`${API_URL}/${endpoint}`, 'POST', item);
+    setItems(prev => [...prev, newItem]);
   };
   
-  const addService = (service: Omit<Service, 'id'>) => {
-    setServices(prev => [...prev, { ...service, id: `s${Date.now()}` }]);
-  };
-
-  const updateService = (updatedService: Service) => {
-    setServices(prev => prev.map(s => s.id === updatedService.id ? updatedService : s));
-  };
-
-  const deleteService = (serviceId: string) => {
-    setServices(prev => prev.filter(s => s.id !== serviceId));
+  const updateItem = async <T extends {id: string}>(endpoint: string, item: T, setItems: React.Dispatch<React.SetStateAction<T[]>>) => {
+    const updatedItem = await apiRequest(`${API_URL}/${endpoint}/${item.id}`, 'PUT', item);
+    setItems(prev => prev.map(p => (p.id === updatedItem.id ? updatedItem : p)));
   };
   
-  const addProduct = (product: Omit<Product, 'id'>) => {
-    setProducts(prev => [{ ...product, id: `prod${Date.now()}` }, ...prev]);
+  const deleteItem = async <T extends { id: string }>(endpoint: string, id: string, setItems: React.Dispatch<React.SetStateAction<T[]>>) => {
+    await apiRequest(`${API_URL}/${endpoint}/${id}`, 'DELETE');
+    setItems(prev => prev.filter(p => p.id !== id));
   };
+  
+  const addProperty = (property: Omit<Property, 'id'>) => createItem('properties', property, setProperties);
+  const updateProperty = (property: Property) => updateItem('properties', property, setProperties);
+  const deleteProperty = (id: string) => deleteItem('properties', id, setProperties);
 
-  const updateProduct = (updatedProduct: Product) => {
-    setProducts(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
-  };
+  const addService = (service: Omit<Service, 'id'>) => createItem('services', service, setServices);
+  const updateService = (service: Service) => updateItem('services', service, setServices);
+  const deleteService = (id: string) => deleteItem('services', id, setServices);
 
-  const deleteProduct = (productId: string) => {
-    setProducts(prev => prev.filter(p => p.id !== productId));
-  };
+  const addProduct = (product: Omit<Product, 'id'>) => createItem('products', product, setProducts);
+  const updateProduct = (product: Product) => updateItem('products', product, setProducts);
+  const deleteProduct = (id: string) => deleteItem('products', id, setProducts);
 
-  const addAgent = (agent: Omit<Agent, 'id'>) => {
-    setAgents(prev => [...prev, { ...agent, id: `a${Date.now()}` }]);
-  };
+  const addAgent = (agent: Omit<Agent, 'id'>) => createItem('agents', agent, setAgents);
+  const updateAgent = (agent: Agent) => updateItem('agents', agent, setAgents);
+  const deleteAgent = (id: string) => deleteItem('agents', id, setAgents);
+  
+  const addCarouselSlide = (slide: Omit<CarouselSlide, 'id'>) => createItem('carousel-slides', slide, setCarouselSlides);
+  const updateCarouselSlide = (slide: CarouselSlide) => updateItem('carousel-slides', slide, setCarouselSlides);
+  const deleteCarouselSlide = (id: string) => deleteItem('carousel-slides', id, setCarouselSlides);
 
-  const updateAgent = (updatedAgent: Agent) => {
-    setAgents(prev => prev.map(a => a.id === updatedAgent.id ? updatedAgent : a));
-  };
-
-  const deleteAgent = (agentId: string) => {
-    setAgents(prev => prev.filter(a => a.id !== agentId));
-  };
-
-  const addCarouselSlide = (slide: Omit<CarouselSlide, 'id'>) => {
-    setCarouselSlides(prev => [...prev, { ...slide, id: `slide${Date.now()}` }]);
-  };
-
-  const updateCarouselSlide = (updatedSlide: CarouselSlide) => {
-    setCarouselSlides(prev => prev.map(s => s.id === updatedSlide.id ? updatedSlide : s));
-  };
-
-  const deleteCarouselSlide = (slideId: string) => {
-    setCarouselSlides(prev => prev.filter(s => s.id !== slideId));
-  };
-
-  const addUser = (user: Omit<User, 'id' | 'role'> & { role: UserRole }) => {
-    // In a real app, you'd also handle the password securely
-    const newUser: User = { ...user, id: `u${Date.now()}` };
+  const addUser = async (userData: Omit<User, 'id'> & { password?: string }) => {
+    const newUser = await apiRequest(`${API_URL}/users`, 'POST', userData);
     setUsers(prev => [...prev, newUser]);
   };
 
-  const updateUser = (updatedUser: User) => {
+  const updateUser = async (userData: User & { password?: string }) => {
+    if (userData.password === '') delete userData.password;
+    const updatedUser = await apiRequest(`${API_URL}/users/${userData.id}`, 'PUT', userData);
     setUsers(prev => prev.map(u => u.id === updatedUser.id ? updatedUser : u));
-    // Also update the current user if they are editing themselves
-    if(user && user.id === updatedUser.id) {
-        setUser(updatedUser);
-        sessionStorage.setItem('immoUser', JSON.stringify(updatedUser));
+    if(user?.id === updatedUser.id) {
+        const updatedCurrentUser = { ...updatedUser, token: user.token };
+        setUser(updatedCurrentUser);
+        sessionStorage.setItem('immoUser', JSON.stringify(updatedCurrentUser));
     }
   };
 
-  const deleteUser = (userId: string) => {
-    setUsers(prev => prev.filter(u => u.id !== userId));
+  const deleteUser = (userId: string) => deleteItem('users', userId, setUsers);
+  
+  const updateConfig = async (configData: object, setData: (data: any) => void) => {
+    await apiRequest(`${API_URL}/config`, 'PUT', configData);
+    setData(Object.values(configData)[0]);
   };
 
-  const updateSeoData = (data: SEOData) => {
-      setSeoData(data);
-  }
+  const updateSeoData = (data: SEOData) => updateConfig({ seoData: data }, setSeoData);
+  const updateFooterData = (data: FooterData) => updateConfig({ footerData: data }, setFooterData);
+  const updateAboutData = (data: AboutData) => updateConfig({ aboutData: data }, setAboutData);
+  const updateHomePageData = (data: HomePageData) => updateConfig({ homePageData: data }, setHomePageData);
 
-  const updateFooterData = (data: FooterData) => {
-      setFooterData(data);
-  }
-
-  const updateAboutData = (data: AboutData) => {
-    setAboutData(data);
-  }
-
-  const updateHomePageData = (data: HomePageData) => {
-    setHomePageData(data);
-  }
-
-  const value = {
-    properties,
-    agents,
-    services,
-    products,
-    carouselSlides,
-    users,
-    user,
-    seoData,
-    footerData,
-    aboutData,
-    homePageData,
-    login,
-    logout,
-    addProperty,
-    updateProperty,
-    deleteProperty,
-    addService,
-    updateService,
-    deleteService,
-    addProduct,
-    updateProduct,
-    deleteProduct,
-    addAgent,
-    updateAgent,
-    deleteAgent,
-    addCarouselSlide,
-    updateCarouselSlide,
-    deleteCarouselSlide,
-    addUser,
-    updateUser,
-    deleteUser,
-    updateSeoData,
-    updateFooterData,
-    updateAboutData,
-    updateHomePageData,
+  const value: DataContextType = {
+    properties, agents, services, products, carouselSlides, users, user, seoData, footerData, aboutData, homePageData, isLoading,
+    login, logout,
+    addProperty, updateProperty, deleteProperty,
+    addService, updateService, deleteService,
+    addProduct, updateProduct, deleteProduct,
+    addAgent, updateAgent, deleteAgent,
+    addCarouselSlide, updateCarouselSlide, deleteCarouselSlide,
+    addUser, updateUser, deleteUser,
+    updateSeoData, updateFooterData, updateAboutData, updateHomePageData
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

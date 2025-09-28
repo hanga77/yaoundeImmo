@@ -35,23 +35,36 @@ const ShopPage: React.FC = () => {
           {/* Filters */}
           <aside className="w-full md:w-1/4 lg:w-1/5">
             <div className="bg-white p-6 rounded-lg shadow-md sticky top-28">
-              <h3 className="text-lg font-bold text-brand-dark mb-4 border-b pb-2">Catégories</h3>
-              <ul>
-                {categories.map(category => (
-                  <li key={category} className="mb-2">
-                    <button
-                      onClick={() => setSelectedCategory(category)}
-                      className={`w-full text-left p-2 rounded-md transition-colors duration-200 ${
-                        selectedCategory === category
-                          ? 'bg-brand-gold text-white font-semibold'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
-                    >
-                      {category === 'All' ? 'Toutes les catégories' : category}
-                    </button>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="text-xl font-bold text-brand-dark mb-4">Catégories</h3>
+              <hr className="border-gray-200" />
+              <div className="mt-4 space-y-3">
+                {categories.map(category => {
+                  const isSelected = selectedCategory === category;
+                  const displayName = category === 'All' ? 'Toutes les catégories' : category;
+
+                  if (isSelected) {
+                    return (
+                      <button
+                        key={category}
+                        disabled
+                        className="w-full text-center px-4 py-2 rounded-md bg-brand-gold text-white font-semibold text-sm shadow cursor-default"
+                      >
+                        {displayName}
+                      </button>
+                    );
+                  } else {
+                    return (
+                      <button
+                        key={category}
+                        onClick={() => setSelectedCategory(category)}
+                        className="w-full text-left text-gray-700 hover:text-brand-dark font-medium transition-colors"
+                      >
+                        {displayName}
+                      </button>
+                    );
+                  }
+                })}
+              </div>
             </div>
           </aside>
 

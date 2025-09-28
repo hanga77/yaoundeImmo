@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Immo Yaoundé - Full-Stack Real Estate Application
 
-# Run and deploy your AI Studio app
+This project is a modern, full-stack web application for a real estate agency, built with React for the frontend and Node.js/Express for the backend.
 
-This contains everything you need to run your app locally.
+## Project Structure
 
-View your app in AI Studio: https://ai.studio/apps/drive/1pld-0en5pWQzsyydQ12Kwan50gi7L6cY
+- `/`: Contains the frontend React application source code.
+- `/backend`: Contains the backend Node.js, Express, and MongoDB server.
 
-## Run Locally
+## 🚀 Development Workflow
 
-**Prerequisites:**  Node.js
+To run the application in development mode, you need to run **two** servers simultaneously in separate terminals.
 
+### 1. Run the Backend Server
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1.  Navigate to the backend directory:
+    ```bash
+    cd backend
+    ```
+2.  Make sure you have installed dependencies (`npm install`) and configured your `.env` file (see `backend/README.md` for details).
+3.  Start the backend server:
+    ```bash
+    npm run dev
+    ```
+4.  The API server will be running on `http://localhost:5001`.
+
+### 2. Run the Frontend Server
+
+1.  Open a **new terminal** and navigate to the project's **root directory**.
+2.  Start the Vite development server:
+    ```bash
+    vite
+    ```
+    *(If you don't have Vite installed globally, you can install it with `npm install -g vite`)*
+3.  The frontend will be available at `http://localhost:3000`.
+
+### 3. Access the Application
+
+Open your browser and navigate to **`http://localhost:3000`**.
+
+The frontend development server is now configured to automatically forward all API requests (anything starting with `/api`) to the backend server running on port 5001.
+
+## 🌐 Production
+
+In production, the Node.js server (`backend/server.js`) is configured to handle everything. It serves both the API and the compiled frontend files. You only need to run the backend server.
