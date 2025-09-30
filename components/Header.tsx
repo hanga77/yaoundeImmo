@@ -16,7 +16,7 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
   const currentType = searchParams.get('type');
 
   const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 flex items-center";
-  const activeLinkClass = "bg-brand-gold text-brand-dark";
+  const activeLinkClass = "bg-brand-slate text-white";
   const inactiveLinkClass = "bg-gray-100 text-brand-dark hover:bg-gray-200";
   
   const isTypeActive = (typeParam: PropertyType) => {
@@ -87,7 +87,7 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
                 onClick={handleSubLinkClick}
                 className={() =>
                   `block py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 text-brand-dark hover:bg-gray-200 ${
-                    location.search.includes(`q=${encodeURIComponent(item.toLowerCase())}`) && isTypeActive(type) ? 'bg-brand-gold text-brand-dark' : ''
+                    location.search.includes(`q=${encodeURIComponent(item.toLowerCase())}`) && isTypeActive(type) ? activeLinkClass : ''
                   }`
                 }
               >
@@ -105,7 +105,7 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
 const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const location = useLocation();
   const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300";
-  const activeLinkClass = "bg-brand-gold text-brand-dark";
+  const activeLinkClass = "bg-brand-slate text-white";
   const inactiveLinkClass = "bg-gray-100 text-brand-dark hover:bg-gray-200";
   
   const isServiceActive = () => {
@@ -171,7 +171,7 @@ const Header: React.FC = () => {
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             type="button"
-                            className="bg-transparent inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-gold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-brand-gold"
+                            className="bg-transparent inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-slate hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-brand-slate"
                             aria-controls="mobile-menu"
                             aria-expanded="false"
                         >
