@@ -35,7 +35,7 @@ const ShopPage: React.FC = () => {
           {/* Filters */}
           <aside className="w-full md:w-1/4 lg:w-1/5">
             <div className="bg-white p-6 rounded-lg shadow-md sticky top-28">
-              <h3 className="text-xl font-bold text-brand-dark mb-4">Catégories</h3>
+              <h3 className="text-xl font-bold text-brand-slate mb-4">Catégories</h3>
               <hr className="border-gray-200" />
               <div className="mt-4 space-y-3">
                 {categories.map(category => {
@@ -57,7 +57,7 @@ const ShopPage: React.FC = () => {
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}
-                        className="w-full text-left text-gray-700 hover:text-brand-dark font-medium transition-colors"
+                        className="w-full text-left text-brand-slate/90 hover:text-brand-slate font-medium transition-colors"
                       >
                         {displayName}
                       </button>
@@ -78,7 +78,7 @@ const ShopPage: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-20 bg-white rounded-lg shadow-md">
-                <p className="text-xl text-gray-600">Aucun produit trouvé dans cette catégorie.</p>
+                <p className="text-xl text-brand-slate/90">Aucun produit trouvé dans cette catégorie.</p>
               </div>
             )}
           </main>

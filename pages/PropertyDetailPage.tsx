@@ -110,7 +110,7 @@ const PropertyDetailPage: React.FC = () => {
                     {/* Property Details */}
                     <div className="lg:col-span-2 bg-white p-6 md:p-8 rounded-lg shadow-lg">
                         <span className="inline-block bg-brand-gold/20 text-brand-gold text-sm font-semibold px-3 py-1 rounded-full mb-4">{property.type}</span>
-                        <h1 className="text-2xl md:text-3xl font-bold font-serif text-brand-blue mb-2">{property.title}</h1>
+                        <h1 className="text-2xl md:text-3xl font-bold font-serif text-brand-slate mb-2">{property.title}</h1>
                         <div className="flex items-center text-gray-600 mb-6">
                             <MapPinIcon className="h-5 w-5 mr-2 text-gray-400" />
                             <span>{property.address}, {property.commune}</span>
@@ -132,11 +132,11 @@ const PropertyDetailPage: React.FC = () => {
                             </div>
                         </div>
 
-                        <h2 className="text-xl font-bold text-brand-blue mt-8 mb-4">Description</h2>
-                        <p className="text-gray-700 leading-relaxed">{property.description}</p>
+                        <h2 className="text-xl font-bold text-brand-slate mt-8 mb-4">Description</h2>
+                        <p className="text-brand-slate/90 leading-relaxed">{property.description}</p>
                         
                         <div className="mt-10">
-                            <Link to="/contact" className="w-full text-center block bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-300">
+                            <Link to="/contact" className="w-full text-center block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-3 px-6 rounded-md transition-all duration-300 hover:text-brand-green-dark hover:border-brand-green-dark">
                                 Contacter un agent
                             </Link>
                         </div>

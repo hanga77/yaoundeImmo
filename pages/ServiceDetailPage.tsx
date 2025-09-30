@@ -40,12 +40,12 @@ const ServiceDetailPage: React.FC = () => {
       <div className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
-                <div className="prose lg:prose-xl text-gray-700">
-                    <p>{service.longDescription}</p>
+                <div className="prose lg:prose-xl">
+                    <p className="text-brand-slate/90">{service.longDescription}</p>
                 </div>
 
                 <div className="mt-12 text-center">
-                    <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300 text-lg">
+                    <Link to="/contact" className="inline-block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-3 px-8 rounded-md transition-all duration-300 text-lg hover:text-brand-green-dark hover:border-brand-green-dark">
                         Demander un devis
                     </Link>
                 </div>

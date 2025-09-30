@@ -19,7 +19,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           </div>
         </div>
         <div className="p-5 flex flex-col flex-grow">
-          <h3 className="text-lg font-semibold text-brand-dark mt-2 truncate flex-grow">{product.name}</h3>
+          <h3 className="text-lg font-semibold text-brand-slate mt-2 truncate flex-grow">{product.name}</h3>
           <p className="font-bold text-xl text-brand-blue mt-2">{formattedPrice}</p>
         </div>
       </div>

@@ -135,7 +135,7 @@ const PropertyListingsPage: React.FC = () => {
       {/* Listings Grid */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-8">
-          <h2 className="text-xl md:text-2xl font-bold text-brand-blue">{filteredProperties.length} bien(s) trouvé(s)</h2>
+          <h2 className="text-xl md:text-2xl font-bold text-brand-slate">{filteredProperties.length} bien(s) trouvé(s)</h2>
         </div>
         
         {filteredProperties.length > 0 ? (
@@ -149,8 +149,8 @@ const PropertyListingsPage: React.FC = () => {
           </>
         ) : (
           <div className="text-center py-20">
-            <p className="text-xl text-gray-600">Aucun bien ne correspond à vos critères de recherche.</p>
-            <p className="mt-2 text-gray-500">Veuillez essayer avec d'autres filtres ou nous contacter directement.</p>
+            <p className="text-xl text-brand-slate/90">Aucun bien ne correspond à vos critères de recherche.</p>
+            <p className="mt-2 text-brand-slate/90">Veuillez essayer avec d'autres filtres ou nous contacter directement.</p>
           </div>
         )}
       </div>

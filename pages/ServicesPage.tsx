@@ -31,8 +31,8 @@ const ServicesPage: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex-grow text-center md:text-left">
-                      <h3 className="text-2xl font-bold text-brand-blue font-serif">{service.title}</h3>
-                      <p className="mt-2 text-gray-600">{service.description}</p>
+                      <h3 className="text-2xl font-bold text-brand-slate font-serif">{service.title}</h3>
+                      <p className="mt-2 text-brand-slate/90">{service.description}</p>
                       <Link 
                         to={`/services/${service.id}`}
                         className="mt-4 inline-block text-brand-gold font-semibold hover:text-yellow-600 transition-colors duration-300"

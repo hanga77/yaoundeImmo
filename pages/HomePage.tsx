@@ -13,8 +13,8 @@ const ServiceHighlight: React.FC<{ icon: React.ReactNode; title: string; descrip
         <div className="flex items-center justify-center h-16 w-16 rounded-full bg-brand-gold text-white mx-auto">
             {icon}
         </div>
-        <h3 className="mt-5 text-xl font-bold text-brand-blue">{title}</h3>
-        <p className="mt-2 text-base text-gray-600">{description}</p>
+        <h3 className="mt-5 text-xl font-bold text-brand-slate">{title}</h3>
+        <p className="mt-2 text-base text-brand-slate/90">{description}</p>
     </Link>
 );
 
@@ -84,7 +84,7 @@ const HomePage: React.FC = () => {
             {currentSlide && (
               <>
                 <h1 className="text-4xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-down">{currentSlide.title}</h1>
-                <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto animate-fade-in-up">{currentSlide.subtitle}</p>
+                <p className="text-lg md:text-xl text-brand-orange-primary mb-8 max-w-3xl mx-auto animate-fade-in-up">{currentSlide.subtitle}</p>
               </>
             )}
         </div>
@@ -114,10 +114,10 @@ const HomePage: React.FC = () => {
       <section className="bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
               <div className="text-center">
-                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-dark">{homePageData.ownerCtaTitle}</h2>
-                  <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">{homePageData.ownerCtaText}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">{homePageData.ownerCtaTitle}</h2>
+                  <p className="mt-4 text-lg text-brand-slate/90 max-w-3xl mx-auto">{homePageData.ownerCtaText}</p>
                   <div className="mt-8">
-                      <Link to="/contact" className="bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-10 rounded-md transition-colors duration-300 text-lg">
+                      <Link to="/contact" className="inline-block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-4 px-10 rounded-md transition-all duration-300 text-lg hover:text-brand-green-dark hover:border-brand-green-dark">
                         Contactez-nous
                       </Link>
                   </div>
@@ -129,8 +129,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-brand-light">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.servicesTitle}</h2>
-                  <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">{homePageData.servicesSubtitle}</p>
+                  <h2 className="text-3xl md:text-4xl font-bold text-brand-slate font-serif">{homePageData.servicesTitle}</h2>
+                  <p className="mt-4 text-lg text-brand-slate/90 max-w-2xl mx-auto">{homePageData.servicesSubtitle}</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                  <ServiceHighlight 
@@ -165,8 +165,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.featuredPropertiesTitle}</h2>
-            <p className="mt-4 text-lg text-gray-600">{homePageData.featuredPropertiesSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-slate font-serif">{homePageData.featuredPropertiesTitle}</h2>
+            <p className="mt-4 text-lg text-brand-slate/90">{homePageData.featuredPropertiesSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {featuredProperties.map(property => (
@@ -174,8 +174,8 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/biens" className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300">
-                Voir tous les biens
+              <Link to="/biens" className="inline-block bg-white text-brand-orange-primary border-2 border-brand-orange-primary font-bold py-3 px-8 rounded-md transition-all duration-300 hover:text-brand-orange-dark hover:border-brand-orange-dark">
+                Découvrir tous les biens
               </Link>
           </div>
         </div>
@@ -185,8 +185,8 @@ const HomePage: React.FC = () => {
       <section className="py-20 bg-brand-light">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue font-serif">{homePageData.featuredProductsTitle}</h2>
-            <p className="mt-4 text-lg text-gray-600">{homePageData.featuredProductsSubtitle}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-slate font-serif">{homePageData.featuredProductsTitle}</h2>
+            <p className="mt-4 text-lg text-brand-slate/90">{homePageData.featuredProductsSubtitle}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {featuredProducts.map(product => (
@@ -194,8 +194,8 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/boutique" className="bg-brand-blue hover:bg-brand-blue/90 text-white font-bold py-3 px-8 rounded-md transition-colors duration-300">
-                Visiter la boutique
+              <Link to="/boutique" className="inline-block bg-white text-brand-orange-primary border-2 border-brand-orange-primary font-bold py-3 px-8 rounded-md transition-all duration-300 hover:text-brand-orange-dark hover:border-brand-orange-dark">
+                Découvrir la boutique
               </Link>
           </div>
         </div>

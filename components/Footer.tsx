@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
   const { facebookUrl, xUrl, youtubeUrl, tiktokUrl, pinterestUrl, facebookIcon, xIcon, youtubeIcon, tiktokIcon, pinterestIcon } = footerData;
 
   return (
-    <footer className="bg-brand-dark text-gray-300">
+    <footer className="bg-brand-deep-blue text-gray-300">
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: About */}
@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        <div className="mt-12 border-t border-white/20 pt-6 text-center text-sm text-gray-400">
            <p>&copy; {new Date().getFullYear()} ImmoYaoundé. Tous droits réservés.</p>
         </div>
       </div>

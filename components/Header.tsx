@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
@@ -15,8 +16,8 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
   const currentType = searchParams.get('type');
 
   const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 flex items-center";
-  const activeLinkClass = "bg-brand-gold text-white";
-  const inactiveLinkClass = "text-white hover:bg-brand-blue/60";
+  const activeLinkClass = "bg-brand-gold text-brand-dark";
+  const inactiveLinkClass = "bg-gray-100 text-brand-dark hover:bg-gray-200";
   
   const isTypeActive = (typeParam: PropertyType) => {
     return location.pathname === '/biens' && currentType === typeParam;
@@ -54,7 +55,7 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
                   key={item}
                   to={`/biens?type=${encodedType}&q=${encodeURIComponent(item.toLowerCase())}`}
                   className={() =>
-                    `block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 ${
+                    `block px-4 py-2 text-sm text-brand-dark hover:bg-gray-100 ${
                       location.search.includes(`q=${encodeURIComponent(item.toLowerCase())}`) && isTypeActive(type) ? 'bg-gray-100 font-semibold' : ''
                     }`
                   }
@@ -78,15 +79,15 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
           <ChevronDownIcon className={`h-5 w-5 transition-transform ${isMobileOpen ? 'rotate-180' : ''}`} />
         </button>
         {isMobileOpen && (
-          <div className="pl-4 py-2 space-y-2 bg-brand-blue/50 rounded-b-md">
+          <div className="pl-4 py-2 space-y-2 bg-gray-50 rounded-b-md">
             {items.map(item => (
               <NavLink
                 key={item}
                 to={`/biens?type=${encodedType}&q=${encodeURIComponent(item.toLowerCase())}`}
                 onClick={handleSubLinkClick}
                 className={() =>
-                  `block py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 text-white hover:bg-brand-blue/80 ${
-                    location.search.includes(`q=${encodeURIComponent(item.toLowerCase())}`) && isTypeActive(type) ? 'bg-brand-gold' : ''
+                  `block py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 text-brand-dark hover:bg-gray-200 ${
+                    location.search.includes(`q=${encodeURIComponent(item.toLowerCase())}`) && isTypeActive(type) ? 'bg-brand-gold text-brand-dark' : ''
                   }`
                 }
               >
@@ -104,8 +105,8 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
 const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const location = useLocation();
   const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300";
-  const activeLinkClass = "bg-brand-gold text-white";
-  const inactiveLinkClass = "text-white hover:bg-brand-blue/60";
+  const activeLinkClass = "bg-brand-gold text-brand-dark";
+  const inactiveLinkClass = "bg-gray-100 text-brand-dark hover:bg-gray-200";
   
   const isServiceActive = () => {
     return location.pathname.startsWith('/services');
@@ -153,11 +154,11 @@ const Header: React.FC = () => {
     const closeMenu = () => setIsOpen(false);
 
     return (
-        <header className="bg-brand-blue shadow-lg sticky top-0 z-50">
+        <header className="bg-white shadow-lg sticky top-0 z-50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     <div className="flex-shrink-0">
-                        <Link to="/" onClick={closeMenu} className="text-white text-2xl font-bold font-serif">
+                        <Link to="/" onClick={closeMenu} className="text-brand-dark text-2xl font-bold font-serif">
                             Immo<span className="text-brand-gold">Yaoundé</span>
                         </Link>
                     </div>
@@ -170,7 +171,7 @@ const Header: React.FC = () => {
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             type="button"
-                            className="bg-brand-blue/80 inline-flex items-center justify-center p-2 rounded-md text-brand-gold hover:text-white hover:bg-brand-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-brand-blue focus:ring-white"
+                            className="bg-transparent inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:text-brand-gold hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-brand-gold"
                             aria-controls="mobile-menu"
                             aria-expanded="false"
                         >

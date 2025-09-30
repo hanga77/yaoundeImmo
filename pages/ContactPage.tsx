@@ -63,7 +63,7 @@ const ContactPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-6 md:p-12 rounded-lg shadow-xl">
             {/* Contact Form */}
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-brand-blue font-serif mb-6">Envoyez-nous un message</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-slate font-serif mb-6">Envoyez-nous un message</h2>
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
@@ -88,7 +88,7 @@ const ContactPage: React.FC = () => {
                   <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
                 </div>
                 <div className="mt-6">
-                  <button type="submit" className="w-full bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-md transition-colors duration-300">
+                  <button type="submit" className="w-full bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-3 px-6 rounded-md transition-all duration-300 hover:text-brand-green-dark hover:border-brand-green-dark">
                     Envoyer sur WhatsApp
                   </button>
                 </div>

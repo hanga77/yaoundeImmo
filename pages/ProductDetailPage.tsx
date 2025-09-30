@@ -81,15 +81,15 @@ const ProductDetailPage: React.FC = () => {
                     {/* Product Details */}
                     <div>
                         <span className="inline-block bg-brand-light text-brand-blue text-sm font-semibold px-3 py-1 rounded-full mb-4">{product.category}</span>
-                        <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-blue mb-4">{product.name}</h1>
+                        <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate mb-4">{product.name}</h1>
                         <p className="text-3xl md:text-4xl font-bold text-brand-dark mb-6">{formattedPrice}</p>
                         
-                        <div className="prose lg:prose-lg text-gray-700 my-6">
-                            <p>{product.description}</p>
+                        <div className="prose lg:prose-lg my-6">
+                            <p className="text-brand-slate/90">{product.description}</p>
                         </div>
                         
                         <div className="mt-10">
-                            <button onClick={handleWhatsAppPurchase} className="w-full text-center block bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 px-6 rounded-md transition-colors duration-300 text-lg">
+                            <button onClick={handleWhatsAppPurchase} className="w-full text-center block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-4 px-6 rounded-md transition-all duration-300 text-lg hover:text-brand-green-dark hover:border-brand-green-dark">
                                 Acheter sur WhatsApp
                             </button>
                         </div>

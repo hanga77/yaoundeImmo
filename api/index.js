@@ -26,53 +26,53 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI;
 
 // --- Database Connection Logic for Serverless ---
-// We cache the connection promise to avoid reconnecting on every request.
+// Cache the connection promise to avoid reconnecting on every invocation
 let cachedDbPromise = null;
 
-const connectToDatabase = async () => {
-    // readyState: 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-    if (mongoose.connection.readyState >= 1) {
-        return;
+const connectToDatabase = () => {
+    // If a connection promise is already cached, return it
+    if (cachedDbPromise) {
+        console.log('Using cached database connection promise.');
+        return cachedDbPromise;
     }
 
     if (!mongoUri) {
         throw new Error('FATAL ERROR: MONGO_URI or MONGODB_URI is not defined.');
     }
-
-    if (cachedDbPromise) {
-        return cachedDbPromise; // A connection attempt is already in progress
-    }
-
-    console.log('Connecting to MongoDB...');
+    
+    console.log('Creating new database connection promise.');
+    // Create a new connection promise and cache it
     cachedDbPromise = mongoose.connect(mongoUri, {
-        bufferCommands: false, // Recommended for serverless
+        bufferCommands: false, // Disable Mongoose's buffering, essential for serverless
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+    }).then(mongooseInstance => {
+        console.log('Database connection successful.');
+        return mongooseInstance;
+    }).catch(err => {
+        console.error('Database connection failed:', err);
+        // If connection fails, reset the cached promise to allow retry on next request
+        cachedDbPromise = null;
+        throw err;
     });
-
-    try {
-        await cachedDbPromise;
-        console.log('Connected to MongoDB');
-    } catch (e) {
-        console.error('MongoDB connection error:', e.message);
-        cachedDbPromise = null; // Reset promise on failure to allow retry
-        throw e; // Re-throw error to be caught by the middleware
-    }
+    
+    return cachedDbPromise;
 };
 
-// Middleware to ensure DB connection before handling any API request
+// Middleware to ensure DB is connected before processing any API request
 const ensureDbConnection = async (req, res, next) => {
     try {
         await connectToDatabase();
         next();
     } catch (error) {
-        console.error('Database connection failed for request:', req.path);
+        console.error('Database connection middleware error:', error.message);
         res.status(503).json({
             error: "Service Unavailable",
-            message: "The server could not connect to the database. This might be a temporary issue or a configuration problem (e.g., incorrect MONGO_URI or IP whitelist)."
+            message: "Failed to connect to the database. The service may be temporarily down or misconfigured."
         });
     }
 };
 
-// Apply the middleware to all API routes
+// Apply the DB connection middleware to all API routes
 app.use('/api', ensureDbConnection);
 
 
