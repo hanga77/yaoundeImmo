@@ -19,11 +19,10 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-white">
       {/* Page Header */}
-      <div className="relative bg-brand-dark py-12 text-white text-center" style={{backgroundImage: "url('https://picsum.photos/seed/about/1920/1080')", backgroundSize: 'cover', backgroundPosition: 'center'}}>
-         <div className="absolute inset-0 bg-black opacity-60"></div>
-         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold font-serif">Notre Agence</h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">Passion, expertise et engagement au service de votre projet immobilier.</p>
+      <div className="bg-white py-12 text-center border-b border-gray-200">
+         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">Notre Agence</h1>
+          <p className="mt-2 text-lg text-brand-slate/90 max-w-2xl mx-auto">Passion, expertise et engagement au service de votre projet immobilier.</p>
         </div>
       </div>
       

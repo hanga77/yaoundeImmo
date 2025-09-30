@@ -26,13 +26,13 @@ const ServiceDetailPage: React.FC = () => {
   return (
     <div className="bg-white">
        {/* Page Header */}
-       <div className="bg-brand-dark py-12 text-white text-center">
+       <div className="bg-white py-12 text-center border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-center h-24 w-24 rounded-full bg-brand-gold text-white mx-auto mb-6">
                 <Icon name={service.icon} className="h-12 w-12" />
             </div>
-          <h1 className="text-3xl md:text-4xl font-bold font-serif">{service.title}</h1>
-          <p className="mt-2 text-lg text-gray-300">{service.description}</p>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">{service.title}</h1>
+          <p className="mt-2 text-lg text-brand-slate/90">{service.description}</p>
         </div>
       </div>
 

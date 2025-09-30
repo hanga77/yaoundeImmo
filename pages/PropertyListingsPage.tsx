@@ -125,10 +125,10 @@ const PropertyListingsPage: React.FC = () => {
   return (
     <div className="bg-brand-light">
       {/* Page Header */}
-      <div className="bg-brand-dark py-12 text-white text-center">
+      <div className="bg-white py-12 text-center border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-bold font-serif">{generateTitle()}</h1>
-          <p className="mt-2 text-lg text-gray-300">{generateSubtitle()}</p>
+          <h1 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">{generateTitle()}</h1>
+          <p className="mt-2 text-lg text-brand-slate/90">{generateSubtitle()}</p>
         </div>
       </div>
 
