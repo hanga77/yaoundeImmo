@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon, PhotoIcon, UserGroupIcon } from '@heroicons/react/24/solid';
+import { HomeIcon, BuildingOffice2Icon, ArrowUturnLeftIcon, Cog6ToothIcon, ArrowRightStartOnRectangleIcon, PencilSquareIcon, WrenchScrewdriverIcon, IdentificationIcon, ShoppingBagIcon, PhotoIcon, UserGroupIcon, SwatchIcon } from '@heroicons/react/24/solid';
 import { useData } from '../../DataContext';
 import { UserRole } from '../../types';
 
@@ -97,6 +97,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen }) => {
                     >
                         <PhotoIcon className="h-5 w-5 mr-3" />
                         Gérer le Carrousel
+                    </NavLink>
+                     <NavLink
+                        to="/admin/theme"
+                        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : ''}`}
+                    >
+                        <SwatchIcon className="h-5 w-5 mr-3" />
+                        Gérer le Thème
                     </NavLink>
                     <NavLink
                         to="/admin/seo"

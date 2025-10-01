@@ -279,3 +279,22 @@ export const HOME_PAGE_DATA = {
   featuredProductsTitle: "Produits à la Une",
   featuredProductsSubtitle: "Notre sélection d'articles pour parfaire votre intérieur.",
 };
+
+export const INITIAL_THEME_DATA = {
+  primaryButton: {
+    bg: '#D4AF37',
+    text: '#FFFFFF',
+    border: '#D4AF37',
+    hoverBg: '#b89420',
+    hoverText: '#FFFFFF',
+    hoverBorder: '#b89420',
+  },
+  secondaryButton: {
+    bg: '#D4AF37',
+    text: '#FFFFFF',
+    border: '#D4AF37',
+    hoverBg: '#b89420',
+    hoverText: '#FFFFFF',
+    hoverBorder: '#b89420',
+  },
+};

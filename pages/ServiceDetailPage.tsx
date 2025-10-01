@@ -14,7 +14,7 @@ const ServiceDetailPage: React.FC = () => {
       <div className="text-center py-20">
         <h1 className="text-3xl font-bold">Service non trouvé</h1>
         <p className="mt-4">Le service que vous recherchez n'existe pas.</p>
-        <Link to="/services" className="mt-8 inline-block bg-brand-gold text-white font-bold py-2 px-4 rounded hover:bg-yellow-600">
+        <Link to="/services" className="mt-8 inline-block bg-btn-primary-bg text-btn-primary-text font-bold py-2 px-4 rounded hover:bg-btn-primary-hover-bg">
           Retour aux services
         </Link>
       </div>
@@ -43,7 +43,7 @@ const ServiceDetailPage: React.FC = () => {
                 </div>
 
                 <div className="mt-12 text-center">
-                    <Link to="/contact" className="inline-block bg-brand-gold text-white font-bold py-3 px-8 rounded-md transition-all duration-300 text-lg hover:bg-yellow-600">
+                    <Link to="/contact" className="inline-block bg-btn-secondary-bg text-btn-secondary-text border border-btn-secondary-border font-bold py-3 px-8 rounded-md transition-all duration-300 text-lg hover:bg-btn-secondary-hover-bg hover:text-btn-secondary-hover-text hover:border-btn-secondary-hover-border">
                         Demander un devis
                     </Link>
                 </div>

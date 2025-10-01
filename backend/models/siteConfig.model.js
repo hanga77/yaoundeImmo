@@ -50,11 +50,26 @@ const homePageSchema = new mongoose.Schema({
   featuredProductsSubtitle: { type: String, required: true },
 }, { _id: false });
 
+const buttonThemeSchema = new mongoose.Schema({
+  bg: { type: String, required: true },
+  text: { type: String, required: true },
+  border: { type: String, required: true },
+  hoverBg: { type: String, required: true },
+  hoverText: { type: String, required: true },
+  hoverBorder: { type: String, required: true },
+}, { _id: false });
+
+const themeSchema = new mongoose.Schema({
+  primaryButton: { type: buttonThemeSchema },
+  secondaryButton: { type: buttonThemeSchema },
+}, { _id: false });
+
 const siteConfigSchema = new mongoose.Schema({
   seoData: { type: seoSchema, required: true },
   footerData: { type: footerSchema, required: true },
   aboutData: { type: aboutSchema, required: true },
   homePageData: { type: homePageSchema, required: true },
+  themeData: { type: themeSchema },
 }, {
   timestamps: true,
 });

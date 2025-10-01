@@ -77,6 +77,20 @@ export interface SEOData {
     ogImage: string;
 }
 
+export interface ButtonTheme {
+  bg: string;
+  text: string;
+  border: string;
+  hoverBg: string;
+  hoverText: string;
+  hoverBorder: string;
+}
+
+export interface ThemeData {
+  primaryButton: ButtonTheme;
+  secondaryButton: ButtonTheme;
+}
+
 export interface FooterData {
   logoPart1?: string;
   logoPart2?: string;

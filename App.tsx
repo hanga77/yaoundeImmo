@@ -1,7 +1,3 @@
-
-
-
-
 import React from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -38,6 +34,8 @@ import CarouselFormPage from './pages/admin/CarouselFormPage';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
 import UserFormPage from './pages/admin/UserFormPage';
 import AdminBlogPage from './pages/admin/AdminBlogPage';
+import ThemeManager from './components/ThemeManager';
+import AdminThemePage from './pages/admin/AdminThemePage';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -88,6 +86,7 @@ function App() {
                   <Route path="users/edit/:userId" element={<UserFormPage />} />
                   <Route path="seo" element={<AdminSeoPage />} />
                   <Route path="footer" element={<AdminFooterPage />} />
+                  <Route path="theme" element={<AdminThemePage />} />
                 </Route>
               </Routes>
             </ProtectedRoute>
@@ -102,6 +101,7 @@ function App() {
 const MainSite = () => (
   <div className="bg-brand-light min-h-screen flex flex-col font-sans text-brand-dark">
     <SeoManager />
+    <ThemeManager />
     <Header />
     <main className="flex-grow">
       <Routes>

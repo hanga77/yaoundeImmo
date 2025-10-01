@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
                   <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">{homePageData.ownerCtaTitle}</h2>
                   <p className="mt-4 text-lg text-brand-slate/90 max-w-3xl mx-auto">{homePageData.ownerCtaText}</p>
                   <div className="mt-8">
-                      <Link to="/contact" className="inline-block bg-brand-gold text-white font-bold py-4 px-10 rounded-md transition-all duration-300 text-lg hover:bg-yellow-600">
+                      <Link to="/contact" className="inline-block bg-btn-secondary-bg text-btn-secondary-text border border-btn-secondary-border font-bold py-4 px-10 rounded-md transition-all duration-300 text-lg hover:bg-btn-secondary-hover-bg hover:text-btn-secondary-hover-text hover:border-btn-secondary-hover-border">
                         Contactez-nous
                       </Link>
                   </div>
@@ -172,7 +172,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/biens" className="inline-block bg-brand-gold text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-yellow-600">
+              <Link to="/biens" className="inline-block bg-btn-primary-bg text-btn-primary-text border border-btn-primary-border font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-btn-primary-hover-bg hover:text-btn-primary-hover-text hover:border-btn-primary-hover-border">
                 Découvrir tous les biens
               </Link>
           </div>
@@ -192,7 +192,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/boutique" className="inline-block bg-brand-gold text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-yellow-600">
+              <Link to="/boutique" className="inline-block bg-btn-primary-bg text-btn-primary-text border border-btn-primary-border font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-btn-primary-hover-bg hover:text-btn-primary-hover-text hover:border-btn-primary-hover-border">
                 Découvrir la boutique
               </Link>
           </div>

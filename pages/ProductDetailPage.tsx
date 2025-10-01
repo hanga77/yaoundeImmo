@@ -16,7 +16,7 @@ const ProductDetailPage: React.FC = () => {
             <div className="text-center py-20">
                 <h1 className="text-3xl font-bold">Produit non trouvé</h1>
                 <p className="mt-4">Le produit que vous recherchez n'existe pas.</p>
-                <Link to="/boutique" className="mt-8 inline-block bg-brand-gold text-white font-bold py-2 px-4 rounded hover:bg-yellow-600">
+                <Link to="/boutique" className="mt-8 inline-block bg-btn-primary-bg text-btn-primary-text font-bold py-2 px-4 rounded hover:bg-btn-primary-hover-bg">
                     Retour à la boutique
                 </Link>
             </div>
@@ -87,7 +87,7 @@ const ProductDetailPage: React.FC = () => {
                         </div>
                         
                         <div className="mt-10">
-                            <button onClick={handleWhatsAppPurchase} className="w-full text-center block bg-brand-gold text-white font-bold py-4 px-6 rounded-md transition-all duration-300 text-lg hover:bg-yellow-600">
+                            <button onClick={handleWhatsAppPurchase} className="w-full text-center block bg-btn-secondary-bg text-btn-secondary-text border border-btn-secondary-border font-bold py-4 px-6 rounded-md transition-all duration-300 text-lg hover:bg-btn-secondary-hover-bg hover:text-btn-secondary-hover-text hover:border-btn-secondary-hover-border">
                                 Acheter sur WhatsApp
                             </button>
                         </div>

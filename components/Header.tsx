@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
@@ -102,6 +101,89 @@ const DropdownLink: React.FC<{ title: string; type: PropertyType; items: string[
   );
 };
 
+const GenericDropdown: React.FC<{ title: string; items: { label: string; to: string }[]; onLinkClick?: () => void }> = ({ title, items, onLinkClick }) => {
+  const [isDesktopOpen, setDesktopOpen] = useState(false);
+  const [isMobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+
+  const isParentActive = items.some(item => location.pathname.startsWith(item.to));
+
+  const linkClass = "py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 flex items-center";
+  const activeLinkClass = "font-semibold text-brand-gold";
+  const inactiveLinkClass = "text-brand-dark hover:text-brand-gold hover:bg-gray-100";
+
+  const handleMobileClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setMobileOpen(!isMobileOpen);
+  };
+  
+  const handleLinkClick = () => {
+    setMobileOpen(false);
+    if(onLinkClick) onLinkClick();
+  }
+
+  return (
+    <>
+      {/* Desktop Dropdown */}
+      <div className="relative hidden md:block" onMouseEnter={() => setDesktopOpen(true)} onMouseLeave={() => setDesktopOpen(false)}>
+        <div className={`${linkClass} ${isParentActive ? activeLinkClass : inactiveLinkClass} cursor-pointer`}>
+          {title} <ChevronDownIcon className="h-4 w-4 ml-1" />
+        </div>
+        {isDesktopOpen && (
+          <div className="absolute z-50 mt-0 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div className="py-1" role="menu" aria-orientation="vertical">
+              {items.map(item => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={onLinkClick}
+                  className={({isActive}) =>
+                    `block px-4 py-2 text-sm text-brand-dark hover:bg-gray-100 ${
+                      isActive ? 'bg-gray-100 font-semibold' : ''
+                    }`
+                  }
+                  role="menuitem"
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Mobile Accordion */}
+      <div className="md:hidden">
+        <button
+          onClick={handleMobileClick}
+          className={`w-full text-left ${linkClass} ${isParentActive ? activeLinkClass : inactiveLinkClass} justify-between`}
+        >
+          {title}
+          <ChevronDownIcon className={`h-5 w-5 transition-transform ${isMobileOpen ? 'rotate-180' : ''}`} />
+        </button>
+        {isMobileOpen && (
+          <div className="pl-4 py-2 space-y-2 bg-gray-50 rounded-b-md">
+            {items.map(item => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={handleLinkClick}
+                className={({isActive}) =>
+                  `block py-2 px-3 rounded-md text-sm font-medium transition-colors duration-300 text-brand-dark hover:text-brand-gold hover:bg-gray-100 ${
+                    isActive ? 'font-semibold text-brand-gold' : ''
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
 
 const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const location = useLocation();
@@ -109,13 +191,13 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const activeLinkClass = "font-semibold text-brand-gold";
   const inactiveLinkClass = "text-brand-dark hover:text-brand-gold hover:bg-gray-100";
   
-  const isServiceActive = () => {
-    return location.pathname.startsWith('/services');
-  };
-
   const rentalItems = ["Chambre", "Studio", "Appartement", "Bureau", "Salle de fête", "Espace commercial", "Voiture"];
   const saleItems = ["Terrain", "Maison", "Voiture"];
   const furnishedItems = ["Chambre", "Studio", "Appartement"];
+  const servicesItems = [
+    { label: "Nos Services", to: "/services" },
+    { label: "Notre Boutique", to: "/boutique" },
+  ];
 
   return (
     <>
@@ -131,20 +213,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
       <DropdownLink title="À Louer" type={PropertyType.RENT} items={rentalItems} onLinkClick={onLinkClick} />
       <DropdownLink title="Meublés" type={PropertyType.FURNISHED} items={furnishedItems} onLinkClick={onLinkClick} />
       
-      <NavLink 
-        to="/services" 
-        onClick={onLinkClick}
-        className={`${linkClass} ${isServiceActive() ? activeLinkClass : inactiveLinkClass}`}
-      >
-        Services
-      </NavLink>
-       <NavLink 
-        to="/boutique" 
-        onClick={onLinkClick}
-        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
-      >
-        Boutique
-      </NavLink>
+      <GenericDropdown title="Services & Boutique" items={servicesItems} onLinkClick={onLinkClick} />
     </>
   );
 };

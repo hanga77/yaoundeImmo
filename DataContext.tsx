@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole, HomePageData } from './types';
+import { Property, Agent, Service, Product, User, SEOData, FooterData, AboutData, CarouselSlide, UserRole, HomePageData, ThemeData, ButtonTheme } from './types';
 
 const API_URL = '/api';
 
@@ -15,6 +15,7 @@ interface DataContextType {
   footerData: FooterData;
   aboutData: AboutData;
   homePageData: HomePageData;
+  themeData: ThemeData;
   isLoading: boolean;
   login: (email: string, pass: string) => Promise<void>;
   logout: () => void;
@@ -40,6 +41,7 @@ interface DataContextType {
   updateFooterData: (data: FooterData) => Promise<void>;
   updateAboutData: (data: AboutData) => Promise<void>;
   updateHomePageData: (data: HomePageData) => Promise<void>;
+  updateThemeData: (data: ThemeData) => Promise<void>;
 }
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
@@ -48,7 +50,10 @@ const initialSeoData: SEOData = { title: '', description: '', keywords: '', ogIm
 const initialFooterData: FooterData = { logoPart1: 'Immobilier', logoPart2: 'Yaoundé', description: '', address: '', phone: '', email: '', facebookUrl: '', xUrl: '', youtubeUrl: '', tiktokUrl: '', pinterestUrl: '', legalNoticeUrl: '', privacyPolicyUrl: '', openingHours: '', facebookIcon: 'Facebook', xIcon: 'X', youtubeIcon: 'YouTube', tiktokIcon: 'TikTok', pinterestIcon: 'Pinterest' };
 const initialAboutData: AboutData = { history: '', mission: '', interventionTitle: '', interventionText: '', interventionImageUrl: '' };
 const initialHomePageData: HomePageData = { ctaBannerPrefix: '', ctaBannerSuffix: '', ownerCtaTitle: '', ownerCtaText: '', servicesTitle: '', servicesSubtitle: '', featuredPropertiesTitle: '', featuredPropertiesSubtitle: '', featuredProductsTitle: '', featuredProductsSubtitle: '' };
-
+const initialThemeData: ThemeData = {
+  primaryButton: { bg: '#D4AF37', text: '#FFFFFF', border: '#D4AF37', hoverBg: '#b89420', hoverText: '#FFFFFF', hoverBorder: '#b89420' },
+  secondaryButton: { bg: '#D4AF37', text: '#FFFFFF', border: '#D4AF37', hoverBg: '#b89420', hoverText: '#FFFFFF', hoverBorder: '#b89420' },
+};
 
 export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -62,6 +67,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [footerData, setFooterData] = useState<FooterData>(initialFooterData);
   const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
   const [homePageData, setHomePageData] = useState<HomePageData>(initialHomePageData);
+  const [themeData, setThemeData] = useState<ThemeData>(initialThemeData);
   const [isLoading, setIsLoading] = useState(true);
 
   // Auth check on mount
@@ -107,6 +113,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             setFooterData(configData.footerData || initialFooterData);
             setAboutData(configData.aboutData || initialAboutData);
             setHomePageData(configData.homePageData || initialHomePageData);
+            setThemeData(configData.themeData || initialThemeData);
         }
 
       } catch (error) {
@@ -226,17 +233,22 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const deleteUser = (userId: string) => deleteItem('users', userId, setUsers);
   
   const updateConfig = async (configData: object, setData: (data: any) => void) => {
-    await apiRequest(`${API_URL}/config`, 'PUT', configData);
-    setData(Object.values(configData)[0]);
+    const updatedConfig = await apiRequest(`${API_URL}/config`, 'PUT', configData);
+    if(updatedConfig.seoData) setSeoData(updatedConfig.seoData);
+    if(updatedConfig.footerData) setFooterData(updatedConfig.footerData);
+    if(updatedConfig.aboutData) setAboutData(updatedConfig.aboutData);
+    if(updatedConfig.homePageData) setHomePageData(updatedConfig.homePageData);
+    if(updatedConfig.themeData) setThemeData(updatedConfig.themeData);
   };
 
   const updateSeoData = (data: SEOData) => updateConfig({ seoData: data }, setSeoData);
   const updateFooterData = (data: FooterData) => updateConfig({ footerData: data }, setFooterData);
   const updateAboutData = (data: AboutData) => updateConfig({ aboutData: data }, setAboutData);
   const updateHomePageData = (data: HomePageData) => updateConfig({ homePageData: data }, setHomePageData);
+  const updateThemeData = (data: ThemeData) => updateConfig({ themeData: data }, setThemeData);
 
   const value: DataContextType = {
-    properties, agents, services, products, carouselSlides, users, user, seoData, footerData, aboutData, homePageData, isLoading,
+    properties, agents, services, products, carouselSlides, users, user, seoData, footerData, aboutData, homePageData, themeData, isLoading,
     login, logout,
     addProperty, updateProperty, deleteProperty,
     addService, updateService, deleteService,
@@ -244,7 +256,7 @@ export const DataProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     addAgent, updateAgent, deleteAgent,
     addCarouselSlide, updateCarouselSlide, deleteCarouselSlide,
     addUser, updateUser, deleteUser,
-    updateSeoData, updateFooterData, updateAboutData, updateHomePageData
+    updateSeoData, updateFooterData, updateAboutData, updateHomePageData, updateThemeData
   };
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
