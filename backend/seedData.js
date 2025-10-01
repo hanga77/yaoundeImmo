@@ -268,7 +268,7 @@ export const ABOUT_DATA = {
 };
 
 export const HOME_PAGE_DATA = {
-  ctaBannerPrefix: "ImmoYaoundé :",
+  ctaBannerPrefix: "Immobilier Yaoundé :",
   ctaBannerSuffix: "Bien plus qu'une agence. Découvrez nos services exclusifs et laissez-nous concrétiser votre projet immobilier de A à Z.",
   ownerCtaTitle: "Vous êtes propriétaire ?",
   ownerCtaText: "Confiez-nous la vente, la location ou la gestion de votre bien. Profitez de notre visibilité et de notre expertise pour une transaction sereine et rentable.",

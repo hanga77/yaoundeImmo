@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
       <section className="bg-white text-brand-slate py-4 shadow-md">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <p className="text-md md:text-lg font-medium">
-                  <span className="font-bold text-brand-gold">{homePageData.ctaBannerPrefix}</span> {homePageData.ctaBannerSuffix}
+                  <span className="font-bold">{homePageData.ctaBannerPrefix}</span> {homePageData.ctaBannerSuffix}
               </p>
           </div>
       </section>

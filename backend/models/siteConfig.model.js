@@ -8,6 +8,8 @@ const seoSchema = new mongoose.Schema({
 }, { _id: false });
 
 const footerSchema = new mongoose.Schema({
+  logoPart1: { type: String },
+  logoPart2: { type: String },
   description: { type: String, required: true },
   address: { type: String, required: true },
   phone: { type: String, required: true },

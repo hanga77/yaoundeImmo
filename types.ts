@@ -78,6 +78,8 @@ export interface SEOData {
 }
 
 export interface FooterData {
+  logoPart1?: string;
+  logoPart2?: string;
   description: string;
   address: string;
   phone: string;

@@ -45,7 +45,7 @@ interface DataContextType {
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
 const initialSeoData: SEOData = { title: '', description: '', keywords: '', ogImage: '' };
-const initialFooterData: FooterData = { description: '', address: '', phone: '', email: '', facebookUrl: '', xUrl: '', youtubeUrl: '', tiktokUrl: '', pinterestUrl: '', legalNoticeUrl: '', privacyPolicyUrl: '', openingHours: '', facebookIcon: 'Facebook', xIcon: 'X', youtubeIcon: 'YouTube', tiktokIcon: 'TikTok', pinterestIcon: 'Pinterest' };
+const initialFooterData: FooterData = { logoPart1: 'Immobilier', logoPart2: 'Yaoundé', description: '', address: '', phone: '', email: '', facebookUrl: '', xUrl: '', youtubeUrl: '', tiktokUrl: '', pinterestUrl: '', legalNoticeUrl: '', privacyPolicyUrl: '', openingHours: '', facebookIcon: 'Facebook', xIcon: 'X', youtubeIcon: 'YouTube', tiktokIcon: 'TikTok', pinterestIcon: 'Pinterest' };
 const initialAboutData: AboutData = { history: '', mission: '', interventionTitle: '', interventionText: '', interventionImageUrl: '' };
 const initialHomePageData: HomePageData = { ctaBannerPrefix: '', ctaBannerSuffix: '', ownerCtaTitle: '', ownerCtaText: '', servicesTitle: '', servicesSubtitle: '', featuredPropertiesTitle: '', featuredPropertiesSubtitle: '', featuredProductsTitle: '', featuredProductsSubtitle: '' };
 

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { PropertyType } from '../types';
+import { useData } from '../DataContext';
 
 interface NavLinksProps {
   onLinkClick?: () => void;
@@ -151,6 +152,7 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
 
 const Header: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { footerData } = useData();
     const closeMenu = () => setIsOpen(false);
 
     return (
@@ -159,7 +161,7 @@ const Header: React.FC = () => {
                 <div className="flex items-center justify-between h-20">
                     <div className="flex-shrink-0">
                         <Link to="/" onClick={closeMenu} className="text-brand-dark text-2xl font-bold font-serif">
-                            Immo<span className="text-brand-gold">Yaoundé</span>
+                            {footerData.logoPart1 || 'Immo'}<span className="text-brand-gold">{footerData.logoPart2 || 'Yaoundé'}</span>
                         </Link>
                     </div>
                     <div className="hidden md:block">

@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
           {/* Column 1: About */}
           <div className="md:col-span-2 lg:col-span-1">
             <h3 className="text-brand-dark text-xl font-bold font-serif mb-4">
-                Immo<span className="text-brand-gold">Yaoundé</span>
+                {footerData.logoPart1 || 'Immobilier'} {footerData.logoPart2 || 'Yaoundé'}
             </h3>
             <p className="text-sm leading-relaxed pr-4">{footerData.description}</p>
             <div className="flex space-x-4 mt-4">
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-12 border-t border-gray-200 pt-6 text-center text-sm text-gray-500">
-           <p>&copy; {new Date().getFullYear()} ImmoYaoundé. Tous droits réservés.</p>
+           <p>&copy; {new Date().getFullYear()} {footerData.logoPart1 || 'Immobilier'} {footerData.logoPart2 || 'Yaoundé'}. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

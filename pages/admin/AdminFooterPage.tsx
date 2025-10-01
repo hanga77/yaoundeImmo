@@ -27,11 +27,25 @@ const AdminFooterPage: React.FC = () => {
                     Gestion du Pied de Page
                 </h1>
                 <p className="text-gray-600 mt-1">
-                    Modifiez les informations de contact et les liens des réseaux sociaux.
+                    Modifiez l'identité du site, les informations de contact et les liens des réseaux sociaux.
                 </p>
             </div>
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
-                <h3 className="text-lg font-medium text-gray-900 border-b pb-2">Informations Générales</h3>
+                <h3 className="text-lg font-medium text-gray-900 border-b pb-2">Identité du Site (Logo)</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                      <label htmlFor="logoPart1" className="block text-sm font-medium text-gray-700">Première partie</label>
+                      <input type="text" name="logoPart1" id="logoPart1" value={formData.logoPart1 || ''} onChange={handleChange} placeholder="Immobilier" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                  </div>
+                   <div>
+                      <label htmlFor="logoPart2" className="block text-sm font-medium text-gray-700">Deuxième partie (en or)</label>
+                      <input type="text" name="logoPart2" id="logoPart2" value={formData.logoPart2 || ''} onChange={handleChange} placeholder="Yaoundé" className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold" />
+                  </div>
+                </div>
+
+                <div className="border-t pt-6">
+                  <h3 className="text-lg font-medium text-gray-900 border-b pb-2">Informations Générales</h3>
+                </div>
                 <div>
                     <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description de l'agence</label>
                     <textarea name="description" id="description" value={formData.description} onChange={handleChange} rows={3} className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
