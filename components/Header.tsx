@@ -194,10 +194,6 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
   const rentalItems = ["Chambre", "Studio", "Appartement", "Bureau", "Salle de fête", "Espace commercial", "Voiture"];
   const saleItems = ["Terrain", "Maison", "Voiture"];
   const furnishedItems = ["Chambre", "Studio", "Appartement"];
-  const servicesItems = [
-    { label: "Nos Services", to: "/services" },
-    { label: "Notre Boutique", to: "/boutique" },
-  ];
 
   return (
     <>
@@ -213,7 +209,20 @@ const NavLinks: React.FC<NavLinksProps> = ({ onLinkClick }) => {
       <DropdownLink title="À Louer" type={PropertyType.RENT} items={rentalItems} onLinkClick={onLinkClick} />
       <DropdownLink title="Meublés" type={PropertyType.FURNISHED} items={furnishedItems} onLinkClick={onLinkClick} />
       
-      <GenericDropdown title="Services & Boutique" items={servicesItems} onLinkClick={onLinkClick} />
+      <NavLink
+        to="/services"
+        onClick={onLinkClick}
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Services
+      </NavLink>
+      <NavLink
+        to="/boutique"
+        onClick={onLinkClick}
+        className={({ isActive }) => `${linkClass} ${isActive ? activeLinkClass : inactiveLinkClass}`}
+      >
+        Boutique
+      </NavLink>
     </>
   );
 };
