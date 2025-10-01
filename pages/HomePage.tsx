@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
                   <h2 className="text-3xl md:text-4xl font-bold font-serif text-brand-slate">{homePageData.ownerCtaTitle}</h2>
                   <p className="mt-4 text-lg text-brand-slate/90 max-w-3xl mx-auto">{homePageData.ownerCtaText}</p>
                   <div className="mt-8">
-                      <Link to="/contact" className="inline-block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-4 px-10 rounded-md transition-all duration-300 text-lg hover:text-brand-green-dark hover:border-brand-green-dark">
+                      <Link to="/contact" className="inline-block bg-brand-gold text-white font-bold py-4 px-10 rounded-md transition-all duration-300 text-lg hover:bg-yellow-600">
                         Contactez-nous
                       </Link>
                   </div>
@@ -172,7 +172,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/biens" className="inline-block bg-white text-brand-orange-primary border-2 border-brand-orange-primary font-bold py-3 px-8 rounded-md transition-all duration-300 hover:text-brand-orange-dark hover:border-brand-orange-dark">
+              <Link to="/biens" className="inline-block bg-brand-gold text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-yellow-600">
                 Découvrir tous les biens
               </Link>
           </div>
@@ -192,7 +192,7 @@ const HomePage: React.FC = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-              <Link to="/boutique" className="inline-block bg-white text-brand-orange-primary border-2 border-brand-orange-primary font-bold py-3 px-8 rounded-md transition-all duration-300 hover:text-brand-orange-dark hover:border-brand-orange-dark">
+              <Link to="/boutique" className="inline-block bg-brand-gold text-white font-bold py-3 px-8 rounded-md transition-all duration-300 hover:bg-yellow-600">
                 Découvrir la boutique
               </Link>
           </div>

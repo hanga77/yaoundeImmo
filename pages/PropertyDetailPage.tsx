@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useData } from '../DataContext';
@@ -136,7 +134,7 @@ const PropertyDetailPage: React.FC = () => {
                         <p className="text-brand-slate/90 leading-relaxed">{property.description}</p>
                         
                         <div className="mt-10">
-                            <Link to="/contact" className="w-full text-center block bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-3 px-6 rounded-md transition-all duration-300 hover:text-brand-green-dark hover:border-brand-green-dark">
+                            <Link to="/contact" className="w-full text-center block bg-brand-gold text-white font-bold py-3 px-6 rounded-md transition-all duration-300 hover:bg-yellow-600">
                                 Contacter un agent
                             </Link>
                         </div>

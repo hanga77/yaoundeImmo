@@ -87,7 +87,7 @@ const ContactPage: React.FC = () => {
                   <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} required className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-brand-gold focus:border-brand-gold"></textarea>
                 </div>
                 <div className="mt-6">
-                  <button type="submit" className="w-full bg-white text-brand-green-primary border-2 border-brand-green-primary font-bold py-3 px-6 rounded-md transition-all duration-300 hover:text-brand-green-dark hover:border-brand-green-dark">
+                  <button type="submit" className="w-full bg-brand-gold text-white font-bold py-3 px-6 rounded-md transition-all duration-300 hover:bg-yellow-600">
                     Envoyer sur WhatsApp
                   </button>
                 </div>
