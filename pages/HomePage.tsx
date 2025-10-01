@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropertyCard from '../components/PropertyCard';
@@ -57,7 +55,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       {/* Call to Action Section */}
-      <section className="bg-brand-blue text-white py-4 shadow-md">
+      <section className="bg-white text-brand-slate py-4 shadow-md">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <p className="text-md md:text-lg font-medium">
                   <span className="font-bold text-brand-gold">{homePageData.ctaBannerPrefix}</span> {homePageData.ctaBannerSuffix}

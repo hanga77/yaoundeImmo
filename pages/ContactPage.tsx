@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import { useData } from '../DataContext';
@@ -96,35 +95,35 @@ const ContactPage: React.FC = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="bg-brand-blue p-6 md:p-8 rounded-lg text-white">
-              <h2 className="text-2xl md:text-3xl font-bold font-serif mb-6">Nos Coordonnées</h2>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-slate font-serif mb-6">Nos Coordonnées</h2>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPinIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Adresse</h3>
-                    <p className="text-gray-300">{footerData.address}</p>
+                    <h3 className="font-semibold text-brand-slate">Adresse</h3>
+                    <p className="text-brand-slate/90">{footerData.address}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <PhoneIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Téléphone</h3>
-                    <p className="text-gray-300">{footerData.phone}</p>
+                    <h3 className="font-semibold text-brand-slate">Téléphone</h3>
+                    <p className="text-brand-slate/90">{footerData.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <EnvelopeIcon className="h-6 w-6 mr-4 mt-1 text-brand-gold flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Email</h3>
-                    <p className="text-gray-300">{footerData.email}</p>
+                    <h3 className="font-semibold text-brand-slate">Email</h3>
+                    <p className="text-brand-slate/90">{footerData.email}</p>
                   </div>
                 </div>
               </div>
-              <div className="mt-8 border-t border-blue-800 pt-6">
-                <h3 className="font-semibold mb-2">Horaires d'ouverture</h3>
+              <div className="mt-8 border-t border-gray-200 pt-6">
+                <h3 className="font-semibold text-brand-slate mb-2">Horaires d'ouverture</h3>
                 {footerData.openingHours.split('\n').map((line, index) => (
-                  <p key={index} className="text-gray-300">{line}</p>
+                  <p key={index} className="text-brand-slate/90">{line}</p>
                 ))}
               </div>
               <div className="mt-8 h-64 rounded-lg overflow-hidden">
